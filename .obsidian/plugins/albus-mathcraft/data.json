@@ -1,0 +1,88 @@
+{
+  "license": {
+    "key": "MC-eyJpZCI6Ik1DMTQzIiwicGxhbiI6ImxpZmV0aW1lIiwiaWF0IjoiMjAyNi0wNC0yNSJ9.xkShYOqk8Os_HCvzdnGbe7yc8eNPIkhEGe9sz9_ieXq-Z72Q9_cnIzBp-uYfMUSLM5dj3AzHzfWxp2Yg3TqcCQ"
+  },
+  "theoremTypes": [
+    "theorem",
+    "lemma",
+    "corollary",
+    "proposition",
+    "definition",
+    "axiom",
+    "example",
+    "exercise",
+    "remark",
+    "note"
+  ],
+  "theoremNumberingMode": "by-heading",
+  "theoremHeadingLevel": 1,
+  "theoremStyle": "card",
+  "theoremColors": {
+    "theorem": "#3b82f6",
+    "lemma": "#8b5cf6",
+    "corollary": "#06b6d4",
+    "proposition": "#10b981",
+    "definition": "#f59e0b",
+    "axiom": "#ef4444",
+    "example": "#ec4899",
+    "exercise": "#6366f1",
+    "remark": "#64748b",
+    "note": "#78716c"
+  },
+  "language": "zh-CN",
+  "pdfPreventBreakInside": true,
+  "equationMarkerMode": "all",
+  "equationNumberingMode": "by-heading",
+  "equationHeadingLevel": 1,
+  "mathLinks": {
+    "templates": [],
+    "excludedPaths": [],
+    "blockPrefix": "^",
+    "enableFileNameBlockLinks": true,
+    "enableInSourceMode": false,
+    "renderOutline": true,
+    "language": "zh-CN",
+    "theoremExternalMode": "brackets",
+    "theoremRenderModes": {
+      "theorem": "name-only",
+      "lemma": "name-only",
+      "corollary": "name-only",
+      "proposition": "name-only",
+      "definition": "special-name",
+      "axiom": "name-only",
+      "example": "number-only",
+      "exercise": "number-only",
+      "remark": "number-only",
+      "note": "number-only"
+    },
+    "equationExternalMode": "brackets",
+    "equationRenderMode": "number-only"
+  },
+  "headingNumbering": {
+    "skipKeywords": []
+  },
+  "tikz": {
+    "exportPath": "",
+    "mcgFolderPath": "",
+    "mcgExportPath": "",
+    "mcdFolderPath": "",
+    "mcdExportPath": "",
+    "enableCache": true
+  },
+  "geogebraTools": {
+    "tools": []
+  },
+  "mastery": {
+    "enabled": true,
+    "maxLevel": 5,
+    "levelDescriptions": [
+      "初识",
+      "理解",
+      "熟练",
+      "精通",
+      "融会贯通"
+    ]
+  },
+  "settingsTab": "theorem",
+  "simpleTexToken": ""
+}

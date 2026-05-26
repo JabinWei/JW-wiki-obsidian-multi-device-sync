@@ -1,1 +1,10 @@
-# JW-wiki-obsidian-multi-device-sync
+# 切换Obsidian的原因：
+
++ 主要是应用于记录数学笔记、代码笔记
++ 结合AI实现知识库管理
++ 开源插件
++ 双链 + 本地存储
+
+# 高自定义度和插件
+
++ 
