@@ -1,0 +1,430 @@
+---
+type: learning
+status: 已完成
+domain: Python
+tags: [Python, 编程语言]
+created: 2026-06-12
+updated: 2026-06-16
+---
+
+# Python 开发环境搭建
+
+## 🎯 学习目标
+
+- 如何在 Windows / macOS / Linux 上安装 Python？
+- Anaconda、Miniconda 和官方 Python 有什么区别，各自适用什么场景？
+- 什么是虚拟环境？为什么要用虚拟环境？
+- 如何使用 `venv` 创建和管理虚拟环境？
+- 如何使用 `conda` 创建和管理虚拟环境？
+- 如何使用 `pip` 安装和管理第三方包？
+- `requirements.txt` 的作用是什么？如何生成和使用它？
+- 如何配置 VS Code 或 PyCharm 作为 Python 开发 IDE？
+
+## 📖 前置知识
+
+- [[PY001-Python简介]] — 理解 Python 是什么、能做什么以及其核心设计哲学
+
+## 📚 核心内容
+
+Anaconda：包含Python、Conda、科学计算库等众多模块的工具包。适用场景：数据分析、数据挖掘、科学计算。
+
+Miniconda：Python于Conda的组合
+
+Conda是Python版本管理器。
+
+---
+
+### 1. 安装 Python 的三种方式
+
+#### 方式一：官方 Python（python.org）
+
+从 [python.org](https://www.python.org/downloads/) 下载安装包，适合通用 Python 开发。
+
+**macOS（Homebrew）：**
+```bash
+brew install python@3.12
+```
+
+验证安装：
+```bash
+python3 --version
+# 输出：Python 3.12.x
+```
+
+**Windows：**
+- 下载安装包后运行，务必勾选「Add Python to PATH」
+- 安装完成后打开终端，输入 `python --version` 验证
+
+**Linux（Ubuntu/Debian）：**
+```bash
+sudo apt update
+sudo apt install python3 python3-pip
+```
+
+#### 方式二：Anaconda
+
+适合数据科学、机器学习领域，预装大量科学计算库。
+
+**macOS：**
+```bash
+brew install --cask anaconda
+```
+
+**验证：**
+```bash
+conda --version
+# 输出：conda 24.x.x
+python --version
+# 输出：Python 3.12.x（Anaconda 自带）
+```
+
+#### 方式三：Miniconda
+
+Miniconda 是 Anaconda 的轻量版，只包含 Python 和 Conda，不含预装的科学计算库。适合需要灵活控制环境的开发者。
+
+**安装：**
+```bash
+# macOS
+brew install --cask miniconda
+
+# Linux
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh
+```
+
+### 2. Python 版本管理
+
+Python 存在多个活跃版本（如 3.9、3.10、3.11、3.12），不同项目可能依赖不同版本。
+
+#### 使用 pyenv（推荐）
+
+**安装 pyenv（macOS）：**
+```bash
+brew install pyenv
+```
+
+**常用命令：**
+```bash
+pyenv install --list            # 查看可安装的版本
+pyenv install 3.12.4            # 安装指定版本
+pyenv versions                  # 查看已安装的版本
+pyenv global 3.12.4             # 设置全局默认版本
+pyenv local 3.11.9              # 在当前项目目录设置版本
+```
+
+设置后在项目目录下会生成 `.python-version` 文件，记录当前项目使用的 Python 版本。
+
+#### 使用 Conda 管理 Python 版本
+
+```bash
+conda create -n myenv python=3.11   # 创建指定 Python 版本的环境
+conda activate myenv                # 激活环境
+conda deactivate                    # 退出环境
+```
+
+### 3. 虚拟环境
+
+虚拟环境为每个项目提供独立的 Python 解释器和第三方包依赖，是 Python 开发的核心实践。
+
+#### 为什么需要虚拟环境？
+
+- **隔离依赖**：项目 A 需要 Django 4.2，项目 B 需要 Django 5.0，两者不冲突
+- **可复现**：通过冻结依赖版本，确保在其他机器上也能运行
+- **避免污染**：全局环境保持干净
+
+#### 使用 venv（Python 内置）
+
+```bash
+# 创建虚拟环境
+python3 -m venv myproject_env
+
+# 激活虚拟环境
+# macOS / Linux：
+source myproject_env/bin/activate
+# Windows：
+myproject_env\Scripts\activate
+
+# 激活后，终端提示符会变为：
+(myproject_env) $
+
+# 退出虚拟环境
+deactivate
+```
+
+#### 使用 Conda 虚拟环境
+
+```bash
+conda create -n myproject python=3.12
+conda activate myproject
+conda deactivate
+
+# 列出所有 Conda 环境
+conda env list
+
+# 删除环境
+conda env remove -n myproject
+```
+
+### 4. 包管理：pip
+
+pip 是 Python 的官方包管理工具，用于安装、升级和卸载第三方包。
+
+```bash
+pip install requests                # 安装
+pip install requests==2.31.0        # 安装指定版本
+pip install --upgrade requests      # 升级
+pip uninstall requests              # 卸载
+pip list                            # 列出已安装的包
+pip show requests                   # 查看某个包的详细信息
+```
+
+**配置国内镜像源（加速下载）：**
+```bash
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+```
+
+### 5. 依赖管理：requirements.txt
+
+每个项目应维护 `requirements.txt`，记录精确的依赖版本。
+
+**生成依赖文件：**
+```bash
+pip freeze > requirements.txt
+```
+
+`requirements.txt` 示例：
+```
+requests==2.31.0
+numpy==1.26.4
+pandas==2.2.2
+```
+
+**从文件安装依赖：**
+```bash
+pip install -r requirements.txt
+```
+
+### 6. IDE 配置
+
+#### VS Code
+
+1. 安装 Python 扩展（ms-python.python）
+2. 打开项目文件夹，按 `Cmd+Shift+P` 输入「Python: Select Interpreter」
+3. 选择项目对应的虚拟环境
+4. 可选：安装 Pylance、Black Formatter 扩展
+
+#### PyCharm
+
+1. 新建项目时选择「New environment using Virtualenv」
+2. 或在已有项目中：Settings → Project → Python Interpreter → Add Interpreter
+3. 支持直接识别 Conda 环境
+
+### 7. 完整项目初始化流程
+
+```bash
+# 1. 创建项目目录
+mkdir my_project && cd my_project
+
+# 2. 创建虚拟环境
+python3 -m venv .venv
+
+# 3. 激活虚拟环境
+source .venv/bin/activate
+
+# 4. 升级 pip
+pip install --upgrade pip
+
+# 5. 安装依赖
+pip install requests pandas
+
+# 6. 生成依赖文件
+pip freeze > requirements.txt
+
+# 7. （可选）创建 .gitignore，忽略虚拟环境目录
+echo ".venv/" >> .gitignore
+echo "__pycache__/" >> .gitignore
+```
+
+## 🧪 练习 / 验证
+
+### 练习 1：创建并激活虚拟环境
+
+在终端中完成以下操作：
+
+```bash
+# 创建一个名为 test_env 的虚拟环境
+python3 -m venv test_env
+
+# 激活虚拟环境
+source test_env/bin/activate
+
+# 验证 Python 路径是否指向虚拟环境
+which python3
+```
+
+**预期输出：**
+```
+/Users/你的用户名/test_env/bin/python3
+```
+（路径应指向虚拟环境目录，而非系统全局路径）
+
+### 练习 2：安装第三方库并查看版本
+
+在激活的虚拟环境中执行：
+
+```bash
+pip install requests
+python3 -c "import requests; print(requests.__version__)"
+```
+
+**预期输出：**
+```
+2.32.x
+```
+
+### 练习 3：生成和使用 requirements.txt
+
+```bash
+# 安装几个包
+pip install requests==2.31.0 flask==3.0.3
+
+# 生成 requirements.txt
+pip freeze > requirements.txt
+
+# 查看文件内容
+cat requirements.txt
+```
+
+**预期输出（片段）：**
+```
+flask==3.0.3
+requests==2.31.0
+...
+```
+
+然后创建一个新的虚拟环境来验证 `requirements.txt` 的可复现性：
+
+```bash
+cd /tmp
+python3 -m venv test_reproduce
+source test_reproduce/bin/activate
+pip install -r /path/to/your/requirements.txt
+pip list | grep -E "requests|flask"
+```
+
+**预期输出：**
+```
+flask        3.0.3
+requests     2.31.0
+```
+
+### 练习 4：使用 conda 管理环境
+
+```bash
+# 创建 conda 环境
+conda create -n py312_test python=3.12 -y
+
+# 激活环境
+conda activate py312_test
+
+# 检查 Python 版本
+python --version
+
+# 安装 numpy 并验证
+pip install numpy
+python -c "import numpy as np; print(np.__version__)"
+```
+
+**预期输出：**
+```
+Python 3.12.x
+2.x.x
+```
+
+### 练习 5：pyenv 版本切换
+
+```bash
+# 查看可安装的 Python 版本
+pyenv install --list | grep "^\s*3\.12"
+
+# 安装 3.12.4（如尚未安装）
+pyenv install 3.12.4
+
+# 在当前目录设置 local 版本
+cd /tmp && mkdir py_test && cd py_test
+pyenv local 3.12.4
+
+# 验证
+python --version
+cat .python-version
+```
+
+**预期输出：**
+```
+Python 3.12.4
+3.12.4
+```
+
+### 练习 6：pip list 与 pip freeze 的区别
+
+```bash
+pip install flask
+pip list        # 查看所有已安装包（人类可读格式）
+pip freeze      # 查看精确的依赖关系（机器可解析格式）
+```
+
+思考题：`pip list` 和 `pip freeze` 的输出有什么不同？为什么 `pip freeze > requirements.txt` 是生成依赖文件的标准做法？
+
+**答案：** `pip list` 输出格式更易读（对齐的列），但 `pip freeze` 输出的是精确的 `包名==版本号` 格式，可以直接被 `pip install -r` 解析。`pip freeze` 会递归地列出所有依赖，包括间接依赖。
+
+### 练习 7：退出和删除虚拟环境
+
+```bash
+# 退出当前虚拟环境
+deactivate
+
+# 删除虚拟环境目录（确认路径正确后执行）
+rm -rf test_env
+rm -rf /tmp/test_reproduce
+
+# 确认已退出
+which python3
+```
+
+**预期输出：**
+```
+/usr/bin/python3    # 或系统全局路径
+```
+
+### 练习 8：检查 pip 配置的镜像源
+
+```bash
+pip config list
+pip config get global.index-url
+```
+
+**预期输出：**
+```
+global.index-url='https://pypi.org/simple'
+```
+（如果已配置镜像源，会显示对应的镜像地址）
+
+## 🤔 常见误区
+
+| 误区 | 事实 |
+|------|------|
+| 「Anaconda 和 Python 是同一个东西」 | Anaconda 是 Python 的一个发行版，额外包含了 Conda 和大量科学计算库。官方 Python（python.org）是纯净的基础版本。 |
+| 「虚拟环境太麻烦，直接在全局环境装包就行」 | 全局安装会导致不同项目的依赖冲突。例如项目 A 需要 numpy 1.24，项目 B 需要 numpy 2.0，全局环境无法同时满足。虚拟环境是 Python 开发的标准实践。 |
+| 「`pip freeze` 和 `pip list` 是一样的」 | `pip freeze` 输出 `包名==版本号` 的机器可解析格式，专为 requirements.txt 设计；`pip list` 输出带对齐格式的表格，更适合人类阅读。 |
+| 「Conda 环境可以用 pip 随意装包，没影响」 | 在 Conda 环境中使用 pip 安装包可能导致依赖冲突。建议优先使用 `conda install`，只有在包不可用时才用 `pip install`。 |
+| 「`python` 和 `python3` 是一样的」 | 在 macOS 和 Linux 上，`python` 可能指向 Python 2.x（系统自带），而 `python3` 指向 Python 3.x。建议始终使用 `python3` 和 `pip3` 以避免混淆。 |
+
+## 🔗 相关资源
+
+- 上一节：[[PY001-Python简介]]
+- 下一节：[[PY003-Python中的内置函数]]
+- 官方文档：[Python Setup and Usage](https://docs.python.org/3/using/index.html)
+- 官方文档：[venv — 创建虚拟环境](https://docs.python.org/3/library/venv.html)
+- 官方文档：[pip 用户指南](https://pip.pypa.io/en/stable/user_guide/)
+- 推荐工具：[pyenv — Simple Python Version Management](https://github.com/pyenv/pyenv)
+- Conda 文档：[Managing environments](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)

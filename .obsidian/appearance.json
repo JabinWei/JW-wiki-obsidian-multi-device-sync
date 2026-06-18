@@ -1,3 +1,10 @@
 {
-  "showRibbon": true
+  "showRibbon": true,
+  "cssTheme": "Minimal",
+  "baseFontSizeAction": true,
+  "theme": "system",
+  "interfaceFontFamily": "",
+  "textFontFamily": "",
+  "monospaceFontFamily": "",
+  "nativeMenus": false
 }

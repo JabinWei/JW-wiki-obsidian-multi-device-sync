@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "source": "termy",
+  "updatedAt": "2026-06-18T03:11:47.534Z",
+  "vaultRoot": "Users/weijibin/Documents/obsidian-notes",
+  "workspaceFolders": [
+    "Users/weijibin/Documents/obsidian-notes"
+  ],
+  "activeFile": {
+    "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY007-Python中的运算符.md",
+    "vaultPath": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY007-Python中的运算符.md",
+    "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/C001-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/CB001-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/PL001-Python/PY007-Python%E4%B8%AD%E7%9A%84%E8%BF%90%E7%AE%97%E7%AC%A6.md",
+    "hasFocus": false
+  },
+  "openFiles": [
+    {
+      "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/02-CardKnowledge-卡片知识/PL-001-编程语言的变量与类型系统.md",
+      "vaultPath": "00-Core/02-CardKnowledge-卡片知识/PL-001-编程语言的变量与类型系统.md",
+      "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/02-CardKnowledge-%E5%8D%A1%E7%89%87%E7%9F%A5%E8%AF%86/PL-001-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E7%9A%84%E5%8F%98%E9%87%8F%E4%B8%8E%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F.md",
+      "isActive": false
+    },
+    {
+      "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY007-Python中的运算符.md",
+      "vaultPath": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY007-Python中的运算符.md",
+      "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/C001-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/CB001-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/PL001-Python/PY007-Python%E4%B8%AD%E7%9A%84%E8%BF%90%E7%AE%97%E7%AC%A6.md",
+      "isActive": true
+    }
+  ],
+  "selection": null
+}

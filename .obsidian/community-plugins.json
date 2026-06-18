@@ -1,7 +1,19 @@
 [
-  "obsidian-image-auto-upload-plugin",
-  "obsidian-excalidraw-plugin",
+  "note-refactor-obsidian",
+  "obsidian-style-settings",
   "obsidian42-brat",
+  "callout-manager",
+  "dataview",
+  "obsidian-excalidraw-plugin",
+  "obsidian-image-auto-upload-plugin",
   "albus-mathcraft",
-  "obsidian-latex-suite"
+  "obsidian-latex-suite",
+  "notebook-navigator",
+  "obsidian-minimal-settings",
+  "realclaudian",
+  "termy",
+  "easy-typing-obsidian",
+  "templater-obsidian",
+  "homepage",
+  "execute-code"
 ]

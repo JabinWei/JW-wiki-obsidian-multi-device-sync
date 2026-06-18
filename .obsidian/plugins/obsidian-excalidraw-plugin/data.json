@@ -1,9 +1,10 @@
 {
+  "showTabTitlebarButtons": true,
   "copyLinkToElemenetAnchorTo100": false,
   "copyFrameLinkByName": false,
   "disableDoubleClickTextEditing": false,
   "phoneFooterSafeAreaPadding": false,
-  "folder": "Excalidraw",
+  "folder": "90-Storage/98-Asset-资源/Excalidraw",
   "cropFolder": "",
   "annotateFolder": "",
   "embedUseExcalidrawFolder": false,
@@ -119,7 +120,7 @@
   "library2": {
     "type": "excalidrawlib",
     "version": 2,
-    "source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag2.23.6",
+    "source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag2.23.12",
     "libraryItems": []
   },
   "imageElementNotice": true,
@@ -130,7 +131,7 @@
   "mdBorderColor": "Black",
   "mdCSS": "",
   "scriptEngineSettings": {},
-  "previousRelease": "2.23.6",
+  "previousRelease": "2.23.12",
   "showReleaseNotes": true,
   "excalidrawMasteryPromoCollapsed": false,
   "compareManifestToPluginVersion": true,

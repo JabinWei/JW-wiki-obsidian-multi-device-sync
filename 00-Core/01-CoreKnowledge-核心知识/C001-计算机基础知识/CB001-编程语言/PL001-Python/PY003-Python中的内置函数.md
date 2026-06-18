@@ -1,0 +1,337 @@
+---
+type: learning
+status: 已完成
+domain: Python
+tags:
+  - Python
+  - 编程语言
+created: 2026-06-12
+updated: 2026-06-16
+---
+# Python 中的内置函数
+
+## 🎯 学习目标
+
+学完本篇后，你应该能回答以下问题：
+
+- Python 有哪些常用的内置函数？它们分别属于哪些类别？
+- 数学运算类内置函数（`abs`、`divmod`、`pow`、`round`、`sum`、`max`、`min`）的用法和注意事项是什么？
+- 类型转换类内置函数（`int`、`float`、`str`、`bool`、`list`、`tuple`、`set`、`dict`、`chr`、`ord`、`bin`、`hex`、`oct`）各自有什么作用？
+- 迭代器与序列处理类函数（`len`、`range`、`enumerate`、`zip`、`map`、`filter`、`reversed`、`sorted`、`all`、`any`）分别适用于什么场景？
+- 对象操作与反射类函数（`type`、`id`、`isinstance`、`callable`、`getattr`、`setattr`、`hasattr`、`delattr`、`hash`、`dir`）如何使用？
+- 输入输出与系统交互类函数（`print`、`input`、`open`、`help`、`breakpoint`、`globals`、`locals`、`eval`、`exec`）各自的作用和安全注意事项是什么？
+
+---
+
+## 📖 前置知识
+
+- [[PY001-Python简介]] — 了解 Python 的基本特性和设计哲学
+
+---
+
+## 📚 核心内容
+
+### 内置函数
+
+Python 之所以强大，很大程度上归功于其"自带电池"的理念。内置函数就是这些电池中最核心的一部分，它们无需导入任何模块即可直接使用，覆盖了从基础运算、数据处理到系统交互的方方面面。
+
+|                 |               | Built-in Functions |                |                  |
+| --------------- | ------------- | ------------------ | -------------- | ---------------- |
+| `abs()`         | `delattr()`   | `hash()`           | `memoryview()` | `set()`          |
+| `all()`         | `dict()`      | `help()`           | `min()`        | `setattr()`      |
+| `any()`         | `dir()`       | `hex()`            | `next()`       | `slice()`        |
+| `ascii()`       | `divmod()`    | `id()`             | `object()`     | `sorted()`       |
+| `bin()`         | `enumerate()` | `input()`          | `oct()`        | `staticmethod()` |
+| `bool()`        | `eval()`      | `int()`            | `open()`       | `str()`          |
+| `breakpoint()`  | `exec()`      | `isinstance()`     | `ord()`        | `sum()`          |
+| `bytearray()`   | `filter()`    | `issubclass()`     | `pow()`        | `super()`        |
+| `bytes()`       | `float()`     | `iter()`           | `print()`      | `tuple()`        |
+| `callable()`    | `format()`    | `len()`            | `property()`   | `type()`         |
+| `chr()`         | `frozenset()` | `list()`           | `range()`      | `vars()`         |
+| `classmethod()` | `getattr()`   | `locals()`         | `repr()`       | `zip()`          |
+| `compile()`     | `globals()`   | `map()`            | `reversed()`   | `__import__()`   |
+| `complex()`     | `hasattr()`   | `max()`            | `round()`      |                  |
+
+---
+
+#### 数学与运算类
+
+这一类函数主要用于处理数值计算，是科学计算和逻辑判断的基础。
+
+- **`abs(x)`**：返回数字的绝对值。
+- **`divmod(a, b)`**：同时返回商和余数，相当于 `(a // b, a % b)`。
+- **`pow(x, y[, z])`**：返回 x 的 y 次方；如果有 z，则返回 `(x**y) % z`。
+- **`round(number[, ndigits])`**：对浮点数进行四舍五入，其中`ndigits`为可选参数。
+  - `ndigits > 0`，保留指定的小数位数，例如 `round(3.141592653, 2)`返回结果为 `3.14`。
+  - `ndigits = 0`，四舍五入到最接近的整数，例如 `round(2.7)`，返回结果是 `3`。
+  - `ndigits < 0`，对整数部分进行四舍五入，例如 `round(324.123123, -2)`返回的结果是 `300.0`。
+- **`sum(iterable[, start])`**：对序列求和，`start`参数可以指定起始值。
+- **`max(iterable)` / `min(iterable)`**：获取最大值或最小值，支持传入 `key` 函数进行自定义比较。
+
+#### 类型转换与构造类
+
+Python 是动态类型语言，类型转换非常频繁。这些函数既是转换工具，也是对象的构造器。关于类型系统的深入讨论，详见 [[PL-001-编程语言的变量与类型系统]]。
+
+- **`int(x, base=10)`**：将字符串或数字转为整数，支持进制转换（如二进制转十进制）。
+- **`float(x)`**：转为浮点数。
+- **`str(obj)`**：将对象转为字符串。
+- **`bool(x)`**：转为布尔值（0、空序列为 `False`）。
+- **`list()`, `tuple()`, `set()`, `dict()`**：分别用于创建列表、元组、集合和字典。
+- **`chr(i)` / `ord(c)`**：ASCII 码与字符的互转。`chr(65)` 返回  'A'，`ord('A')` 返回 65。
+- **`bin()`, `hex()`, `oct()`**：将整数分别转换为二进制、十六进制和八进制字符串。
+
+#### 迭代器与序列处理
+
+处理数据集合时，这些函数能帮你遍历和操作数据。
+
+- **`len(s)`**：获取容器长度。
+- **`range(start, stop, step)`**：生成不可变的整数序列。
+- **`enumerate(iterable)`**：在循环中同时获取索引和元素值。
+- **`zip(\*iterables)`**：将多个列表对应位置的元素打包成元组，常用于并行遍历。
+- **`map(function, iterable)`**：将函数应用于序列的每个元素。
+- **`filter(function, iterable)`**：根据函数返回的 `True/False` 过滤序列元素。
+- **`reversed(seq)`**：返回反向迭代器，不修改原数据。
+- **`sorted(iterable)`**：返回排序后的新列表，原数据不变。
+- **`all(iterable)` / `any(iterable)`**：判断序列中是否"全为真"或"有一个为真"。
+
+#### 对象操作与反射
+
+当你需要动态地检查或修改对象属性时，这些函数非常有用。
+
+- **`type(obj)`**：查看对象类型，也可以用来动态创建类。
+- **`id(obj)`**：返回对象的内存地址。
+- **`isinstance(obj, classinfo)`**：判断对象是否是某个类的实例，比 `type()` 更推荐，因为它支持继承判断。
+- **`callable(obj)`**：判断对象是否可被调用（即是否是函数）。
+- **`getattr(obj, name)`**：获取对象的属性值。
+- **`setattr(obj, name, value)`**：设置对象的属性值。
+- **`hasattr(obj, name)`**：判断对象是否有某个属性。
+- **`delattr(obj, name)`**：删除对象的属性。
+- **`hash(obj)`**：获取对象的哈希值，用于集合和字典的键。
+- **`dir(obj)`**：列出对象的所有属性和方法。
+
+#### 输入输出与系统交互
+
+负责程序与外部环境（用户、文件、系统）的沟通。
+
+- **`print(\*objects)`**：打印输出，支持 `sep`（分隔符）和 `end`（结尾符）参数。
+- **`input(prompt)`**：暂停程序，等待用户输入，始终返回字符串。
+- **`open(file, mode)`**：打开文件，返回文件对象，是文件操作的第一步。
+- **`help(object)`**：调出内置的帮助文档，相当于查阅说明书。
+- **`breakpoint()`**：Python 3.7+ 新增，直接在代码中设置断点进入调试器。
+- **`globals()` / `locals()`**：分别返回当前全局和局部作用域的变量字典。
+- **`eval(expression)`**：将字符串当作 Python 表达式执行（**注意安全风险**）。
+- **`exec(object)`**：动态执行 Python 代码块（**注意安全风险**）。
+
+#### 其他重要函数
+
+- **`property()`**：用于定义属性，可以将方法伪装成属性调用。
+- **`staticmethod()` / `classmethod()`**：定义静态方法和类方法。
+- **`super()`**：调用父类的方法，常用于继承场景。
+- **`object()`**：所有类的基类。
+- **`slice()`**：创建切片对象，用于复杂的切片操作。
+
+---
+
+## 🧪 练习 / 验证
+
+### 练习 1：数学运算类
+
+写出以下代码的输出结果：
+
+```python
+print(abs(-15))
+print(divmod(17, 5))
+print(pow(2, 10))
+print(round(3.14159, 3))
+print(round(2.5))
+print(sum([1, 2, 3, 4, 5], 10))
+print(max(['apple', 'banana', 'cherry'], key=len))
+```
+
+**答案：**
+```
+15
+(3, 2)
+1024
+3.142
+2
+25
+banana
+```
+> 注：`round(2.5)` 返回 `2` 是因为 Python 使用"银行家舍入"（四舍六入五成双）。
+
+---
+
+### 练习 2：类型转换类
+
+写出以下代码的输出结果：
+
+```python
+print(int('1010', base=2))
+print(float('3.14'))
+print(bool(''))
+print(bool('False'))
+print(chr(97))
+print(ord('Z'))
+print(bin(255))
+print(hex(255))
+```
+
+**答案：**
+```
+10
+3.14
+False
+True
+a
+90
+0b11111111
+0xff
+```
+
+---
+
+### 练习 3：迭代器与序列处理
+
+写出以下代码的输出结果：
+
+```python
+nums = [10, 20, 30, 40]
+for i, v in enumerate(nums):
+    print(f"{i}:{v}", end=" ")
+
+print()
+a = [1, 2, 3]
+b = ['x', 'y', 'z']
+print(list(zip(a, b)))
+
+print(list(map(lambda x: x * 2, [1, 2, 3])))
+
+print(list(filter(lambda x: x > 5, [3, 8, 1, 9, 4])))
+
+print(sorted([3, 1, 4, 1, 5], reverse=True))
+
+print(all([True, True, False]))
+print(any([False, False, True]))
+```
+
+**答案：**
+```
+0:10 1:20 2:30 3:40
+[(1, 'x'), (2, 'y'), (3, 'z')]
+[2, 4, 6]
+[8, 9]
+[5, 4, 3, 1, 1]
+False
+True
+```
+
+---
+
+### 练习 4：对象操作与反射
+
+写出以下代码的输出结果：
+
+```python
+print(type(42))
+print(type([1, 2]))
+
+print(isinstance(42, int))
+print(isinstance(42, float))
+
+print(callable(print))
+print(callable(42))
+
+print(hash('hello'))
+
+# dir 返回列表，只判断长度是否大于 0
+print(len(dir('hello')) > 0)
+```
+
+**答案：**
+```
+<class 'int'>
+<class 'list'>
+True
+False
+True
+False
+<某个哈希值整数>
+True
+```
+
+---
+
+### 练习 5：输入输出与安全
+
+以下代码存在**严重安全风险**，请指出问题所在，并说明应该如何避免。
+
+```python
+user_input = input("请输入一个表达式：")
+result = eval(user_input)
+print(f"计算结果：{result}")
+```
+
+**答案：**
+
+问题：`eval()` 会将用户的任意输入当作 Python 代码执行。如果用户输入 `__import__('os').system('rm -rf /')`，将导致灾难性后果。
+
+**正确做法**：
+- 永远不要对不可信的用户输入使用 `eval()` 或 `exec()`
+- 如需计算数学表达式，使用安全的替代方案，如 `ast.literal_eval()` 或专门的数学解析库
+
+---
+
+### 练习 6：综合应用
+
+补全代码，使用内置函数实现以下需求：
+
+```python
+# 1. 将 data 中的每个字符串转为整数
+# 2. 计算所有整数的和
+# 3. 找出最大值
+
+# 你的代码：
+data = ['1', '2', '3', '4', '5']
+
+# 1. 转为整数
+nums = list(map(int, data))  # [1, 2, 3, 4, 5]
+
+# 2. 求和
+total = sum(nums)  # 15
+
+# 3. 最大值
+maximum = max(nums)  # 5
+
+print(nums, total, maximum)
+```
+
+---
+
+## 🤔 常见误区
+
+- **误区 1**："`round` 总是执行数学上的四舍五入。"
+  - **事实**：Python 的 `round` 采用"银行家舍入"（四舍六入五成双），例如 `round(2.5)` 返回 `2` 而非 `3`。
+>  "银行家舍入"：
+>  传统的“四舍五入”在处理尾数为 5 的情况时，**永远向上进位**。在金融系统中，如果每天处理成千上万笔交易，这种永远向上的微小误差会不断累积，最终导致巨大的资金偏差。
+>  而银行家舍入法在处理尾数为 5 时，有一半的概率进位，一半的概率舍去。从大数定律和概率统计的角度来看，这种“有进有退”的机制可以完美抵消累积误差，保证整体数据的绝对公平和准确。
+
+- **误区 2**："`eval` 和 `exec` 可以随意使用。"
+  - **事实**：这两个函数存在严重的安全风险，切勿对不可信的输入使用，可能导致任意代码执行。
+
+- **误区 3**："`int('3.14')` 可以正常转换。"
+  - **事实**：`int()` 不能直接转换带小数点的字符串，会报 `ValueError`。需要先 `float()` 再 `int()`：`int(float('3.14'))`。
+
+- **误区 4**："`bool('False')` 返回 `False`。"
+  - **事实**：`bool('False')` 返回 `True`，因为非空字符串一律为 `True`。只有空字符串 `''` 才是 `False`。
+
+- **误区 5**："`map` / `filter` 返回的是列表。"
+  - **事实**：Python 3 中 `map` 和 `filter` 返回的是迭代器对象，需要用 `list()` 转换后才能像列表一样使用。
+
+---
+
+## 🔗 相关资源
+
+- [[PY001-Python简介]] — 上一篇：了解 Python 的基本特性和设计哲学
+- [[PY004-Python中的关键字]] — 下一篇：Python 关键字详解
+- [Python 官方文档 - 内置函数](https://docs.python.org/zh-cn/3/library/functions.html)

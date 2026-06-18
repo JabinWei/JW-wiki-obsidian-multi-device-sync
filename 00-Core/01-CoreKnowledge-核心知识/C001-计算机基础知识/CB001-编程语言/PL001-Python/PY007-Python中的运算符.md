@@ -1,0 +1,414 @@
+---
+type: learning
+status: 已完成
+domain: Python
+tags: [Python, 编程语言]
+created: 2026-06-12
+updated: 2026-06-18
+---
+
+# Python 中的运算符
+
+## 🎯 学习目标
+
+- Python 支持哪些类型的运算符？各自的优先级顺序是什么？
+- `==` 和 `is` 的本质区别是什么？分别在什么场景下使用？
+- 什么是短路逻辑？`and` 和 `or` 的短路行为是怎样的？
+
+## 📖 前置知识
+
+- [[PY004-Python中的关键字]]
+- [[PY005-Python中的变量]]
+
+## 📚 核心内容
+
+### Python 运算符
+
+运算符是用于对变量和值执行操作的特殊符号。为了更直观地理解，整理了这份**Python 运算符全览表**。
+
+#### 1. 算术运算符 (Arithmetic Operators)
+
+这是最基础的运算，用于处理数学计算。
+
+| 运算符 | 名称   | 描述             | 示例 (a=10, b=3)   |
+| ------ | ------ | ---------------- | ------------------ |
+| `+`    | 加     | 相加             | `a + b = 13`       |
+| `-`    | 减     | 相减             | `a - b = 7`        |
+| `*`    | 乘     | 相乘             | `a * b = 30`       |
+| `/`    | 除     | 返回浮点数       | `a / b = 3.333...` |
+| `//`   | 取整除 | 返回商的整数部分 | `a // b = 3`       |
+| `%`    | 取模   | 返回余数         | `a % b = 1`        |
+| `**`   | 幂     | 返回 x 的 y 次幂 | `a ** b = 1000`    |
+
+> **💡 特别提示**：涉及金钱计算时，请务必使用 `decimal` 模块，避免浮点数精度误差（如 `0.1 + 0.2` 的问题）。
+
+#### 2. 比较运算符 (Comparison Operators)
+
+用于比较两个值，返回布尔值 `True` 或 `False`。与其他语言不通的地方是Python的布尔值首字母大写。
+
+| 运算符 | 名称     | 描述                 | 示例 (a=5, b=3)    |
+| ------ | -------- | -------------------- | ------------------ |
+| `==`   | 等于     | 比较值是否相等       | `a == b` → `False` |
+| `!=`   | 不等于   | 比较值是否不等       | `a != b` → `True`  |
+| `>`    | 大于     | 左值是否大于右值     | `a > b` → `True`   |
+| `<`    | 小于     | 左值是否小于右值     | `a < b` → `False`  |
+| `>=`   | 大于等于 | 左值是否大于等于右值 | `a >= 5` → `True`  |
+| `<=`   | 小于等于 | 左值是否小于等于右值 | `b <= 3` → `True`  |
+
+#### 3. 赋值运算符 (Assignment Operators)
+
+用于给变量赋值，包括基础的 `=` 和复合赋值运算符。
+
+| 运算符 | 描述         | 等价于       | 示例 (x=10)        |
+| ------ | ------------ | ------------ | ------------------ |
+| `=`    | 基础赋值     | -            | `x = 5`            |
+| `+=`   | 加后赋值     | `x = x + y`  | `x += 3` → `x=13`  |
+| `-=`   | 减后赋值     | `x = x - y`  | `x -= 2` → `x=8`   |
+| `*=`   | 乘后赋值     | `x = x * y`  | `x *= 2` → `x=20`  |
+| `/=`   | 除后赋值     | `x = x / y`  | `x /= 2` → `x=5.0` |
+| `//=`  | 取整除后赋值 | `x = x // y` | `x //= 3` → `x=3`  |
+| `%=`   | 取模后赋值   | `x = x % y`  | `x %= 3` → `x=1`   |
+
+#### 4. 逻辑运算符 (Logical Operators)
+
+用于组合条件语句。
+
+| 运算符 | 描述   | 逻辑说明               | 示例 (x=True, y=False) |
+| ------ | ------ | ---------------------- | ---------------------- |
+| `and`  | 逻辑与 | 左右两边都为真才返回真 | `x and y` → `False`    |
+| `or`   | 逻辑或 | 任意一个为真则返回真   | `x or y` → `True`      |
+| `not`  | 逻辑非 | 反转布尔值             | `not x` → `False`      |
+
+> **💡 短路逻辑**：Python 的 `and` 和 `or` 具有短路特性。例如 `A and B`，如果 A 为 False，Python 根本不会去计算 B。
+
+#### 5. 成员与身份运算符
+
+在处理复杂数据结构时非常实用。
+
+| 运算符   | 类型 | 描述                               | 示例                          |
+| -------- | ---- | ---------------------------------- | ----------------------------- |
+| `in`     | 成员 | 在序列中找到值返回 True            | `'a' in 'apple'` → `True`     |
+| `not in` | 成员 | 在序列中找不到值返回 True          | `'b' not in 'apple'` → `True` |
+| `is`     | 身份 | 判断两个变量是否引用**同一个对象** | `x is y` (判断内存地址)       |
+| `is not` | 身份 | 判断两个变量是否引用不同对象       | `x is not y`                  |
+
+> **⚠️ 重要区别**：不要混淆 `==` (比较值) 和 `is` (比较对象身份)。例如，`[] == []` 为 True (值相等)，但 `[] is []` 为 False (它们是两个不同的空列表对象)。详见 [[PL-PY-001-is与==的区别]]。
+
+------
+
+### 运算符优先级
+
+当一个表达式中包含多个运算符时，Python 会按照优先级顺序执行。虽然不需要死记硬背（多用括号 `()` 是好习惯），但了解基本顺序很有帮助：
+
+1. **幂运算** `**`
+2. **正负号** `+x`, `-x`
+3. **算术** `*`, `/`, `//`, `%` (从左到右)
+4. **算术** `+`, `-` (从左到右)
+5. **比较** `==`, `!=`, `>`, `<`, `>=`, `<=`, `is`, `is not`, `in`, `not in`
+6. **逻辑非** `not`
+7. **逻辑与** `and`
+8. **逻辑或** `or`
+
+**最佳实践**：如果你不确定优先级，或者为了让代码更易读，请毫不犹豫地使用括号 `()`。例如：`(a + b) * c`。
+
+------
+
+### 运算符实战
+
+为了让你更直观地感受 Python 运算符，我将文档中提到的五大类运算符转化为可以直接运行的代码。
+
+#### 1. 算术运算符
+
+```python
+print("=== 算术运算符示例 ===")
+a = 10
+b = 3
+print(f"{a} + {b} = {a + b}") # 加法
+print(f"{a} - {b} = {a - b}") # 减法
+print(f"{a} * {b} = {a * b}") # 乘法
+print(f"{a} / {b} = {a / b}") # 除法 (结果为浮点数)
+print(f"{a} // {b} = {a // b}") # 取整除 (向下取整)
+print(f"{a} % {b} = {a % b}") # 取模 (求余数)
+print(f"{a} ** {b} = {a ** b}") # 幂运算
+```
+
+#### 2. 比较运算符
+
+```python
+print("\n=== 比较运算符示例 ===")
+x = 5
+y = 10
+print(f"{x} == {y} : {x == y}") # False
+print(f"{x} != {y} : {x != y}") # True
+print(f"{x} > {y} : {x > y}") # False
+print(f"{x} < {y} : {x < y}") # True
+print(f"{x} >= 5 : {x >= 5}") # True
+print(f"{y} <= 3 : {y <= 3}") # False
+```
+
+#### 3. 赋值与复合赋值运算符
+
+```python
+print("\n=== 赋值运算符示例 ===")
+# 基础赋值
+num = 10
+print(f"初始值 num = {num}")
+# 复合赋值 (相当于 num = num + 5)
+num += 5
+print(f"执行 num += 5 后，num = {num}")
+num -= 3
+print(f"执行 num -= 3 后，num = {num}")
+num *= 2
+print(f"执行 num *= 2 后，num = {num}")
+```
+
+#### 4. 逻辑运算符
+
+```python
+print("\n=== 逻辑运算符示例 ===")
+is_raining = True
+has_umbrella = False
+
+# and: 两者都必须为真
+print(f"下雨且有伞 (is_raining and has_umbrella): {is_raining and has_umbrella}")
+# or: 至少一个为真
+print(f"下雨或有伞 (is_raining or has_umbrella): {is_raining or has_umbrella}")
+# not: 取反
+print(f"并非下雨 (not is_raining): {not is_raining}")
+
+# 短路逻辑演示
+# 如果 is_raining 为 False，Python 不会去检查 has_umbrella 的值，直接返回 False
+print(f"短路示例: {False and print('This will not be printed')}")
+```
+
+#### 5. 成员与身份运算符
+
+```python
+print("\n=== 成员与身份运算符示例 ===")
+text = "Python"
+list_a = [1, 2, 3]
+list_b = list_a # list_b 指向 list_a 的内存地址
+
+# 成员运算符
+print(f"'P' in '{text}' : {'P' in text}")
+print(f"'Java' not in '{text}' : {'Java' not in text}")
+print(f"1 in {list_a} : {1 in list_a}")
+
+# 身份运算符 (重点理解)
+print(f"\n身份运算符测试:")
+print(f"list_a == list_b (值是否相等): {list_a == list_b}") # True
+print(f"list_a is list_b (是否同一个对象): {list_a is list_b}") # True (因为 list_b = list_a)
+
+# 创建两个内容相同但不同的对象
+list_c = [1, 2, 3]
+print(f"list_a is list_c (是否同一个对象): {list_a is list_c}") # False
+print(f"list_a == list_c (值是否相等): {list_a == list_c}") # True
+```
+
+## 🧪 练习 / 验证
+
+### 练习 1：运算符优先级
+
+不运行代码，写出以下表达式的计算结果。
+
+```python
+result = 2 + 3 * 4 ** 2 - 8 // 3
+```
+
+**答案：**
+
+按优先级逐步计算：
+1. `**`：`4 ** 2 = 16`
+2. `*`：`3 * 16 = 48`
+3. `//`：`8 // 3 = 2`
+4. `+`：`2 + 48 = 50`
+5. `-`：`50 - 2 = 48`
+
+最终结果：`48`
+
+---
+
+### 练习 2：`==` vs `is` 辨析
+
+阅读以下代码，写出每一行注释中的判断结果（True 或 False）。
+
+```python
+a = [1, 2, 3]
+b = [1, 2, 3]
+c = a
+
+# 1. a == b  → ?
+# 2. a is b  → ?
+# 3. a == c  → ?
+# 4. a is c  → ?
+# 5. a is not b  → ?
+```
+
+**答案：**
+
+```python
+a == b    # True  — 值相等
+a is b    # False — 不同的对象，不同内存地址
+a == c    # True  — 值相等
+a is c    # True  — c 和 a 引用同一个对象
+a is not b  # True  — a 和 b 是不同的对象
+```
+
+---
+
+### 练习 3：短路逻辑验证
+
+以下代码运行后，变量 `count` 的值是多少？`print` 语句会输出什么？写出你的推理过程。
+
+```python
+count = 0
+
+def increment():
+    global count
+    count += 1
+    return True
+
+result = False and increment()
+print(count)
+```
+
+**答案：**
+
+`count` 的值是 `0`。
+
+推理：`and` 运算符具有短路特性。当左侧 `False` 已经确定整个表达式为假时，Python 根本不会执行右侧的 `increment()` 函数调用。因此 `count` 保持初始值 `0`，`print` 输出 `0`。
+
+---
+
+### 练习 4：成员运算符实战
+
+写出以下代码的输出。
+
+```python
+fruits = ["apple", "banana", "cherry"]
+
+print("apple" in fruits)
+print("grape" not in fruits)
+print("a" in "banana")
+print("z" not in "Python")
+print(3 in [1, 2, 3, 4, 5])
+```
+
+**答案：**
+
+```
+True
+True
+True
+True
+True
+```
+
+---
+
+### 练习 5：复合赋值运算符重写
+
+将以下代码改写为使用复合赋值运算符的形式。
+
+```python
+total = 100
+total = total + 50
+total = total - 30
+total = total * 2
+total = total // 7
+```
+
+**答案：**
+
+```python
+total = 100
+total += 50    # total = 150
+total -= 30    # total = 120
+total *= 2     # total = 240
+total //= 7    # total = 34
+```
+
+---
+
+### 练习 6：逻辑运算符组合
+
+写出以下代码的输出。注意短路逻辑的影响。
+
+```python
+a = 5
+b = 10
+c = 15
+
+print(a < b and b < c)
+print(a > b or b < c)
+print(not a > b)
+print(a < b and b > c or a == 5)
+print(not (a > b) and not (b > c))
+```
+
+**答案：**
+
+```python
+a < b and b < c      # 5<10 and 10<15 → True and True → True
+a > b or b < c       # 5>10 or 10<15 → False or True → True
+not a > b            # not False → True
+a < b and b > c or a == 5
+# 优先级: and 先于 or
+# (5<10 and 10>15) or 5==5
+# (True and False) or True
+# False or True → True
+not (a > b) and not (b > c)
+# not False and not False
+# True and True → True
+```
+
+---
+
+### 练习 7：浮点数精度陷阱
+
+运行以下代码，写出实际输出，并解释原因。然后给出解决方案。
+
+```python
+print(0.1 + 0.2 == 0.3)
+print(0.1 + 0.2)
+```
+
+**答案：**
+
+```
+False
+0.30000000000000004
+```
+
+原因：二进制浮点数无法精确表示某些十进制小数（如 0.1 和 0.2），导致精度误差。
+
+解决方案：使用 `decimal` 模块进行精确的十进制运算。
+
+```python
+from decimal import Decimal
+
+print(Decimal('0.1') + Decimal('0.2') == Decimal('0.3'))  # True
+print(Decimal('0.1') + Decimal('0.2'))  # 0.3
+```
+
+## 🤔 常见误区
+
+### 误区 1：「`is` 和 `==` 是一样的」
+
+**事实**：`==` 比较的是**值是否相等**，而 `is` 比较的是**两个变量是否引用内存中的同一个对象**。这是两个完全不同的概念。在日常开发中，绝大多数情况应该使用 `==`；`is` 主要用于与 `None` 比较（`x is None`），或者判断单例对象。
+
+### 误区 2：「Python 的 `//` 就是去掉小数部分」
+
+**事实**：`//` 是**向下取整**（floor division），而不是向零取整（截断）。对于正数，两者结果相同；对于负数，结果不同。
+
+```python
+print(7 // 3)    # 2
+print(-7 // 3)   # -3（向下取整），而不是 -2（向零取整）
+```
+
+## 🔗 相关资源
+
+- 上一节：[[PY006-Python中的注释]]
+- 下一节：[[PY008-Python中的简单数据类型]]
+- 官方文档：[Python 运算符](https://docs.python.org/zh-cn/3/reference/expressions.html)
+- 官方文档：[PEP 8 — Python 代码风格指南](https://peps.python.org/pep-0008/)

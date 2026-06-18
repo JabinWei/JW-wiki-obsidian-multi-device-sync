@@ -1,0 +1,599 @@
+---
+type: learning
+status: 已完成
+domain: Python
+tags: [Python, 编程语言]
+created: 2026-06-12
+updated: 2026-06-16
+---
+
+# Python 中的类
+
+## 🎯 学习目标
+
+1. 什么是面向对象编程？它和面向过程编程有什么区别？
+2. 类（Class）和对象（Object）的关系是什么？如何定义类并创建实例？
+3. `__init__` 方法和 `self` 参数的作用是什么？
+4. 如何访问和修改类的属性？直接修改和方法修改有什么区别？
+5. 类的生命周期中有哪些关键方法（`__new__`、`__init__`、`__del__`）？
+6. 什么是继承？如何使用 `super()` 调用父类的方法？
+7. 什么是组合（Composition）？它和继承有什么区别，分别适用于什么场景？
+8. 面向对象的四大核心特性（封装、继承、多态、抽象）分别解决了什么问题？
+
+## 📖 前置知识
+
+在学习本章之前，请确保掌握：
+- [[PY017-Python中的模块]] — 理解 Python 中模块的概念，因为类通常被组织在模块中，一个 `.py` 文件本身就是一个模块。
+
+## 📚 核心内容
+
+在 Python 中，**类（Class）** 是对现实世界中事物或情景的抽象泛化。例如，「狗」是一个类，而具体的每一只狗（名字、品种、年龄）则是该类的一个**实例（Instance）**。
+
+---
+
+### 面向对象基础知识
+
+面向对象编程（Object-Oriented Programming，简称 OOP）是一种以「对象」为核心的软件开发方法。与面向过程关注「步骤流程」不同，面向对象更贴近人类的自然思维习惯，主张将现实世界中的事物抽象为程序中的对象，通过对象之间的协作来完成复杂任务。
+
+#### 核心基础：类与对象
+
+在面向对象的世界中，「万物皆对象」。**对象（Object）** 是构成系统的基本单元，它包含两个核心部分：属性（描述对象的静态特征，如姓名、颜色）和方法（描述对象的动态行为，如说话、行驶）。**类（Class）** 则是对一类事物的抽象模板或蓝图，定义了该类对象共有的属性和行为。简单来说，类是抽象的模板，而对象是根据这个模板实例化出来的具体个体。创建对象通常需要使用特定的关键字（如 `new`），并在内存中为其分配独立的空间。
+
+#### 四大核心特性
+
+面向对象编程的强大之处在于其四大支柱，它们共同提升了代码的组织性、可重用性和安全性：
+
+1. **封装（Encapsulation）**：封装是将数据（属性）和操作数据的方法捆绑在一个单元中，并对外隐藏不必要的内部实现细节。通过设定访问权限（如私有化成员变量并提供公共的 `getter/setter` 方法），封装不仅保护了数据安全，防止外部随意篡改，还降低了模块间的耦合度。这就像是一个胶囊，外界只需知道如何使用它，而不必了解内部的运作机制。
+2. **继承（Inheritance）**：继承允许一个类（子类/派生类）自动获取另一个类（父类/基类）的属性和方法。这种层次模型极大地促进了代码的重用，减少了冗余。子类不仅可以沿用父类的通用功能，还可以在此基础上进行修改（方法重写）或添加新功能，从而建立起自然的层级结构。
+3. **多态（Polymorphism）**：多态是指同一个接口或行为在不同对象上产生不同表现形式的能力。它的经典体现是「父类引用指向子类对象」。这使得不同类型的对象可以被当作同一类型来处理，大大简化了代码逻辑，增强了系统的灵活性和可扩展性。
+4. **抽象（Abstraction）**：抽象侧重于关注事物「是什么」和「做什么」，而不是「怎么做」。通过定义抽象类或接口，开发者可以只暴露基本特性和功能契约，将复杂的底层实现留给具体的子类去完成。这有助于管理大型系统的复杂性，使设计更加清晰。
+
+#### 关键机制与设计思想
+
+除了上述特性，面向对象还依赖于一些关键的运行机制。**构造方法**是对象创建时的初始化入口，负责为成员变量赋予初始值；**消息传递**则是对象之间相互沟通、收发信息并触发方法的途径。此外，像 `this`（代表当前对象）和 `super`（代表父类对象）这样的关键字，在处理属性和方法调用时起着重要的指代作用。
+
+总而言之，面向对象不仅仅是一种编程范式，更是一种对现实世界进行数字建模的思想。它将复杂的问题拆解为一个个高内聚、低耦合的对象，使得软件系统在开发、维护和扩展时变得更加高效和稳健。
+
+---
+
+### 类的定义与实例化
+
+类中的函数被称为**方法**。创建类时，最常用的是 `__init__()` 方法，这是一个特殊的方法，在创建新实例时会自动运行。
+
+**核心概念：**
+
+- **`self` 参数：** 必须作为方法的第一个参数，它指向实例自身。Python 会自动传递 `self`，因此在创建对象时不需要手动传入。
+- **实例化：** 根据类创建对象的过程。
+
+**代码示例：模拟小狗**
+
+```python
+class Dog:
+    """一次模拟小狗的简单尝试"""
+    def __init__(self, name, age):
+        """初始化属性name和age"""
+        self.name = name
+        self.age = age
+
+    def sit(self):
+        """模拟小狗收到命令时坐下"""
+        print(f"{self.name} is now sitting.")
+
+# 创建实例
+my_dog = Dog('Willie', 6)
+print(f"My dog's name is {my_dog.name}")
+my_dog.sit()
+```
+
+同样可以给 `__init__` 中的参数加上默认值，这样可以避免不带参数调用时的错误。
+
+```python
+class Dog:
+    """一次模拟小狗的简单尝试"""
+    def __init__(self, name='John', age=3):
+        """初始化属性name和age"""
+        self.name = name
+        self.age = age
+
+    def sit(self):
+        """模拟小狗收到命令时坐下"""
+        print(f"{self.name} is now sitting.")
+```
+
+---
+
+### 属性的访问与修改
+
+类中的属性可以通过直接访问实例变量或定义专门的方法来修改。
+在属性前面加两个下划线 `__model` 表示该属性为私有属性，不能直接访问。
+
+**修改属性值的两种方式：**
+
+| 方式         | 描述                                                     | 代码示例                       |
+| ------------ | -------------------------------------------------------- | ------------------------------ |
+| **直接修改** | 通过实例名直接访问属性并赋值                             | `my_car.odometer_reading = 23` |
+| **方法修改** | 在类中定义方法（如 `update_odometer`），通过逻辑控制修改 | `my_car.update_odometer(30)`   |
+
+**代码示例：汽车类 (Car)**
+
+```python
+class Car:
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer_reading = 0 # 默认值
+
+    def update_odometer(self, mileage):
+        self.odometer_reading = mileage
+
+my_new_car = Car('audi', 'a4', 2024)
+# 方式1：直接修改
+my_new_car.odometer_reading = 23
+# 方式2：通过方法修改
+my_new_car.update_odometer(30)
+```
+**注意**：这里不能直接通过 `Car.update_odometer()` 进行调用，如果类没有实例化，会认定 `self`并没有绑定实例，故会报错参数缺失。可以通过 `Car.update_odometer(my_new_car)` 来实现调用。
+
+---
+
+### 实例的生命周期
+
+![对象生命周期](python-class-lifecycle.md)
+
+代码示例：
+```python
+class Car:
+    def __new__(cls, *args, **kwargs):
+        print("call__new__")
+        return object.__new__(cls)
+    def __init__(self, name, price, red):
+        self.name = name
+        self.price = price
+        self.color = red
+
+    def get_car_info(self):
+        return f"car name = {self.name}, price = {self.price}w color = {self.color}"
+
+    def __del__(self):
+        print("call __del__")
+
+# 当类被实例化的时候，就已经调用了__new__方法（用于创建示例）和__init__方法（用于初始化实例的属性）
+audi = Car("audi", 48, 'red')
+
+# 在删除对象时调用__del__方法
+del audi
+```
+
+---
+
+### 继承 (Inheritance)
+
+当你需要编写一个现有类的特殊版本时，可以使用继承。新类（**子类**）会自动获得原有类（**父类**）的所有属性和方法。
+
+**关键点：**
+
+- **`super()` 函数：** 用于调用父类的方法，通常在子类的 `__init__` 中使用，以初始化父类的属性。
+- **重写方法：** 如果父类的方法不符合子类的需求，可以在子类中定义一个同名的方法进行重写。
+
+**代码示例：电动汽车 (ElectricCar)**
+
+```python
+class Car:
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer_reading = 0 # 默认值
+
+    def update_odometer(self, mileage):
+        self.odometer_reading = mileage
+
+class ElectricCar(Car): # 括号内指定父类
+    def __init__(self, make, model, year):
+        super().__init__(make, model, year) # 初始化父类属性
+        self.battery_size = 75 # 子类特有属性
+
+    # 子类特有方法
+    def describe_battery(self):
+        print(f"This car has a {self.battery_size}-kWh battery.")
+
+    # 重写父类方法
+    def read_odometer(self):
+        print(f"This electric car has {self.odometer_reading} miles on it.")
+```
+
+---
+
+### 组合 (Composition)
+
+当类的功能变得过于庞大复杂时，可以将类的一部分提取出来，作为一个独立的类。这种方法称为**组合**。它有助于将大型类拆分为更小、更简单的组件。
+
+**代码示例：将电池拆分为独立类**
+
+```python
+class Car:
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer_reading = 0 # 默认值
+
+    def update_odometer(self, mileage):
+        self.odometer_reading = mileage
+        
+class Battery:
+    def __init__(self, battery_size=40):
+        self.battery_size = battery_size
+    
+    def describe_battery(self):
+        print(f"This car has a {self.battery_size}-kWh battery.")
+
+class ElectricCar(Car):
+    def __init__(self, make, model, year):
+        super().__init__(make, model, year)
+        self.battery = Battery() # 将电池作为属性
+
+my_leaf = ElectricCar('nissan', 'leaf', 2024)
+my_leaf.battery.describe_battery() # 调用独立类的方法
+```
+
+## 🧪 练习 / 验证
+
+### 练习 1：定义一个学生类
+
+定义一个 `Student` 类，包含属性 `name`、`age` 和 `scores`（列表），以及一个计算平均分的方法。
+
+```python
+class Student:
+    def __init__(self, name, age, scores=None):
+        self.name = name
+        self.age = age
+        self.scores = scores if scores is not None else []
+    
+    def add_score(self, score):
+        self.scores.append(score)
+    
+    def average(self):
+        if not self.scores:
+            return 0
+        return sum(self.scores) / len(self.scores)
+
+# 测试
+s = Student('张三', 20, [85, 90, 78])
+s.add_score(95)
+print(s.average())  # 预期输出: 87.0
+print(s.name)       # 预期输出: 张三
+```
+
+---
+
+### 练习 2：继承与重写
+
+以下代码会输出什么？请先思考，再运行验证。
+
+```python
+class Animal:
+    def speak(self):
+        return "动物在叫"
+
+class Cat(Animal):
+    def speak(self):
+        return "喵喵喵"
+
+class Dog(Animal):
+    def speak(self):
+        return "汪汪汪"
+
+animals = [Animal(), Cat(), Dog()]
+for a in animals:
+    print(a.speak())
+```
+
+**答案：**
+```
+动物在叫
+喵喵喵
+汪汪汪
+```
+
+解释：`Cat` 和 `Dog` 都重写了父类 `Animal` 的 `speak()` 方法，因此调用时执行的是子类自己的版本。这就是多态的体现。
+
+---
+
+### 练习 3：使用 `super()` 扩展父类方法
+
+定义一个 `Employee` 基类和 `Manager` 子类，子类的 `__init__` 需要调用父类的 `__init__`，并额外添加 `team` 属性。
+
+```python
+class Employee:
+    def __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+    
+    def get_info(self):
+        return f"{self.name}: ¥{self.salary}"
+
+class Manager(Employee):
+    def __init__(self, name, salary, team=None):
+        super().__init__(name, salary)
+        self.team = team if team is not None else []
+    
+    def add_team_member(self, employee):
+        self.team.append(employee.name)
+    
+    def get_info(self):
+        base_info = super().get_info()
+        return f"{base_info}, 管理团队: {self.team}"
+
+# 测试
+m = Manager('李四', 20000)
+m.add_team_member(Employee('王五', 10000))
+m.add_team_member(Employee('赵六', 12000))
+print(m.get_info())
+# 预期输出: 李四: ¥20000, 管理团队: ['王五', '赵六']
+```
+
+---
+
+### 练习 4：私有属性与封装
+
+下划线前缀有什么效果？找出代码中的问题。
+
+```python
+class BankAccount:
+    def __init__(self, owner, balance):
+        self.owner = owner
+        self.__balance = balance  # 名称会被改写为 _BankAccount__balance
+    
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+            return True
+        return False
+    
+    def withdraw(self, amount):
+        if 0 < amount <= self.__balance:
+            self.__balance -= amount
+            return True
+        return False
+    
+    def get_balance(self):
+        return self.__balance
+
+# 测试
+account = BankAccount('小明', 1000)
+account.deposit(500)
+account.withdraw(200)
+print(account.get_balance())       # 预期输出: 1300
+
+# 尝试直接访问私有属性（不推荐，但 Python 并非完全阻止）
+# print(account.__balance)         # 报错: AttributeError
+print(account._BankAccount__balance) # 预期输出: 1300（名称改写机制）
+```
+
+**答案：** Python 中没有真正的私有属性。`__balance` 通过名称改写（name mangling）变成了 `_BankAccount__balance`，这是一种约定而非强制。应通过 `get_balance()` 等公开方法访问。
+
+---
+
+### 练习 5：组合 vs 继承
+
+以下是用两种方式设计的「人拥有一本书」关系。比较哪种更合理，为什么？
+
+```python
+# 方案 A：继承
+class Book:
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
+
+class Person_A(Book):  # Person 继承了 Book
+    def __init__(self, name, title, author):
+        super().__init__(title, author)
+        self.name = name
+
+# 方案 B：组合
+class Person_B:
+    def __init__(self, name, book=None):
+        self.name = name
+        self.book = book
+
+# 测试
+p_a = Person_A('张三', 'Python入门', '李教授')
+print(f"方案A: {p_a.name} 有书《{p_a.title}》")   # 能运行，但逻辑混乱
+
+book = Book('Python入门', '李教授')
+p_b = Person_B('张三', book)
+print(f"方案B: {p_b.name} 有书《{p_b.book.title}》") # 更合理
+```
+
+**答案：** 方案B（组合）更合理。人「拥有」一本书是「has-a」关系，应该用组合；人「是」一本书是「is-a」关系才适合用继承。错误使用继承会导致语义混乱和耦合过紧。
+
+---
+
+### 练习 6：类变量与实例变量
+
+区分以下代码中类变量和实例变量的作用域。
+
+```python
+class Counter:
+    total = 0  # 类变量：所有实例共享
+    
+    def __init__(self, name):
+        self.name = name      # 实例变量
+        Counter.total += 1    # 修改类变量
+
+c1 = Counter('一号柜台')
+c2 = Counter('二号柜台')
+c3 = Counter('三号柜台')
+
+print(c1.name)        # 预期输出: 一号柜台
+print(Counter.total)  # 预期输出: 3
+print(c1.total)       # 预期输出: 3（实例也能访问类变量）
+print(c2.total)       # 预期输出: 3
+```
+
+**答案：** `total` 是类变量，属于类本身，所有实例共享同一个值。`name` 是实例变量，每个实例各自持有。通过 `Counter.total` 访问类变量更清晰；`c1.total` 虽然也能访问，但容易与实例变量混淆。
+
+---
+
+### 练习 7：`__str__` 和 `__repr__` 方法
+
+实现这两个特殊方法，让打印对象时显示友好的信息。
+
+```python
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    
+    def __str__(self):
+        return f"Point({self.x}, {self.y})"
+    
+    def __repr__(self):
+        return f"Point(x={self.x}, y={self.y})"
+
+p = Point(3, 5)
+print(str(p))   # 预期输出: Point(3, 5)  — 用户友好
+print(repr(p))  # 预期输出: Point(x=3, y=5) — 开发者友好
+
+# 在列表中会优先使用 __repr__
+print([Point(1,2), Point(3,4)])
+# 预期输出: [Point(x=1, y=2), Point(x=3, y=4)]
+```
+
+---
+
+### 练习 8：综合练习 — 简单图书管理系统
+
+综合运用类定义、继承、组合、封装，实现以下系统。
+
+```python
+class LibraryItem:
+    """图书馆馆藏基类"""
+    def __init__(self, title, item_id):
+        self.title = title
+        self.item_id = item_id
+        self.__is_checked_out = False
+    
+    def check_out(self):
+        if self.__is_checked_out:
+            return f"《{self.title}》已被借出"
+        self.__is_checked_out = True
+        return f"成功借出《{self.title}》"
+    
+    def return_item(self):
+        if not self.__is_checked_out:
+            return f"《{self.title}》未被借出"
+        self.__is_checked_out = False
+        return f"成功归还《{self.title}》"
+    
+    @property
+    def is_available(self):
+        return not self.__is_checked_out
+
+class Book(LibraryItem):
+    def __init__(self, title, item_id, author, pages):
+        super().__init__(title, item_id)
+        self.author = author
+        self.pages = pages
+    
+    def __str__(self):
+        return f"《{self.title}》- {self.author} ({self.pages}页)"
+
+class Library:
+    def __init__(self, name):
+        self.name = name
+        self.items = []
+    
+    def add_item(self, item):
+        self.items.append(item)
+    
+    def list_available(self):
+        return [str(item) for item in self.items if item.is_available]
+
+# 测试
+lib = Library('社区图书馆')
+book1 = Book('Python编程', 'B001', 'Guido', 500)
+book2 = Book('算法导论', 'B002', 'CLRS', 800)
+
+lib.add_item(book1)
+lib.add_item(book2)
+
+print(book1.check_out())          # 预期输出: 成功借出《Python编程》
+print(book1.check_out())          # 预期输出: 《Python编程》已被借出
+print(lib.list_available())       # 预期输出: ['《算法导论》- CLRS (800页)']
+print(book1.return_item())        # 预期输出: 成功归还《Python编程》
+```
+
+## 🤔 常见误区
+
+### 误区 1：忘记写 `self` 参数
+
+```python
+class Foo:
+    def __init__(self, x):
+        self.x = x
+    
+    def bar():          # 错误：缺少 self
+        print(self.x)
+
+# Foo().bar() → TypeError: bar() takes 0 positional arguments but 1 was given
+```
+
+**事实：** 实例方法的第一个参数**必须是** `self`，Python 会自动传入实例对象。即使方法内没有用到实例属性，也必须声明 `self`。如果不使用实例属性，应标记为 `@staticmethod`。
+
+### 误区 2：认为 `__init__` 是构造函数
+
+很多人认为 `__init__` 是 Python 的构造函数。**事实：** `__new__` 才是真正的构造函数（负责创建对象），`__init__` 是初始化方法（负责初始化已创建的对象）。大多数情况下你只需要 `__init__`，但需要理解这个区别。
+
+### 误区 3：类变量被当作实例变量修改
+
+```python
+class Dog:
+    tricks = []  # 类变量，共享！
+
+fido = Dog()
+buddy = Dog()
+fido.tricks.append('roll over')
+print(buddy.tricks)  # 输出: ['roll over']，出乎意料！
+```
+
+**事实：** 可变类变量（如列表、字典）被所有实例共享。如果需要每个实例独立的列表，应该在 `__init__` 中初始化。
+
+### 误区 4：混淆继承（is-a）和组合（has-a）
+
+用继承表达「拥有」关系是常见设计错误。例如，让 `Car` 继承 `Engine` 是不合理的，因为汽车不是一个引擎——汽车有一个引擎。使用组合（将 `Engine` 实例作为 `Car` 的属性）才是正确的设计。
+
+### 误区 5：多继承的 MRO 混乱
+
+Python 允许多继承，但继承顺序会触发方法解析顺序（MRO）问题。
+
+```python
+class A:
+    def greet(self):
+        print("A")
+
+class B(A):
+    def greet(self):
+        print("B")
+
+class C(A):
+    def greet(self):
+        print("C")
+
+class D(B, C):
+    pass
+
+D().greet()  # 输出: B，因为 MRO 是 D → B → C → A
+```
+
+**事实：** 使用 `ClassName.__mro__` 查看解析顺序。多继承应谨慎使用，优先考虑组合或 Mixin 模式。
+
+## 🔗 相关资源
+
+- 上一章：[[PY017-Python中的模块]] — 模块是组织类和其他代码的基本单元
+- 下一章：[[PY019-Python中错误类型与异常处理机制]] — 学习如何处理类和方法调用中可能出现的异常
+- 官方文档：[Python 官方教程 — 类](https://docs.python.org/zh-cn/3/tutorial/classes.html)
+- 参考书目：《Python 编程：从入门到实践》第9章
+- 关键概念：`__init__` | `super()` | 继承 | 组合 | 多态 | 封装

@@ -62,9 +62,9 @@
     "skipKeywords": []
   },
   "tikz": {
-    "exportPath": "",
-    "mcgFolderPath": "",
-    "mcgExportPath": "",
+    "exportPath": "98-Asset/MathSvg",
+    "mcgFolderPath": "98-Asset/Mathcraft",
+    "mcgExportPath": "98-Asset/MathSvg",
     "mcdFolderPath": "",
     "mcdExportPath": "",
     "enableCache": true
@@ -83,6 +83,6 @@
       "融会贯通"
     ]
   },
-  "settingsTab": "theorem",
+  "settingsTab": "license",
   "simpleTexToken": ""
 }

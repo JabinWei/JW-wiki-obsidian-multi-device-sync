@@ -1,8 +1,18 @@
 {
   "pluginList": [
+    "ZyphrZero/Termy",
+    "YishenTu/claudian",
     "AlbusGuo/obsidian-mathcraft"
   ],
   "pluginSubListFrozenVersion": [
+    {
+      "repo": "ZyphrZero/Termy",
+      "version": "latest"
+    },
+    {
+      "repo": "YishenTu/claudian",
+      "version": "2.0.21"
+    },
     {
       "repo": "AlbusGuo/obsidian-mathcraft",
       "version": "latest"

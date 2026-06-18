@@ -1,0 +1,549 @@
+---
+type: learning
+status: 已完成
+domain: Python
+tags: [Python, 编程语言]
+created: 2026-06-12
+updated: 2026-06-16
+---
+
+# Python 中的元组
+
+## 🎯 学习目标
+
+- 什么是元组？它与列表的核心区别是什么？
+- 如何正确创建包含单个元素的元组？
+- 元组的不可变性到底是「完全不能变」还是「有条件的不可变」？
+- 为什么元组可以作为字典的键，而列表不能？
+- 元组的解包（unpacking）有哪些用法和技巧？
+- 什么场景下应该优先选择元组而不是列表？
+- `namedtuple` 解决了什么问题？如何使用？
+
+## 📖 前置知识
+
+在开始学习元组之前，请先掌握：[[PY009-Python中的列表]]
+
+因为元组与列表同属 Python 的序列类型，熟悉列表的索引、切片、迭代等操作，能让你快速迁移到元组的学习中。
+
+## 📚 核心内容
+
+在 Python 的数据结构家族中，**元组**经常被误解为"不可变的列表"。虽然这只对了一半，但元组其实有着更独特的使命：它是数据的**保险箱**，也是 Python 底层优化的**加速器**。
+
+### 什么是元组？
+
+元组是一个**有序**且**不可变**的序列。
+
+- **有序**：元素有固定的顺序，可以通过索引访问。
+- **不可变**：一旦创建，你无法添加、删除或替换其中的元素。
+
+> ** 核心冷知识**
+> 元组真正的标识其实是**逗号 `,`**，而不是圆括号 `()`。圆括号只是为了让代码更易读（除非在特定语境下为了避免歧义）。
+
+------
+
+### 元组的创建方法
+
+创建元组有多种方式，从最基础的字面量到使用构造函数，适用于不同的场景。
+
+#### 1. 基础创建（字面量）
+这是最常用的方式，使用圆括号包裹元素。
+
+```python
+# 标准创建
+colors = ('red', 'green', 'blue')
+
+# 只有一个元素时，必须加逗号！
+single = ('hello',)  # 这是元组
+wrong = ('hello')    # 这只是一个字符串，不是元组
+
+# 甚至可以不加括号（元组打包）
+coordinates = 10, 20 
+```
+
+#### 2. 使用 `tuple()` 构造函数
+当你需要将其他**可迭代对象**（如列表、字符串、范围等）转换为元组时，`tuple()` 函数非常有用。
+
+```python
+# 1. 将列表转换为元组
+my_list = [1, 2, 3]
+t_from_list = tuple(my_list)
+print(t_from_list)  # 输出: (1, 2, 3)
+
+# 2. 将字符串转换为元组（每个字符成为独立元素）
+my_str = "Python"
+t_from_str = tuple(my_str)
+print(t_from_str)   # 输出: ('P', 'y', 't', 'h', 'o', 'n')
+
+# 3. 将 range 对象转换为元组
+t_from_range = tuple(range(5))
+print(t_from_range) # 输出: (0, 1, 2, 3, 4)
+
+# 4. 创建空元组
+empty_tuple = tuple()
+print(empty_tuple)  # 输出: ()
+```
+
+------
+
+### 元组的核心操作：增删改查
+
+这是元组与列表最大的区别所在。由于元组的**不可变性**，它的"增删改"操作受到严格限制，而"查"操作则非常丰富。
+
+#### 1. 查：丰富的查询方式
+元组支持所有标准的序列查询操作，且效率极高。
+
+1. **索引访问**：通过下标获取单个元素，支持正向和反向索引。
+
+   ```python
+   t = ('a', 'b', 'c', 'd', 'e')
+   print(t[0])    # 输出: 'a'
+   print(t[-1])   # 输出: 'e'
+   ```
+
+2. **切片访问**：获取元组的一个子集，返回的结果仍然是一个元组。
+
+   ```python
+   t = (0, 1, 2, 3, 4, 5)
+   print(t[1:4])  # 输出: (1, 2, 3)
+   print(t[::-1]) # 输出: (5, 4, 3, 2, 1, 0) - 元组反转
+   ```
+
+3. **内置方法**：元组只有两个内置方法，都用于查询。
+
+   - `.count(value)`: 统计元素出现的次数。
+   - `.index(value, [start, [stop]])`: 查找元素第一次出现的索引。
+
+4. **成员检测**：使用 `in` 和 `not in` 关键字。
+
+   ```python
+   print(2 in (1, 2, 3))  # 输出: True
+   ```
+
+5. **解包获取**：将元组中的元素直接赋值给变量。
+
+   ```python
+   name, age = ("Alice", 25)
+   ```
+
+#### 2. 增：间接的"增加"
+元组不支持 `append`。所谓的"增加"，是通过**拼接**创建一个全新的元组。
+
+```python
+t1 = (1, 2)
+t2 = t1 + (3, 4)  # 生成新对象
+```
+
+#### 3. 删：只能删除整个元组
+无法删除单个元素（`del t[0]` 会报错），只能删除整个变量。
+
+```python
+t = (1, 2, 3)
+del t  # 删除整个元组
+```
+
+#### 4. 改：有限的"修改"
+不能修改元素值，但如果元素是**可变对象**（如列表），可以修改其内部内容。
+
+```python
+t = (1, 2, [3, 4])
+t[2].append(5)  # 正确：(1, 2, [3, 4, 5])
+```
+
+------
+
+### 元组与列表的相互转换
+
+在实际开发中，我们经常需要在"灵活性"（列表）和"安全性"（元组）之间切换。
+
+#### 1. 列表转元组：为了安全
+
+```python
+my_list = [1, 2, 3]
+my_tuple = tuple(my_list)
+```
+
+#### 2. 元组转列表：为了修改
+
+```python
+my_tuple = (4, 3, 2, 1)
+my_list = list(my_tuple)
+my_list.sort() # 现在可以排序了
+```
+
+------
+
+### 为什么使用元组？（对比列表）
+
+| 特性       | 列表             | 元组                 |
+| ---------- | ---------------- | -------------------- |
+| **可变性** | 可变 (增删改)    | **不可变** (只读)    |
+| **性能**   | 较慢，占用内存大 | **极快**，占用内存小 |
+| **用途**   | 存储同类数据集合 | 存储结构化记录       |
+| **字典键** | 不能作为键       | **可以作为键**       |
+
+**性能对比代码：**
+
+```python
+import timeit
+# 元组创建速度通常比列表快得多
+list_time = timeit.timeit(stmt="[1, 2, 3, 4, 5]", number=1000000)
+tuple_time = timeit.timeit(stmt="(1, 2, 3, 4, 5)", number=1000000)
+```
+
+------
+
+### 进阶特性：命名元组
+
+如果你发现自己在用索引访问元组（如 `t[0]`），代码可读性会变差。`collections.namedtuple` 可以解决这个问题。
+
+```python
+from collections import namedtuple
+
+Point = namedtuple('Point', ['x', 'y'])
+p = Point(10, 20)
+
+print(p.x)    # 10 (可读性更强！)
+```
+
+------
+
+### 实际应用场景
+
+#### 1. 作为字典的键
+因为元组是**可哈希的**，它可以作为字典的键。
+
+```python
+locations = {
+    (39.9, 116.4): "Beijing",
+    (31.2, 121.5): "Shanghai"
+}
+```
+
+#### 2. 函数返回多个值
+Python 函数返回多个值时，本质上是返回了一个元组。
+
+```python
+def get_user():
+    return "Alice", 30
+
+name, age = get_user()
+```
+
+#### 3. 数据保护
+当你希望数据不被意外修改时，使用元组。
+
+```python
+# 定义常量
+DB_CONFIG = ('localhost', 3306)
+```
+
+## 🧪 练习 / 验证
+
+### 练习 1：创建单元素元组
+
+以下代码的输出是什么？哪个变量是真正的元组？
+
+```python
+a = (42)
+b = (42,)
+c = ()
+d = tuple([42])
+e = tuple('42')
+
+print(type(a), type(b), type(c), type(d), type(e))
+print(a, b, c, d, e)
+```
+
+<details><summary><b>答案</b></summary>
+
+```
+<class 'int'> <class 'tuple'> <class 'tuple'> <class 'tuple'> <class 'tuple'>
+42 (42,) () (42,) ('4', '2')
+```
+
+- `a = (42)` → Python 把括号理解为数学优先级括号，所以 `a` 是 `int` 类型，值为 `42`
+- `b = (42,)` → 加了逗号，正确创建了单元素元组
+- `c = ()` → 空元组
+- `d = tuple([42])` → 列表转元组，得到 `(42,)`
+- `e = tuple('42')` → 字符串转元组，每个字符成为独立元素 → `('4', '2')`
+
+**关键结论：单元素元组必须加逗号！**
+</details>
+
+---
+
+### 练习 2：不可变性的边界
+
+阅读以下代码，预测每一步的输出，并解释为什么会有 `TypeError`。
+
+```python
+t = (1, 2, [3, 4])
+
+# (1)
+t[2].append(5)
+print(t)
+
+# (2)
+try:
+    t[0] = 10
+except TypeError as ex:
+    print(f"错误: {ex}")
+
+# (3)
+t[2] = [6, 7]
+```
+
+<details><summary><b>答案</b></summary>
+
+**(1)** 输出：`(1, 2, [3, 4, 5])`
+
+元组本身不可变，但 `t[2]` 是一个列表（可变对象）。元组的「不可变」是指**元素引用**不可变，而非被引用对象本身不可变。所以可以调用 `t[2].append(5)` 修改列表的内容，这并没有改变元组对列表的引用。
+
+**(2)** 输出：`错误: 'tuple' object does not support item assignment`
+
+元组不支持通过索引直接赋值修改元素，即使目标是不可变元素也不行。
+
+**(3)** 输出：`TypeError: 'tuple' object does not support item assignment`
+
+同理，尝试替换元组中的元素引用（将 `t[2]` 指向一个新的列表 `[6, 7]`）也会失败。
+
+**关键结论：不可变的是「引用」，不是「引用的对象」。**
+</details>
+
+---
+
+### 练习 3：使用元组实现变量交换
+
+在不使用临时变量的情况下，用一行 Python 代码交换 `a` 和 `b` 的值。请写出代码并验证。
+
+```python
+a = 10
+b = 20
+
+# 你的代码（一行）
+```
+
+<details><summary><b>答案</b></summary>
+
+```python
+a, b = b, a
+print(a, b)  # 输出: 20 10
+```
+
+**原理**：`b, a` 先创建一个元组 `(20, 10)`（隐式打包），然后通过解包将值分别赋给 `a` 和 `b`。这是 Python 特有且优雅的写法，底层利用元组的打包与解包，无需临时变量。
+</details>
+
+---
+
+### 练习 4：解包进阶 — 星号表达式
+
+以下代码的输出是什么？
+
+```python
+nums = (1, 2, 3, 4, 5, 6)
+
+first, *middle, last = nums
+print(f"first={first}, middle={middle}, last={last}")
+
+*a, b, c = nums
+print(f"a={a}, b={b}, c={c}")
+
+x, y, *z = (1, 2)
+print(f"x={x}, y={y}, z={z}")
+```
+
+<details><summary><b>答案</b></summary>
+
+```
+first=1, middle=[2, 3, 4, 5], last=6
+a=[1, 2, 3, 4], b=5, c=6
+x=1, y=2, z=[]
+```
+
+- `*middle` 捕获头尾之间的所有元素，存为列表
+- `*a` 在前，捕获除最后两个外的所有元素
+- 当可捕获元素不够时（如 `(1, 2)` 中 `*z` 只分到一个），`*z` 变成空列表 `[]`，不会报错
+
+**关键结论：`*` 变量总是收集为列表，即使是空列表。**
+</details>
+
+---
+
+### 练习 5：元组作为字典键
+
+下面的代码中，哪个会报错？为什么？
+
+```python
+d = {}
+
+# 情况 A
+d[(1, 2)] = 'point A'
+
+# 情况 B
+d[([1, 2], [3, 4])] = 'point B'
+
+# 情况 C
+d[(1, 'hello')] = 'point C'
+
+# 情况 D
+d[()] = 'empty tuple key'
+```
+
+<details><summary><b>答案</b></summary>
+
+**情况 B** 会报错：`TypeError: unhashable type: 'list'`
+
+因为字典的键必须是**可哈希的**（即不可变的），元组本身是可哈希的（A、C、D 都正确），但 B 中的元组 `([1, 2], [3, 4])` 包含两个列表，列表是不可哈希的，所以整个元组也不可哈希，无法作为字典键。
+
+**验证哈希性：**
+```python
+print(hash((1, 2)))           # 正常返回哈希值
+print(hash((1, 'hello')))     # 正常返回哈希值
+print(hash(()))               # 正常返回哈希值
+print(hash(([1, 2],)))        # TypeError!
+```
+</details>
+
+---
+
+### 练习 6：命名元组实战
+
+使用 `namedtuple` 定义一个 `Student` 类型，包含字段 `name`、`age`、`score`。然后：
+1. 创建 3 个学生
+2. 找出分数最高的学生（提示：可以直接比较命名元组吗？）
+3. 计算三个学生的平均年龄
+
+```python
+from collections import namedtuple
+
+# 你的代码
+```
+
+<details><summary><b>答案</b></summary>
+
+```python
+from collections import namedtuple
+
+Student = namedtuple('Student', ['name', 'age', 'score'])
+
+s1 = Student('Alice', 20, 88)
+s2 = Student('Bob', 22, 95)
+s3 = Student('Charlie', 21, 91)
+
+# 找出最高分（利用列表推导 + max）
+best = max([s1, s2, s3], key=lambda s: s.score)
+print(f"最高分学生: {best.name}, 分数: {best.score}")
+# 输出: 最高分学生: Bob, 分数: 95
+
+# 计算平均年龄
+avg_age = sum(s.age for s in [s1, s2, s3]) / 3
+print(f"平均年龄: {avg_age}")
+# 输出: 平均年龄: 21.0
+```
+
+**注意**：命名元组本身不支持直接比较大小（`s1 > s2` 会按字段顺序逐字段比较，这通常不是我们想要的），所以建议用 `key` 参数指定比较字段。
+</details>
+
+---
+
+### 练习 7：元组 + 字典实现 switch-case
+
+Python 没有内置的 `switch-case` 语句。请用**元组作为字典键**模拟一个简单的计算器，支持 `+`、`-`、`*`、`/` 四种操作，处理除零错误。
+
+```python
+# 要求：输入 ('+', 10, 5) 返回 15
+def calculator(op, a, b):
+    pass  # 你的实现
+
+print(calculator('+', 10, 5))   # 15
+print(calculator('/', 10, 0))   # "除数不能为零"
+```
+
+<details><summary><b>答案</b></summary>
+
+```python
+def calculator(op, a, b):
+    ops = {
+        '+': lambda x, y: x + y,
+        '-': lambda x, y: x - y,
+        '*': lambda x, y: x * y,
+        '/': lambda x, y: x / y if y != 0 else "除数不能为零"
+    }
+    return ops.get(op, lambda x, y: "不支持的操作")(a, b)
+
+print(calculator('+', 10, 5))   # 15
+print(calculator('-', 10, 5))   # 5
+print(calculator('*', 10, 5))   # 50
+print(calculator('/', 10, 2))   # 5.0
+print(calculator('/', 10, 0))   # 除数不能为零
+print(calculator('^', 2, 3))    # 不支持的操作
+```
+</details>
+
+---
+
+### 练习 8：性能验证
+
+写代码验证：创建 100 万个相同元素的结构，元组比列表快多少？（使用 `timeit` 模块）
+
+<details><summary><b>答案</b></summary>
+
+```python
+import timeit
+
+list_time = timeit.timeit(stmt="[1, 2, 3, 4, 5]", number=10_000_000)
+tuple_time = timeit.timeit(stmt="(1, 2, 3, 4, 5)", number=10_000_000)
+
+print(f"列表创建耗时: {list_time:.3f} 秒")
+print(f"元组创建耗时: {tuple_time:.3f} 秒")
+print(f"元组快 {list_time / tuple_time:.1f} 倍")
+
+# 典型输出（因机器而异）:
+# 列表创建耗时: 1.234 秒
+# 元组创建耗时: 0.210 秒
+# 元组快 5.9 倍
+```
+
+**原理**：元组是不可变的，Python 解释器可以对其做出许多优化——如缓存、更简单的内存分配等。而列表需要预留扩容空间，开销更大。
+</details>
+
+## 🤔 常见误区
+
+### 误区 1：「`(x)` 就是元组」
+
+**事实**：`(42)` 只是一个被括号包裹的整数，类型仍然是 `int`。真正的元组需要逗号 `(42,)`。括号只是辅助分组或提高可读性，**逗号**才是元组的灵魂。
+
+```python
+type((42))    # <class 'int'>
+type((42,))   # <class 'tuple'>
+```
+
+### 误区 2：「元组完全不可变」
+
+**事实**：元组的不可变是指**元素引用不可变**，即不能将某个索引重新绑定到新对象。但如果元组的元素本身是可变对象（如列表、字典），这些对象的内部状态仍然可以修改。
+
+```python
+t = (1, [2, 3])
+t[1].append(4)  # ✅ 合法，结果: (1, [2, 3, 4])
+t[0] = 5        # ❌ TypeError
+```
+
+### 误区 3：「元组和列表可以互换使用」
+
+**事实**：虽然它们可以互相转换，但语义不同。元组暗示数据结构化和不可变性，列表暗示同质集合和可变性。滥用转换不仅损失性能，还让代码意图模糊。比如 `(name, age, city)` 用元组更合适（结构化记录），`[1, 2, 3, 4, 5]` 用列表更合适（同质数据集合）。
+
+### 误区 4：「元组因为不可变所以更安全，应该尽量用元组替代列表」
+
+**事实**：不可变性确实带来一定的安全性，但过度使用元组会牺牲代码的灵活性。正确的做法是按语义选择——需要修改的数据用列表，不需要修改的结构化记录用元组。不要把元组当作「不可变的安全列表」，把它当作「轻量级的只读记录」。
+
+### 误区 5：「`del t[0]` 可以删除元组中的元素」
+
+**事实**：`del` 语句可以删除整个元组变量 `del t`，但**不能删除元组中的单个元素**，因为元组不支持项目删除。尝试 `del t[0]` 会抛出 `TypeError: 'tuple' object doesn't support item deletion`。
+
+## 🔗 相关资源
+
+- 上一节：[[PY009-Python中的列表]] — 元组与列表同为序列类型，对比学习效果更好
+- 下一节：[[PY011-Python中的字典]] — 字典的键要求可哈希，元组正是满足这一条件的复合类型
+- 官方文档：[Python 官方文档 — 元组](https://docs.python.org/zh-cn/3/tutorial/datastructures.html#tuples-and-sequences)
+- 进阶阅读：[collections.namedtuple 官方文档](https://docs.python.org/zh-cn/3/library/collections.html#collections.namedtuple)
+- 延伸参考：[Real Python — Python Tuples: A Complete Overview](https://realpython.com/python-tuple/)

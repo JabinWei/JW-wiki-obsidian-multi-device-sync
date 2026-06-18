@@ -1,0 +1,1139 @@
+---
+type: learning
+status: 已完成
+domain: Python
+tags: [Python, 编程语言]
+created: 2026-06-12
+updated: 2026-06-16
+---
+
+# PY014 Python 中的文件
+
+## 🎯 学习目标
+
+1. 如何使用 `open()` 函数安全地打开和关闭文件？`with` 语句的优势是什么？
+2. `r`、`w`、`x`、`a`、`r+`、`w+`、`a+` 模式之间有什么区别？何时使用二进制模式 `b`？
+3. `read()`、`readline()`、`readlines()` 和 `splitlines()` 的返回值和使用场景有何不同？
+4. 文件指针（seek/tell）在读取和写入操作中如何运作？不同模式下指针行为有哪些差异？
+5. 为什么会出现 `UnicodeDecodeError`？如何正确处理不同编码的文件？
+6. 如何使用 Python 的 `csv` 模块处理 CSV 文件？`DictReader` 和 `DictWriter` 比基础 `reader`/`writer` 有什么优势？
+7. 如何处理 JSON 文件的序列化与反序列化？`openpyxl` 操作 Excel 的核心四步曲是什么？
+8. 在写入 CSV 时为什么要加 `newline=''`？用 Excel 打开 CSV 出现中文乱码如何解决？
+
+## 📖 前置知识
+
+- [[PY015-Python中的高阶函数]] — 理解函数作为一等公民的概念，对回调、自定义 `opener` 等高级用法有帮助。
+
+## 📚 核心内容
+
+在 Python 的开发世界里，文件操作是连接程序与持久化数据的桥梁。无论你是处理简单的配置文件，还是分析海量的数据日志，掌握文件处理都是必不可少的技能。今天，我们就来深入梳理一下 Python 中文件处理的核心逻辑、常用技巧以及实战案例，为你构建一份随时可以查阅的"红宝书"。
+
+------
+
+### 核心基础：打开与关闭
+
+一切文件操作都始于 `open()` 函数。这是 Python 与文件系统交互的入口。虽然平时我们可能只用到了前两个参数，但 `open()` 实际上提供了非常丰富的配置选项。
+
+#### 1. `open()` 语法全解析
+
+```python
+open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)
+```
+
+>  在定义file文件路径字符串的时候，使用原生字符串来定义`r" "`。 具体可以参照文章 <a href="./04.Python简单数据类型">Python中的简单数据类型</a> 中，介绍字符串定义技巧的相关内容。
+
+以下是 `open()` 函数所有参数的详细使用方式总结：
+
+| 参数            | 必填/默认值 | 核心作用与使用方式                                           |
+| --------------- | ----------- | ------------------------------------------------------------ |
+| **`file`**      | 必填        | 文件路径（字符串或路径对象）。可以是相对路径，也可以是绝对路径。 |
+| **`mode`**      | 默认 `'r'`  | 决定打开模式（由核心字符与辅助字符组合而成，详见下文）。     |
+| **`buffering`** | 默认 `-1`   | 缓冲策略。`0`关闭缓冲(仅二进制)；`1`行缓冲(仅文本)；`>1`指定缓冲区字节大小；`-1`使用系统默认。 |
+| **`encoding`**  | 默认 `None` | 文本文件的编码格式（如 `'utf-8'`, `'gbk'`）。**处理中文时强烈建议显式指定**，二进制模式下需保持为 `None`。 |
+| **`errors`**    | 默认 `None` | 编码错误处理策略。`'strict'`报错；`'ignore'`忽略错误；`'replace'`用特殊符号替换。 |
+| **`newline`**   | 默认 `None` | 控制换行符。`None`开启通用换行模式；`''`不转换换行符；`'\n'`等指定严格换行符。 |
+| **`closefd`**   | 默认 `True` | 传入文件描述符(整数)时，若为 `False` 则关闭文件对象时不关闭底层描述符（高级系统编程用）。 |
+| **`opener`**    | 默认 `None` | 传入自定义的可调用对象，用于返回自定义的文件描述符（极少使用）。 |
+
+**包含所有参数的代码示例（仅供学习参考）：**
+在日常开发中，我们通常只需要关注前几个参数。以下代码展示了如何完整调用所有参数（实际项目中极少这样写）：
+
+```python
+import os
+
+# 假设我们要以自定义的方式打开一个日志文件
+f = open(
+    file="app.log",              # 1. 文件路径
+    mode="a",                    # 2. 追加模式
+    buffering=1,                 # 3. 行缓冲（遇到换行符立刻写入磁盘）
+    encoding="utf-8",            # 4. 指定UTF-8编码
+    errors="replace",            # 5. 遇到编码错误用特殊符号替换
+    newline="\n",                # 6. 严格将 \n 视为换行符
+    closefd=True,                # 7. 关闭文件时同时关闭底层描述符
+    opener=lambda path, flags: os.open(path, flags, 0o777) # 8. 自定义打开器（设置特定权限）
+)
+
+f.write("这是一条测试日志\n")
+f.close()  # 操作完成后，务必记得关闭文件
+```
+
+#### 2. 文件打开模式详解
+
+理解不同的模式是安全操作文件的前提。Python 的 `mode` 参数其实是由几个基础字符灵活组合而成的，掌握它们的组合规则，你就能应对各种复杂的文件操作需求。
+
+**模式的组合规则**
+`mode` 字符串通常由 1 个核心读写字符 + 可选的辅助字符组成：
+
+- **核心字符（必选其一）**：`r` (读)、`w` (写)、`x` (新建)、`a` (追加)。
+- **辅助字符（可选组合）**：
+  - `+`：赋予"读写"双重权限（如 `r+` 表示既能读也能写）。
+  - `b`：以二进制（Binary）模式打开（如 `rb`、`wb`），用于处理图片、视频等非文本文件。
+  - `t`：以文本（Text）模式打开（默认值，通常省略不写）。
+
+**常用模式速查表**
+
+| 模式   | 类型   | 说明                              | 风险/注意                                    |
+| ------ | ------ | --------------------------------- | -------------------------------------------- |
+| **r**  | 只读   | 默认模式，文件指针在开头。        | 文件不存在会报错。                           |
+| **w**  | 只写   | 文件指针在开头，准备覆盖。        | **文件存在会被清空**；不存在则创建。         |
+| **x**  | 新建   | 专门用于安全地创建新文件。        | 文件已存在则会报错（防止误覆盖）。           |
+| **a**  | 追加   | 文件指针在末尾，准备追加。        | 写入内容在文件末尾，不会覆盖原有内容。       |
+| **r+** | 读写   | 指针在开头，可读可写。            | 写入时会从开头覆盖原有字符，需谨慎控制指针。 |
+| **w+** | 写读   | 指针在开头，可读可写。            | **同样会先清空原文件**，再建立读写通道。     |
+| **a+** | 追加读 | 指针在末尾，可读可追加。          | 读取前需用 `seek(0)` 移动指针到开头。        |
+| **b**  | 二进制 | 与上述模式组合（如 `rb`, `wb`）。 | 处理非文本文件（如 jpg, png, exe）的必选项。 |
+
+#### 3. 优雅的资源管家：`with` 语句
+
+在前面的示例中，我们使用了 `open()` 配合 `close()` 来手动管理文件。但在实际开发中，如果文件操作过程中发生异常，或者程序员忘记写 `close()`，就会导致文件资源无法释放，长期运行甚至可能耗尽系统的文件句柄。
+
+为了解决这个问题，Python 提供了 `with` 语句。它可以自动管理资源的获取和释放，无论代码块是否发生异常，都会确保文件被正确关闭。
+
+**传统手动关闭 vs `with` 自动管理：**
+
+```python
+# 传统写法：需要手动打开、关闭，容易遗漏
+f = open("data.txt", "r", encoding="utf-8")
+try:
+    content = f.read()
+finally:
+    f.close()  # 必须手动关闭，一旦忘记就会导致资源泄露
+
+# 推荐写法：with 语句自动管理，安全又简洁
+with open("data.txt", "r", encoding="utf-8") as f:
+    content = f.read()
+    # 离开 with 代码块后，文件会自动关闭，无需手动调用 close()
+```
+
+| 维度           | 传统写法 (不推荐)                           | **`with` 写法 (规范推荐)**             |
+| -------------- | ------------------------------------------- | -------------------------------------- |
+| **资源管理**   | 需手动调用 `f.close()`                      | **自动管理**，离开代码块即关闭         |
+| **异常安全**   | 若忘记写 `close()` 或异常中断，资源可能泄露 | **绝对安全**，无论是否异常都会释放资源 |
+| **代码可读性** | 冗余，包含 `try-finally` 样板代码           | **简洁优雅**，专注于业务逻辑           |
+| **多文件操作** | 嵌套深，逻辑复杂                            | **扁平化**，支持逗号分隔同时管理       |
+
+**`with` 语句的代码编写格式与排版规范**
+在实际开发中，规范的代码排版不仅能提升可读性，还能避免一些不必要的语法错误。关于 `with` 语句的格式，有以下三个核心注意点：
+
+1. **同时打开多个文件时的换行与缩进**：当我们需要在一个 `with` 语句中同时打开两个或以上的文件时（例如进行文件复制、数据迁移），代码往往会变得很长。为了符合 PEP 8 代码规范并保证美观，通常有两种推荐的写法：
+
+   - **写法一：使用反斜杠（`\`）显式换行**。这是最常见的写法。在第一个 `open()` 语句的末尾加上反斜杠，表示代码在下一行继续，并且下一行需要进行合理的缩进（通常与上一行的 `open` 对齐）。
+
+   ```python
+   # 推荐：使用反斜杠换行，代码清晰易读
+   with open('input.txt', 'r', encoding='utf-8') as infile, \
+        open('output.txt', 'w', encoding='utf-8') as outfile:
+       content = infile.read()
+       outfile.write(content)
+   ```
+
+   - **写法二：利用小括号 `()` 隐式换行**。Python 允许在小括号内部进行自由换行。如果你的逻辑嵌套在某个函数或条件判断的括号中，这种写法会非常自然。
+
+   ```python
+   # 推荐：利用括号实现隐式换行
+   with (open('input.txt', 'r', encoding='utf-8') as infile, 
+         open('output.txt', 'w', encoding='utf-8') as outfile):
+       content = infile.read()
+       outfile.write(content)
+   ```
+
+2. **严禁跨行拆分 `with` 和 `as`**：Python 的语法规定，`with` 关键字和它对应的 `as` 变量赋值**必须处于同一逻辑行**。绝对不能在 `with` 后面直接换行，否则程序会抛出 `SyntaxError: invalid syntax` 语法错误。
+
+```python
+# 错误示范：with 后面直接换行，会导致语法报错！
+with open('data.txt', 'r', encoding='utf-8') 
+    as f:  # 这里的 as 会被认为是不合法的
+    print(f.read())
+
+# 正确做法：确保 with 和 as 在同一行，或者像上面那样用反斜杠/括号连接
+with open('data.txt', 'r', encoding='utf-8') as f:
+    print(f.read())
+```
+
+3. **变量作用域的严格限制**：再次强调，`with` 语句下的文件操作代码**必须严格缩进在 `with` 代码块内部**。一旦取消缩进（跳出 `with` 块），文件就会自动关闭。此时如果继续尝试操作该文件对象，程序会抛出 `ValueError: I/O operation on closed file` 的错误。
+
+```python
+with open('data.txt', 'r', encoding='utf-8') as f:
+    content = f.read()  # 正常读取
+
+# print(f.read())  # 错误！取消缩进后文件已关闭，不能再读取
+print(content)      # 正确！读取到的内容已经保存在变量中，可以继续使用
+```
+
+**建议**：在日常开发中，请始终将 `with` 作为打开文件的首选方式，这不仅符合 Python 的 PEP 8 编码规范，也是保证代码健壮性的关键。
+
+------
+
+### 读取操作详解
+
+#### 1. `read` 方法详解：字节与字符的区别
+
+在 Python 中，`read(n)` 方法的行为取决于你打开文件的模式：
+
+**文本模式（如 `'r'`）：按"字符"读取**
+当你以文本模式打开文件时，`read(n)` 中的 `n` 代表**字符数**。Python 会根据你指定的编码（如 UTF-8）自动将底层的字节转换为字符。
+
+```python
+f = open('example.txt', 'r', encoding='utf-8')
+content = f.read(10)  # 读取前10个字符
+f.close()
+```
+
+**二进制模式（如 `'rb'`）：按"字节"读取**
+当你以二进制模式打开文件时，`read(n)` 中的 `n` 代表**字节数**。这常用于处理图片、视频或需要精确控制数据块的场景。
+
+```python
+f = open('example.bin', 'rb')
+content = f.read(10)  # 读取前10个字节
+f.close()
+```
+
+#### 2. 核心方法大对比：readline、readlines 与 splitlines
+
+在处理多行文本时，这三个方法非常常用，但它们的底层逻辑和适用场景有着显著的区别。
+
+**核心对比速览表**
+
+| 方法               | 所属对象   | 核心作用                 | 返回值类型   | 换行符处理        | 适用场景                         |
+| ------------------ | ---------- | ------------------------ | ------------ | ----------------- | -------------------------------- |
+| **`readline()`**   | 文件对象   | **逐行**读取文件内容     | 字符串 (str) | 默认**保留** `\n` | 处理超大文件，节省内存           |
+| **`readlines()`**  | 文件对象   | 一次性读取文件**所有行** | 列表 (list)  | 默认**保留** `\n` | 小文件，需要直接获取行列表       |
+| **`splitlines()`** | 字符串对象 | 将多行字符串按行**分割** | 列表 (list)  | 默认**去除** `\n` | 处理已读取的长字符串或跨平台文本 |
+
+**深度解析与实战演示**
+假设我们有一个 `test.txt` 文件，内容如下：
+
+```text
+Hello Python
+Hello World
+```
+
+**使用 `readline()` 和 `readlines()`（文件对象方法）：**
+
+```python
+f = open('test.txt', 'r', encoding='utf-8')
+
+# readline() 每次只读一行，适合逐行处理
+line1 = f.readline()
+print(repr(line1))  # 输出: 'Hello Python\n'  (保留了换行符)
+
+# readlines() 读取所有行，直接返回列表
+f.seek(0) # 把光标移回开头
+all_lines = f.readlines()
+print(all_lines)  # 输出: ['Hello Python\n', 'Hello World\n'] (保留了换行符)
+
+f.close()
+```
+
+**使用 `splitlines()`（字符串方法）：**
+
+```python
+f = open('test.txt', 'r', encoding='utf-8')
+content = f.read()  # 先读取整个文件到一个长字符串中
+f.close()
+
+# splitlines() 分割这个长字符串，自动去除换行符
+lines = content.splitlines()
+print(lines)  # 输出: ['Hello Python', 'Hello World'] (非常干净)
+```
+
+#### 3. 通过循环逐行访问文件内容（推荐）
+
+在实际开发中，绝大多数时候我们都需要逐行处理文本（如读取日志、处理CSV数据等）。Python 的文件对象本身就是**可迭代的**，这意味着你可以直接使用 `for` 循环来逐行读取文件。
+
+**这是处理大文件最推荐的做法**，因为它采用了"延迟迭代"的机制——每次只在内存中加载一行内容，处理完就释放，内存占用极低。
+
+**实战演示：**
+
+```python
+# 使用 with 语句配合 for 循环，是 Python 读取文本文件的最佳实践
+with open('test.txt', 'r', encoding='utf-8') as f:
+    for line in f:  # 每次循环自动读取下一行
+        # 使用 strip() 去除每行末尾的换行符和首尾空格
+        clean_line = line.strip()
+        print(f"读取到一行：{clean_line}")
+```
+
+相比于 `readlines()` 会一次性把所有行加载到内存（处理几个G的大文件会直接卡死），这种 `for line in f` 的方式既简洁又极其节省内存。
+
+------
+
+### ️写入操作详解
+
+#### 1. `write` 方法详解
+
+`write()` 方法用于将指定的字符串内容写入到文件中。
+
+- **注意**：`write()` 方法**不会自动添加换行符**，如果你希望写入的内容换行，需要在字符串末尾手动加上 `\n`。
+
+```python
+f = open('output.txt', 'w', encoding='utf-8')
+f.write("第一行内容\n")  # 手动添加换行符
+f.write("第二行内容")
+f.close()
+```
+
+#### 2. `writelines` 方法详解
+
+`writelines()` 方法用于将一个字符串列表（List）一次性写入到文件中。
+
+- **注意**：与 `write()` 一样，`writelines()` 也**不会自动为列表中的每个元素添加换行符**，需要你在准备列表数据时自行带上 `\n`。
+
+```python
+f = open('output.txt', 'w', encoding='utf-8')
+lines = ["第一行\n", "第二行\n", "第三行\n"]
+f.writelines(lines)
+f.close()
+```
+
+------
+
+### 指针操作 (Seek)：从读与写的角度看
+
+文件指针（也叫文件光标）是文件操作中非常核心且容易让人困惑的概念。我们可以把它想象成平时在文档里打字时那个**一闪一闪的竖线光标**，它决定了你下一次读取或写入数据的起始位置。
+
+在 Python 中，`tell()` 方法用于查看当前指针的位置，而 `seek(offset, whence)` 方法用于移动指针。
+
+#### 1. `seek()` 方法的参数详解
+
+`seek()` 方法的基本语法为：`file.seek(offset, whence=0)`。它包含两个核心参数：
+
+**① offset（偏移量）**
+
+- 表示指针需要移动的**字节数**（注意是字节，不是字符）。
+- 正数表示向文件末尾方向移动，负数表示向文件开头方向移动。
+
+**② whence（起始参考位置）**
+
+- 指定从哪个位置开始计算偏移量，默认值为 `0`。它有三个可选值，分别代表不同的参考点：
+
+| whence 值 | 别名 (os模块) | 参考起点 | 说明                                                         |
+| --------- | ------------- | -------- | ------------------------------------------------------------ |
+| **0**     | `os.SEEK_SET` | 文件开头 | 指针移动到距离文件开头 `offset` 个字节的位置（默认行为）。   |
+| **1**     | `os.SEEK_CUR` | 当前位置 | 指针从当前位置向后（正数）或向前（负数）移动 `offset` 个字节。 |
+| **2**     | `os.SEEK_END` | 文件末尾 | 指针从文件末尾向后（正数）或向前（负数）移动 `offset` 个字节。 |
+
+**️极其重要的注意事项：**
+在 Python 中，**文本模式（`t`）和二进制模式（`b`）下的 `seek()` 行为有很大区别**：
+
+- **二进制模式（如 `rb`, `r+b`）**：`whence` 的三个值（0, 1, 2）都可以正常使用，指针严格按照**字节**偏移。
+- **文本模式（如 `r`, `r+`）**：为了应对不同编码（如 UTF-8 中中文占 3 个字节），Python 限制了指针的移动。**在文本模式下，`whence` 只能使用默认值 `0`**。如果你尝试使用 `whence=1` 或 `whence=2`，Python 可能会直接报错（`UnsupportedOperation`），或者要求偏移量必须为 0（即 `seek(0, 2)` 跳转到文件末尾）。
+
+#### 2. 从【读取】的角度看指针
+
+读取操作的核心逻辑是：**指针从当前位置开始读，读完自动后移**。
+
+- **初始状态**：当你以只读模式（`r`）打开一个文件时，指针默认在文件的**开头**（位置 0）。
+- **读取后移**：每当你调用 `read(n)` 读取了 n 个字符，指针就会自动向后移动 n 个字符的位置。
+- **读完为空**：如果你已经把文件内容全部读完了，指针就会停在文件的**末尾**。此时如果再次调用 `read()`，因为指针后面没有内容了，Python 就会返回一个空字符串。
+
+**实战演示：**
+
+```python
+with open('test.txt', 'r', encoding='utf-8') as f:
+    print(f"初始指针位置：{f.tell()}")  # 输出: 0
+    
+    content1 = f.read(5)  # 读取前5个字符
+    print(f"读取内容：{content1}")
+    print(f"当前指针位置：{f.tell()}")  # 输出: 5（指针自动后移了）
+    
+    # 如果想重新读取开头的内容，必须手动移动指针
+    f.seek(0)  # 将指针移回文件开头 (等同于 f.seek(0, 0))
+    print(f"重置后指针位置：{f.tell()}")  # 输出: 0
+```
+
+#### 3. 从【写入】的角度看指针
+
+写入操作比读取稍微复杂一些，因为不同的打开模式会直接影响指针的初始位置和写入行为：
+
+- **覆盖写入（r+ 模式）**：在这种模式下，指针默认在文件**开头**。写入内容时，会从指针当前所在的位置开始，**覆盖**掉原有的字符，而不是插入。
+- **追加写入（a / a+ 模式）**：在这种模式下，无论你如何移动指针，写入内容时，Python 都会强制把指针拉到文件的**末尾**进行追加，绝对不会覆盖原有内容。
+- **清空写入（w / w+ 模式）**：一打开文件，原有内容就会被清空，指针位于开头。
+- **写入后无法读取的问题**：在读写模式（如 `r+` 或 `w+`）下，当你执行了 `write()` 操作后，指针会停留在你写入内容的**末尾**。如果此时你直接调用 `read()`，因为指针后面没有内容，你会读到一个空字符串。
+
+**实战演示（写入后指针的变化）：**
+
+```python
+# 假设 test.txt 原本内容是：Hello World
+with open('test.txt', 'r+', encoding='utf-8') as f:
+    f.write("Python")  # 从开头覆盖写入 "Python"
+    print(f"写入后指针位置：{f.tell()}")  # 输出: 6（指针停在写入结束的位置）
+    
+    # 此时直接读取，指针在末尾，读不到任何内容
+    print(f"直接读取：'{f.read()}'")  # 输出: '' (空字符串)
+    
+    # 必须把指针移回开头，才能读取到刚刚写入的新内容
+    f.seek(0)
+    print(f"移动指针后读取：'{f.read()}'")  # 输出: 'Python World'
+```
+
+---
+
+### 文件编码
+
+#### 1. 出现编码问题的根本原因
+
+- **编码与解码不匹配**：计算机存储文本是以"字节"形式存在的。读取文件的过程就是将这些"字节"按照某种规则（编码格式）翻译成人类能看懂的"字符"（解码）。如果文件实际保存的编码格式与 Python `open()` 函数中指定的解码格式不一致，就会报错或乱码。
+- **操作系统的默认差异**：
+  - **Windows 系统**：默认中文编码通常是 **GBK**（或 `cp936`）。
+  - **Linux/macOS 系统**：默认编码通常是 **UTF-8**。
+  - **冲突场景**：如果在 Windows 上用记事本默认保存了一个 GBK 编码的文本，却在 Python 代码中不指定编码（默认按 UTF-8 读取），就会引发 `UnicodeDecodeError`。
+
+#### 2. 常见报错与现象
+
+- **报错**：`UnicodeDecodeError: 'utf-8' codec can't decode byte...`（提示 UTF-8 无法解码某个字节）。
+- **乱码**：读取出来的中文字符变成了一堆看不懂的奇怪符号。
+
+#### 3. 解决方案与最佳实践
+
+**① 显式指定 `encoding` 参数（最推荐）**
+在调用 `open()` 函数时，务必显式地加上 `encoding` 参数，确保与文件的实际保存格式一致。
+
+- **处理标准跨平台文件**：`encoding='utf-8'`
+- **处理 Windows 默认生成的中文文件**：`encoding='gbk'` 或 `encoding='cp936'`
+- **处理带 BOM 的 UTF-8 文件**（如某些 Excel 导出的 CSV）：`encoding='utf-8-sig'`（可以自动忽略开头的 BOM 标记）。
+
+**② 使用错误处理参数 `errors`**
+如果文件中包含少量无法识别的字符，可以通过 `errors` 参数来避免程序直接崩溃：
+
+- `errors='ignore'`：直接忽略无法解码的字符（可能会导致内容缺失）。
+- `errors='replace'`：将无法解码的字符替换为特殊符号（如 ``），保证程序能继续运行。
+
+**③ 自动检测编码（进阶）**
+如果处理的文件来源非常杂乱（不知道是 GBK 还是 UTF-8），可以引入第三方库 `chardet` 来自动探测文件的编码格式，然后再用探测到的编码去打开文件。
+
+**④ 二进制模式读取**
+对于图片、视频等非文本文件，必须使用二进制模式打开（即 `mode='rb'`），此时不需要也不应该指定 `encoding`参数，否则会报错。
+
+#### 4. 编码问题速查表
+
+| 场景                 | 推荐参数写法           | 说明                                           |
+| -------------------- | ---------------------- | ---------------------------------------------- |
+| **标准跨平台文本**   | `encoding='utf-8'`     | 现代开发中最通用的标准，强烈推荐统一使用。     |
+| **Windows 中文文本** | `encoding='gbk'`       | 适用于 Windows 记事本默认保存的中文文档。      |
+| **Excel 导出的 CSV** | `encoding='utf-8-sig'` | 解决 Excel 导出文件开头的 BOM 导致的乱码问题。 |
+| **忽略解码错误**     | `errors='ignore'`      | 遇到无法识别的字符直接跳过，防止程序崩溃。     |
+| **图片/二进制文件**  | `mode='rb'`            | 不加 encoding，直接读取原始字节数据。          |
+
+**总结建议**：在日常开发中，为了避免不必要的麻烦，建议将所有文本文件统一保存为 **UTF-8** 格式，并在 Python 代码中始终显式指定 `encoding='utf-8'`。
+
+------
+
+### 处理结构化数据 (JSON, CSV, XML, Excel)
+
+在实际开发中，我们处理的文件往往不仅仅是纯文本（`.txt`），更多的是结构化的数据文件。Python 提供了丰富的内置库和第三方库来处理这些格式。以下是基于常见数据格式的处理指南。
+
+#### 1. JSON 文件处理
+
+JSON（JavaScript Object Notation）是目前 Web 开发和数据交换中最常用的格式，它本质上是字符串化的字典或列表。
+
+- **核心模块**：`json`
+- **常用方法速查**：
+
+| 场景                               | 方法           | 说明                                                         |
+| ---------------------------------- | -------------- | ------------------------------------------------------------ |
+| **JSON 字符串 → Python 字典**      | `json.loads()` | `s` 代表 String，将 JSON 字符串转换为 Python 对象（字典/列表）。 |
+| **Python 字典 → JSON 字符串**      | `json.dumps()` | `s` 代表 String，将 Python 对象转换为 JSON 字符串。常用参数 `indent=4` 用于美化格式。 |
+| **Python 数据 → 保存为 JSON 文件** | `json.dump()`  | 直接将数据序列化写入文件对象。                               |
+| **读取 JSON 文件 → Python 数据**   | `json.load()`  | 直接从文件对象反序列化读取数据。                             |
+
+**💡 代码实战：**
+
+```python
+import json
+
+# 1. 将 Python 字典转换为 JSON 字符串 (序列化)
+person_dict = {"name": "张三", "city": "北京", "skills": ["Python", "AI"]}
+person_json = json.dumps(person_dict, indent=4, ensure_ascii=False) # ensure_ascii=False 支持中文
+print(person_json)
+
+# 2. 读写 JSON 文件
+with open('./data.json', 'w', encoding='utf-8') as f:
+    json.dump(person_dict, f, indent=4, ensure_ascii=False) # 写入文件
+
+with open('./data.json', 'r', encoding='utf-8') as f:
+    data = json.load(f) # 读取文件
+    print(data['name'])
+```
+
+#### 2. CSV 文件处理
+
+CSV（逗号分隔值）是最常见的表格数据存储格式之一，广泛应用于数据库导出、Excel 数据交换以及各类数据分析场景。在 Python 中，无需安装任何第三方库，直接使用内置的标准库 `csv` 模块，就能高效、灵活地搞定 CSV 文件的读写。
+
+**2.1 基础读写：`csv.reader` 与 `csv.writer`**
+
+这是最底层的读写方式，数据以**列表（List）**的形式进行交互。它非常适合处理没有表头，或者对性能要求极高的纯数据流处理。
+
+**2.1.1 读取 CSV：`csv.reader`**
+`csv.reader` 会将 CSV 文件的每一行解析成一个字符串列表。
+
+```python
+import csv
+
+# 读取 CSV 文件
+with open('data.csv', 'r', encoding='utf-8') as f:
+    reader = csv.reader(f)
+    
+    # 如果需要单独处理表头，可以先 next 取出第一行
+    # header = next(reader)
+    # print(f"表头: {header}")
+    
+    for row in reader:
+        # row 是一个列表，例如: ['Alice', '25', 'Shanghai']
+        print(f"姓名: {row[0]}, 年龄: {row[1]}")
+```
+
+**2.1.2 写入 CSV：`csv.writer`**
+`csv.writer` 接收列表格式的数据，并将其写入文件。
+
+```python
+import csv
+
+# 准备数据（列表套列表）
+header = ['姓名', '年龄', '城市']
+rows = [
+    ['张三', '28', '北京'],
+    ['李四', '32', '上海'],
+    ['王五', '24', '深圳']
+]
+
+# 写入 CSV 文件
+# 注意：newline='' 是防止在 Windows 下产生多余空行的关键！
+with open('output.csv', 'w', encoding='utf-8', newline='') as f:
+    writer = csv.writer(f)
+    writer.writerow(header)  # 写入单行（表头）
+    writer.writerows(rows)   # 批量写入多行数据
+```
+
+**2.2 进阶读写：`csv.DictReader` 与 `csv.DictWriter`**
+
+在实际工作中，带有表头的 CSV 文件更为常见。使用字典（Dict）方式进行读写，可以通过**列名（Key）**直接访问数据，代码的可读性和健壮性会大大提升。
+
+**2.2.1 字典式读取：`csv.DictReader`（强烈推荐）**
+它会自动将 CSV 的第一行作为字典的键（Key），后续每一行数据都会返回一个有序字典。
+
+```python
+import csv
+
+with open('data.csv', 'r', encoding='utf-8') as f:
+    # 自动将第一行识别为表头
+    reader = csv.DictReader(f)
+    
+    for row in reader:
+        # row 是一个字典，例如: {'姓名': '张三', '年龄': '28', '城市': '北京'}
+        # 可以直接通过列名获取数据，再也不用数 row[0], row[1] 了！
+        print(f"{row['姓名']} 来自 {row['城市']}，今年 {row['年龄']} 岁")
+```
+
+**2.2.2 字典式写入：`csv.DictWriter`**
+使用字典写入时，必须通过 `fieldnames` 参数提前指定表头的顺序，并使用 `writeheader()` 方法写入第一行。
+
+```python
+import csv
+
+# 准备数据（列表套字典）
+fieldnames = ['姓名', '年龄', '城市']
+data = [
+    {'姓名': '赵六', '年龄': '29', '城市': '杭州'},
+    {'姓名': '孙七', '年龄': '35', '城市': '成都'}
+]
+
+with open('output_dict.csv', 'w', encoding='utf-8', newline='') as f:
+    # 必须指定 fieldnames 来确定列的顺序
+    writer = csv.DictWriter(f, fieldnames=fieldnames)
+    
+    writer.writeheader()  # 写入表头
+    writer.writerows(data) # 批量写入字典数据
+```
+
+**2.3 核心进阶：`quoting` 引号参数详解**
+
+`quoting` 参数是 `csv` 模块中控制**引号行为**的核心配置。它决定了在写入 CSV 时，哪些字段需要被引号（默认为双引号 `"`）包裹。
+
+**quoting 参数四大常量对比：**
+
+| 常量名                 | 适用场景    | 核心作用                                                     |
+| ---------------------- | ----------- | ------------------------------------------------------------ |
+| `csv.QUOTE_MINIMAL`    | 写入 / 读取 | **默认值**。仅在字段包含特殊字符（如分隔符逗号、换行符）时，才自动加上引号。 |
+| `csv.QUOTE_ALL`        | 写入        | **强制加引号**。无论字段内容是什么，给所有字段都加上引号。   |
+| `csv.QUOTE_NONNUMERIC` | 写入 / 读取 | **非数字加引号**。写入时给所有非数字字段加引号；读取时，会自动将**未加引号**的字段尝试转换为 `float` 类型。 |
+| `csv.QUOTE_NONE`       | 写入 / 读取 | **禁用引号**。写入时绝不加引号（若数据含逗号需配合转义符），读取时不把引号当特殊字符处理。 |
+
+**代码实战演示：**
+
+```python
+import csv
+
+data = [['苹果', '5'], ['香蕉,橙子', '3']] # 注意：香蕉,橙子 中包含逗号
+
+# 1. QUOTE_MINIMAL (默认) -> 苹果,5 \n "香蕉,橙子",3
+# 2. QUOTE_ALL -> "苹果","5" \n "香蕉,橙子","3"
+# 3. QUOTE_NONNUMERIC -> "苹果",5 \n "香蕉,橙子",3
+
+with open('quote_test.csv', 'w', encoding='utf-8', newline='') as f:
+    # 切换不同的 quoting 常量查看效果
+    writer = csv.writer(f, quoting=csv.QUOTE_NONNUMERIC)
+    writer.writerows(data)
+```
+
+**2.4 进阶实战：高级配置与复杂场景应对**
+
+真实世界的数据往往非常复杂，可能会遇到分隔符不是逗号、数据缺失或格式混乱等情况。
+
+**2.4.1 自定义方言（Dialect）与引号控制**
+当数据本身包含逗号或双引号时，`csv` 模块会自动处理，你也可以通过参数强制控制。
+
+```python
+import csv
+
+data = [
+    ['产品', '描述', '价格'],
+    ['手机', '高性能,超长续航', 5999],  # 描述里自带逗号
+    ['电脑', '15.6英寸"全面屏"', 8999]   # 描述里自带双引号
+]
+
+with open('special_data.csv', 'w', encoding='utf-8-sig', newline='') as f:
+    # quoting=csv.QUOTE_NONNUMERIC 表示给所有非数字字段加引号
+    writer = csv.writer(f, quoting=csv.QUOTE_NONNUMERIC)
+    writer.writerows(data)
+```
+
+**2.4.2 健壮的异常处理与数据清洗**
+真实数据往往很"脏"，直接读取容易导致程序崩溃，因此需要加上防御性代码。
+
+```python
+import csv
+
+with open('dirty_data.csv', 'r', encoding='utf-8') as f:
+    reader = csv.DictReader(f)
+    for i, row in enumerate(reader, start=2): # 从第2行开始计数
+        try:
+            name = row['姓名']
+            age = int(row['年龄']) # 尝试类型转换
+            print(f"第 {i} 行数据：{name}, {age}岁")
+        except KeyError:
+            print(f"️ 第 {i} 行数据格式错误：缺少必要的列名！")
+        except ValueError:
+            print(f"️ 第 {i} 行数据异常：年龄无法转换为数字。")
+```
+
+**2.4.3 大文件处理与内存优化**
+`csv.reader` 和 `csv.DictReader` 本质上是**迭代器**，每次只在内存中保留一行数据。因此，只要你使用 `for row in reader:` 逐行处理，内置的 `csv` 模块天生就适合处理超大文件，内存占用极低。
+
+**2.4.4 实战：合并多个 CSV 文件**
+在自动化办公中，经常需要把多个格式相同的 CSV 报表合并成一个。
+
+```python
+import csv
+import os
+
+output_file = 'merged_report.csv'
+csv_files = ['report_jan.csv', 'report_feb.csv']
+
+with open(output_file, 'w', encoding='utf-8-sig', newline='') as f_out:
+    writer = None
+    for file in csv_files:
+        if not os.path.exists(file): continue
+        with open(file, 'r', encoding='utf-8') as f_in:
+            reader = csv.reader(f_in)
+            header = next(reader) # 读取当前文件的表头
+            
+            if writer is None: # 第一个文件，初始化 writer 并写入表头
+                writer = csv.writer(f_out)
+                writer.writerow(header)
+            
+            for row in reader: # 写入剩余的数据行
+                writer.writerow(row)
+    print(" 多个 CSV 文件已成功合并！")
+```
+
+**2.5 避坑指南与最佳实践总结**
+
+在使用 `csv` 模块时，有几个高频"坑点"需要特别注意：
+
++ **防止多余空行**：在 Python 3 中打开文件进行写入时，务必加上 `newline=''` 参数。否则在 Windows 系统下，每写入一行数据都会多出一个空白行。
+
++ **解决 Excel 中文乱码**：如果你生成的 CSV 文件需要经常用 **Excel** 直接双击打开，建议将编码从 `utf-8` 改为 `utf-8-sig`。`utf-8-sig` 会在文件开头添加 BOM 标记，能让 Excel 完美识别并显示中文。
+
++ **数据类型转换**：CSV 本质上都是纯文本，`csv` 模块读取出来的所有数据（包括数字）默认都是**字符串**类型。如果需要进行数学计算，记得使用 `int()` 或 `float()` 进行手动转换。
+
++ **资源管理**：始终使用 `with` 语句来打开文件，这样可以确保文件在使用完毕后自动关闭，即使发生异常也能保证资源被正确释放。
+
+**总结速查表**
+
+| 方法             | 数据交互格式 | 适用场景                                   |
+| ---------------- | ------------ | ------------------------------------------ |
+| `csv.reader`     | 列表 (List)  | 无表头文件、追求极致性能的流式处理         |
+| `csv.writer`     | 列表 (List)  | 快速导出简单的行列数据                     |
+| `csv.DictReader` | 字典 (Dict)  | **最常用**，有标准表头的文件，代码可读性高 |
+| `csv.DictWriter` | 字典 (Dict)  | 数据结构清晰，需要按字段名映射写入         |
+
+#### 3. XML 文件处理
+
+XML（eXtensible Markup Language）是一种标记语言，类似于 HTML，但标签是自定义的。虽然现在 JSON 更流行，但在处理旧系统或配置文件时仍会遇到。
+
+- **核心模块**：`xml.etree.ElementTree` (通常简写为 `ET`)
+- **处理逻辑**：XML 是树状结构。我们通过解析器获取根节点，然后遍历子节点来提取数据。
+
+**💡 代码实战：**
+
+```python
+import xml.etree.ElementTree as ET
+
+# 解析 XML 文件
+tree = ET.parse('./data.xml')
+root = tree.getroot()
+
+print('根标签:', root.tag)
+print('根属性:', root.attrib)
+
+# 遍历子节点
+for child in root:
+    print('子标签:', child.tag)
+    print('文本内容:', child.text)
+```
+
+#### 4. Excel (.xlsx) 文件处理
+
+`openpyxl` 是此部分重点介绍的模块，它支持对 Excel 文件进行全方位的操作，包括读写、样式设置、公式计算以及图表插入。
+
+**4.1 环境准备与基础流程（目前该部分只介绍常用模块 openpyxl）**
+
+在开始编码前，需要先安装模块并了解基本操作流程。
+
+- **安装命令**：`pip install openpyxl`
+- **通用操作四步曲**：
+  1. **打开文件**：加载现有的 `.xlsx` 文件或创建新工作簿。
+  2. **获取 Sheet**：选择要操作的工作表（Sheet）。
+  3. **操作数据**：对行、列、单元格进行读取或写入。
+  4. **保存关闭**：将更改保存到磁盘并关闭文件流。
+
+**4.2 核心功能实战**
+
+文档详细介绍了 `openpyxl` 的四大核心功能模块，以下是结合文档代码的总结：
+
+**4.2.1 文件与工作表管理**
+这是操作 Excel 的入口，涉及如何加载文件和切换工作表。
+
+| 方法                  | 说明                     |
+| --------------------- | ------------------------ |
+| `load_workbook(path)` | 打开现有的 Excel 文件    |
+| `wb.sheetnames`       | 获取所有工作表的名称列表 |
+| `wb['SheetName']`     | 根据名称获取指定的工作表 |
+| `wb.active`           | 获取当前默认激活的工作表 |
+| `wb.save(path)`       | 保存工作簿到指定路径     |
+
+**4.2.2 数据读取与写入**
+文档强调了通过行列坐标（如 `A1`）或行列号来操作数据。
+
+- **读取数据**：
+  - 获取单元格：`cell = sheet["A1"]` 或 `cell = sheet.cell(row=1, column=1)`
+  - 获取值：`cell.value`
+  - 获取范围：支持切片操作，如 `sheet['A1:C5']` 或 `sheet.iter_rows(min_row=1, max_col=3, max_row=5)`。
+- **写入数据**：
+  - 直接赋值：`sheet['A1'] = 'Hello'`
+  - 追加行：`sheet.append([1, 2, 3])`，非常适合循环写入日志或数据流。
+  - 创建新表：`wb.create_sheet(title="NewSheet", index=0)`。
+
+**4.2.3 样式与格式设置**
+这是 `openpyxl` 区别于 `pandas` 的强项，文档介绍了如何美化 Excel。
+
+- **字体 (Font)**：设置字体名称（如"微软雅黑"）、大小、颜色（需使用 Hex 颜色码，如 `"FF0000"` 红色）和下划线。
+- **填充 (PatternFill)**：设置单元格背景色，支持纯色填充 (`fill_type="solid"`)。
+- **边框 (Border)** 和 **对齐 (Alignmenvt)**：虽然文档代码片段中未展开详细参数，但提到了这两个属性的存在。
+
+**4.2.4 公式与图表 (Charts & Formula)**
+文档最后进阶到了 Excel 的高级功能，这是自动化报表的精髓。
+
+- **公式**：直接给单元格赋值字符串形式的公式，例如 `ws['C6'] = "=AVERAGE(C1:C5)"`。
+- **图表**：可以参考<a href="https://openpyxl.readthedocs.io/en/stable/charts/introduction.html">官方文档</a>
+
+**4.3 代码规范与最佳实践**
+
+根据文档中的代码示例，总结出以下编码习惯：
+
+- **路径处理**：建议使用原始字符串（`r'path'`）来避免转义字符问题。
+- **数据结构选择**：在处理大量行数据时，推荐使用 `ws.rows` 迭代器或 `iter_rows`，而不是一次性加载所有数据，以节省内存。
+- **字典映射**：在处理表头与数据对应关系时，推荐将表头行与数据行 `zip` 成字典，这样代码逻辑更清晰，且不受列顺序变动的影响（如文档中 `order_info.get("省份")` 的用法）。
+
+这份文档非常系统地覆盖了 `openpyxl` 的全生命周期操作，从简单的 CRUD 到复杂的图表生成，是掌握 Python 操纵 Excel 的优秀教材。
+
+**4.4.Python Excel 模块全景对比**
+
+虽然文档重点介绍了 `openpyxl`，但在实际开发中，我们通常会根据需求在 **pandas**、**openpyxl**、**xlwings** 和 **XlsxWriter** 之间做选择。
+
+**4.4.1 核心模块横向对比**
+
+| 维度         | pandas (最常用)            | openpyxl (文档重点)             | xlwings (最强大)                  | XlsxWriter (高性能)       |
+| ------------ | -------------------------- | ------------------------------- | --------------------------------- | ------------------------- |
+| **核心定位** | **数据分析**与清洗         | **.xlsx 文件**读写与编辑        | **调用本地 Excel**软件            | **生成**带图表的报表      |
+| **文件格式** | 支持 xlsx, xls, csv 等     | 仅支持 **.xlsx** (新格式)       | 支持所有 Excel 格式 (.xls, .xlsx) | 仅支持 **.xlsx**          |
+| **读写能力** | 读写皆可，但样式支持弱     | **读写皆可**，支持修改原文件    | **读写皆可**，支持宏 (VBA)        | **仅支持写入** (不能读取) |
+| **样式控制** | 基础样式 (需借助 openpyxl) | **像素级控制** (字体/边框/颜色) | 完美支持所有 Excel 原生样式       | 支持复杂图表和条件格式    |
+| **性能**     | 读取大文件快 (基于 C)      | 处理超大文件较慢 (内存驻留)     | 较慢 (依赖 Excel 进程)            | **写入性能极高**          |
+| **依赖环境** | 无 (纯 Python)             | 无                              | **需安装 Microsoft Excel**        | 无                        |
+
+**4.4.2 详细场景解析**
+
+结合文档中的案例，我们可以更清晰地看到它们的分工：
+
+**A. pandas：数据清洗与统计的王者**
+
+- **优势**：如果你的任务是**分析数据**（如筛选、分组 `groupby`、聚合计算），pandas 是首选。它的 `pd.read_excel()` 和 `df.to_excel()` 极其简洁，且能轻松处理百万级数据的清洗。
+- **劣势**：它对**样式**的支持非常有限。如果你想把表头变红、加粗或者合并单元格，pandas 做不到，这时候需要像文档那样用 `openpyxl`，或者用 `pandas` 处理完数据后，用 `openpyxl` 去套用模板。
+
+**B. openpyxl：文档推荐的"万金油"**
+
+- **优势**：它是处理 `.xlsx` 文件的"瑞士军刀"。**不需要安装 Excel 软件**就能运行，既能读又能写，还能修改原文件的样式和公式。非常适合做**报表模板填充**（读取一个带格式的模板，填入数据后保存）。
+- **劣势**：处理非常巨大的文件（几十万行以上）时，内存消耗大，速度较慢。且不支持旧版 `.xls` 格式。
+
+**C. xlwings：需要操作 Excel 软件时的唯一选择**
+
+- **优势**：如果你的 Excel 里有 **VBA 宏**，或者你需要**实时看到** Excel 窗口跳动（如自动化测试），或者必须处理旧版 `.xls` 文件，必须用它。它可以直接调用 Windows 上安装的 Excel 软件进行操作。
+- **劣势**：**必须**在电脑上安装 Microsoft Excel 软件，跨平台性差（在 Linux 服务器上跑不了）。
+
+**D. XlsxWriter：生成海量报表的引擎**
+
+- **优势**：**写入速度极快**，专门针对生成报表优化。如果你的任务是"从零生成一个包含几十万行数据和精美图表的 Excel"，它是最佳选择。
+- **劣势**：**只能写，不能读**。你无法用它打开一个旧文件修改两行字再保存，必须重新生成一个新文件。
+
+**一句话口诀**：
+
+数据清洗用 Pandas，样式修改用 openpyxl，本地交互用 xlwings，大批量导出用 XlsxWriter。
+
+## 🧪 练习 / 验证
+
+### 练习 1：文件读取与写入
+
+编写代码，将字符串 `"Hello Python\nHello World\n"` 写入文件 `hello.txt`（使用 UTF-8 编码），然后读取该文件并打印每一行（去除换行符）。
+
+**参考答案：**
+
+```python
+# 写入文件
+with open('hello.txt', 'w', encoding='utf-8') as f:
+    f.write("Hello Python\nHello World\n")
+
+# 读取并逐行打印
+with open('hello.txt', 'r', encoding='utf-8') as f:
+    for line in f:
+        print(line.strip())
+```
+
+**预期输出：**
+```
+Hello Python
+Hello World
+```
+
+---
+
+### 练习 2：文件打开模式辨析
+
+以下代码会在什么情况下报错？请逐一分析。
+
+```python
+f1 = open('nonexistent.txt', 'r')
+f2 = open('existing.txt', 'x')
+f3 = open('data.txt', 'w')
+```
+
+**参考答案：**
+
+| 代码 | 何时报错 | 原因 |
+|------|----------|------|
+| `f1 = open('nonexistent.txt', 'r')` | 文件不存在时 | `'r'` 模式要求文件必须存在，否则抛出 `FileNotFoundError` |
+| `f2 = open('existing.txt', 'x')` | 文件已存在时 | `'x'` 模式专门用于安全创建新文件，文件已存在则抛出 `FileExistsError` |
+| `f3 = open('data.txt', 'w')` | **不报错** | `'w'` 模式：文件不存在则创建，存在则清空后覆盖 |
+
+---
+
+### 练习 3：使用 seek 移动文件指针
+
+假设 `numbers.txt` 文件内容为 `0123456789`。阅读以下代码，写出每一步的输出结果。
+
+```python
+with open('numbers.txt', 'r') as f:
+    print(f.read(3))        # 输出 ①：
+    print(f.tell())         # 输出 ②：
+    f.seek(5)
+    print(f.read(2))        # 输出 ③：
+    f.seek(0)
+    print(f.read(1))        # 输出 ④：
+```
+
+**参考答案：**
+
+| 步骤 | 输出 | 解释 |
+|------|------|------|
+| ① `f.read(3)` | `'012'` | 从位置 0 读取 3 个字符 |
+| ② `f.tell()` | `3` | 读取后指针自动移到位置 3 |
+| ③ `f.read(2)` | `'56'` | `seek(5)` 将指针移到位置 5，再读 2 个字符 |
+| ④ `f.read(1)` | `'0'` | `seek(0)` 将指针移回开头，读 1 个字符 |
+
+---
+
+### 练习 4：CSV 文件写入与读取
+
+有以下学生成绩数据，请使用 `csv.DictWriter` 写入文件 `scores.csv`，再使用 `csv.DictReader` 读取并计算平均分。
+
+```python
+students = [
+    {'姓名': '张三', '语文': 85, '数学': 92, '英语': 78},
+    {'姓名': '李四', '语文': 90, '数学': 88, '英语': 95},
+    {'姓名': '王五', '语文': 76, '数学': 81, '英语': 83},
+]
+```
+
+**参考答案：**
+
+```python
+import csv
+
+# 写入 CSV 文件
+fieldnames = ['姓名', '语文', '数学', '英语']
+with open('scores.csv', 'w', encoding='utf-8-sig', newline='') as f:
+    writer = csv.DictWriter(f, fieldnames=fieldnames)
+    writer.writeheader()
+    writer.writerows(students)
+
+# 读取并计算平均分
+with open('scores.csv', 'r', encoding='utf-8-sig') as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        name = row['姓名']
+        avg = (int(row['语文']) + int(row['数学']) + int(row['英语'])) / 3
+        print(f"{name} 的平均分：{avg:.1f}")
+```
+
+**预期输出：**
+```
+张三 的平均分：85.0
+李四 的平均分：91.0
+王五 的平均分：80.0
+```
+
+---
+
+### 练习 5：JSON 序列化与反序列化
+
+将以下 Python 字典序列化为格式化的 JSON 字符串（缩进 2 格，支持中文），然后写回文件并从文件重新加载。
+
+```python
+book = {
+    "title": "Python编程：从入门到实践",
+    "author": "Eric Matthes",
+    "price": 89.00,
+    "tags": ["Python", "编程", "入门"]
+}
+```
+
+**参考答案：**
+
+```python
+import json
+
+book = {
+    "title": "Python编程：从入门到实践",
+    "author": "Eric Matthes",
+    "price": 89.00,
+    "tags": ["Python", "编程", "入门"]
+}
+
+# 序列化
+json_str = json.dumps(book, indent=2, ensure_ascii=False)
+print(json_str)
+
+# 写入文件
+with open('book.json', 'w', encoding='utf-8') as f:
+    json.dump(book, f, indent=2, ensure_ascii=False)
+
+# 从文件加载
+with open('book.json', 'r', encoding='utf-8') as f:
+    loaded = json.load(f)
+    print(loaded['title'])   # 输出: Python编程：从入门到实践
+    print(loaded['price'])   # 输出: 89.0
+    print(type(loaded['price']))  # 输出: <class 'float'>
+```
+
+**预期输出（JSON 字符串部分）：**
+```json
+{
+  "title": "Python编程：从入门到实践",
+  "author": "Eric Matthes",
+  "price": 89.0,
+  "tags": [
+    "Python",
+    "编程",
+    "入门"
+  ]
+}
+```
+
+---
+
+### 练习 6：文件指针与 r+ 模式
+
+假设 `greeting.txt` 原始内容为 `Hello World`。阅读以下代码，写出每次 `print` 的输出。
+
+```python
+with open('greeting.txt', 'r+', encoding='utf-8') as f:
+    f.write('Hi')
+    print(f"写入后指针: {f.tell()}")     # 输出 ①：
+    f.seek(0)
+    print(f"移动后指针: {f.tell()}")     # 输出 ②：
+    print(f"文件内容: '{f.read()}'")     # 输出 ③：
+```
+
+**参考答案：**
+
+| 输出 | 值 | 解释 |
+|------|-----|------|
+| ① 写入后指针 | `2` | `'Hi'` 两个字符覆盖了 `'He'`，指针停在第 2 个字符后 |
+| ② 移动后指针 | `0` | `seek(0)` 将指针移回开头 |
+| ③ 文件内容 | `'Hi llo World'` | 原文 `Hello World`，前 2 个字符被 `Hi` 覆盖，变成 `Hi llo World` |
+
+---
+
+### 练习 7：编码问题处理
+
+一个 Windows 用户的 GBK 编码文件 `legacy.txt` 在 macOS 上用以下代码读取时报错：
+
+```python
+with open('legacy.txt', 'r', encoding='utf-8') as f:
+    print(f.read())
+```
+
+请给出两种修复方案，并说明各自的优缺点。
+
+**参考答案：**
+
+**方案一：指定正确的编码（推荐）**
+```python
+with open('legacy.txt', 'r', encoding='gbk') as f:
+    print(f.read())
+```
+- 优点：完整读取所有内容，不会丢失数据
+- 缺点：需要事先知道文件的实际编码
+
+**方案二：使用 `errors` 参数忽略错误**
+```python
+with open('legacy.txt', 'r', encoding='utf-8', errors='replace') as f:
+    print(f.read())
+```
+- 优点：程序不会崩溃，兼容未知编码
+- 缺点：无法解码的字符会被替换为 ``，导致内容缺失
+
+**进阶方案（自动探测编码）：**
+```python
+import chardet
+
+with open('legacy.txt', 'rb') as f:
+    raw = f.read()
+    detected = chardet.detect(raw)
+    print(f"探测到的编码: {detected['encoding']}")
+
+with open('legacy.txt', 'r', encoding=detected['encoding']) as f:
+    print(f.read())
+```
+
+---
+
+### 练习 8：实现文件复制函数
+
+编写一个函数 `copy_file(src, dst)`，使用二进制模式将源文件复制到目标文件，并统计复制的字节数。要求使用 `with` 语句和合理的缓冲区大小（4096 字节）。
+
+**参考答案：**
+
+```python
+def copy_file(src, dst):
+    """复制文件并返回复制的字节数"""
+    total_bytes = 0
+    with open(src, 'rb') as f_src:
+        with open(dst, 'wb') as f_dst:
+            while True:
+                chunk = f_src.read(4096)  # 每次读取 4KB
+                if not chunk:             # 读到文件末尾，退出
+                    break
+                f_dst.write(chunk)
+                total_bytes += len(chunk)
+    return total_bytes
+
+# 使用示例
+size = copy_file('source.jpg', 'copy.jpg')
+print(f"复制完成，共 {size} 字节")
+```
+
+**关键点说明：**
+- 使用 `'rb'` / `'wb'` 二进制模式，确保图片等非文本文件也能正确处理
+- 分块读取（4KB），避免大文件一次性加载到内存
+- 循环直到 `read(4096)` 返回空字节串 `b''`（文件末尾标志）
+
+---
+
+## 🤔 常见误区
+
+### 误区 1：认为 `writelines()` 会自动添加换行符
+
+**错误认知**：`f.writelines(['a', 'b', 'c'])` 会写入三行内容，每行自动换行。
+
+**事实**：`writelines()` **不会**自动添加换行符。上述代码实际上会写入 `abc` 在一行中。正确的做法是在每个元素末尾手动加 `'\n'`：
+```python
+f.writelines(['a\n', 'b\n', 'c\n'])
+```
+
+### 误区 2：忘记在 `with` 块退出后文件已关闭
+
+**错误认知**：文件对象在 `with` 块外仍然可以继续操作。
+
+**事实**：一旦退出 `with` 代码块的缩进范围，文件就会自动关闭。在外部操作该文件对象会抛出 `ValueError: I/O operation on closed file`。应在 `with` 块内完成所有文件操作，只将读取到的数据（字符串、列表等）传递到外部使用。
+
+### 误区 3：处理中文文件时不显式指定 `encoding`
+
+**错误认知**：`open('file.txt', 'r')` 在所有系统上都能正确读取中文。
+
+**事实**：不指定 `encoding` 时，Python 使用系统默认编码（Windows 上是 GBK，macOS/Linux 上是 UTF-8）。跨平台运行时极易导致 `UnicodeDecodeError` 或乱码。**始终显式指定 `encoding='utf-8'`** 是最佳实践。
+
+### 误区 4：在文本模式下使用 `seek` 的非零 `whence` 参数
+
+**错误认知**：文本模式下 `f.seek(10, 1)` 可以从当前位置向后移动 10 个字符。
+
+**事实**：在文本模式（`'r'`、`'w'` 等）下，`seek()` 的 `whence` 参数只能使用 `0`（从文件开头偏移），且 `offset` 必须是 `tell()` 返回的值或 0。使用 `whence=1` 或 `whence=2` 会抛出 `io.UnsupportedOperation`。需要进行任意位置偏移时，应使用二进制模式 `'rb'`。
+
+### 误区 5：用 `open()` 直接打开而不使用 `with` 语句
+
+**错误认知**：`f = open('file.txt'); content = f.read(); f.close()` 和 `with` 语句效果一样。
+
+**事实**：如果 `f.read()` 过程中抛出异常，`f.close()` 永远不会被执行，导致文件句柄泄漏。长时间运行的程序可能耗尽操作系统文件句柄。`with` 语句确保无论是否发生异常，文件都会在退出代码块时自动关闭。
+
+---
+
+## 🔗 相关资源
+
+- **上一节**：[[PY015-Python中的高阶函数]]
+- **下一节**：[[PY017-Python中的模块]]
+- **Python 官方文档 - 文件和目录访问**：https://docs.python.org/zh-cn/3/library/filesys.html
+- **Python 官方文档 - csv 模块**：https://docs.python.org/zh-cn/3/library/csv.html
+- **Python 官方文档 - json 模块**：https://docs.python.org/zh-cn/3/library/json.html
+- **openpyxl 官方文档**：https://openpyxl.readthedocs.io/en/stable/
+- **PEP 8 -- Style Guide for Python Code**：https://peps.python.org/pep-0008/
