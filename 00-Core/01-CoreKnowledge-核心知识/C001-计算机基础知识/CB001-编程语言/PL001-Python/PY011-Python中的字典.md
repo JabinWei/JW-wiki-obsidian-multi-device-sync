@@ -43,7 +43,7 @@ updated: 2026-06-16
 | -------------- | ------------------------------------ | ---------------------------------------- |
 | **花括号**     | 最直观，直接定义                     | `{'name': 'Jason', 'age': 25}`           |
 | **二维列表**   | 列表套列表，每对必须是2个元素        | `dict([['name', 'sun'], ['score', 90]])` |
-| **元组列表**   | 列表套元组，常用于数据库查询结果转换 | `dict()`                                 |
+| **元组列表**   | 列表套元组，常用于数据库查询结果转换 | `dict([('name', 'sun'), ('score', 90)])` |
 | **字符串列表** | 字符串长度必须为2（键, 值）          | `dict(['12', '34'])`                     |
 
 ```python
@@ -51,6 +51,8 @@ updated: 2026-06-16
 keys = ['name', 'age', 'city']
 values = ['Jason', 25, 'Beijing']
 person = dict(zip(keys, values))
+
+print(person)
 # 输出: {'name': 'Jason', 'age': 25, 'city': 'Beijing'}
 ```
 
@@ -152,13 +154,15 @@ data = {'a': 1, 'b': 2, 'c': None, 'd': 4}
 # 场景：删除所有值为 None 的项
 clean_data = {k: v for k, v in data.items() if v is not None}
 # 输出: {'a': 1, 'b': 2, 'd': 4}
+
+print(clean_data)
 ```
 
 ------
 
 ### 字典的复制：浅拷贝与深拷贝
 
-这是一个经典的面试题，也是实际开发中的“坑”。直接赋值 `new_dict = old_dict` 只是复制了引用（别名），修改新字典会影响原字典。
+这是一个经典的面试题，也是实际开发中的”坑”。[[PL-004-浅拷贝与深拷贝]] 是多语言的通用概念，这里聚焦 Python 中的具体实现。直接赋值 `new_dict = old_dict` 只是复制了引用（别名），修改新字典会影响原字典。
 
 #### 1. 浅拷贝
 
@@ -273,7 +277,7 @@ name = user_info.setdefault('name', 'Mike')
 | -------------- | --------------------- | --------------------------------- | ------------ |
 | **提取键**     | `list(dict)`          | `list({'a': 1, 'b': 2})`          | `['a', 'b']` |
 | **提取值**     | `list(dict.values())` | `list({'a': 1, 'b': 2}.values())` | `[1, 2]`     |
-| **提取键值对** | `list(dict.items())`  | `list({'a': 1, 'b': 2}.items())`  | ``           |
+| **提取键值对** | `list(dict.items())`  | `list({'a': 1, 'b': 2}.items())`  | `[('a', 1), ('b', 2)]` |
 
 **2. 列表 → 字典**
 列表转字典稍微复杂一点，列表的结构必须能被解析为“键-值”关系。
@@ -584,5 +588,6 @@ print(matrix)
 
 - 上一节：[[PY010-Python中的元组]]
 - 下一节：[[PY012-Python中的集合]]
+- [[PL-004-浅拷贝与深拷贝]] — 通用编程概念，浅拷贝与深拷贝的多语言对比
 - 官方文档：[Python 字典类型 — docs.python.org](https://docs.python.org/3/library/stdtypes.html#mapping-types-dict)
 - 拓展阅读：[Python 官方教程 — 字典](https://docs.python.org/3/tutorial/datastructures.html#dictionaries)

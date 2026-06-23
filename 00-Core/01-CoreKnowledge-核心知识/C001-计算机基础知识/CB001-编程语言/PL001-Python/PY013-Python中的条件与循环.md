@@ -57,6 +57,19 @@ print(f"Last magician was: {magician}")
 
 **嵌套循环与列表推导式：** 你可以实现循环的嵌套。此外，Python 支持强大的**列表推导式**，可以在一行代码中生成列表。
 
+**不需要循环变量时用 `_` 占位：** 当只需要重复执行某操作、不关心每次迭代的具体值时，可以用下划线 `_` 作为循环变量，明确表示"这个值故意忽略"。
+
+```python
+for _ in range(5):
+    print("Hello")  # 打印 5 次，不需要索引值
+
+# enumerate 中只取 value，忽略 index
+for _, value in enumerate(["a", "b", "c"]):
+    print(value)
+```
+
+> 详见 [[PL-PY-003-Python中下划线占位符的使用]]
+
 - **语法**：`list = [expression for item in iterable if condition]`
 - **示例**：生成 x 为奇数平方，y 为偶数平方的数对。
 
@@ -564,3 +577,4 @@ while True:
 - [Python 官方文档 - 流程控制](https://docs.python.org/zh-cn/3/tutorial/controlflow.html)
 - [Python 官方文档 - for 语句](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#the-for-statement)
 - [Python 官方文档 - while 语句](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#the-while-statement)
+- **卡片知识**：[[PL-PY-003-Python中下划线占位符的使用]] — `for _ in range()` 忽略循环变量

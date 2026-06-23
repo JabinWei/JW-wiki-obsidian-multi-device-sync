@@ -139,6 +139,18 @@ def get_formatted_name(first_name, last_name):
 Python 允许函数返回多个值，本质上是返回了一个**元组**。
 `return a, b` 等同于 `return (a, b)`。调用时可以使用 `x, y = func()` 进行解包。
 
+当只需要部分返回值时，可以用 `_` 丢弃不需要的值：
+
+```python
+def get_user():
+    return "Alice", "shh", 25
+
+name, _, age = get_user()  # 丢弃中间值
+_, result = some_func()    # 只要第二个返回值
+```
+
+> 详见 [[PL-PY-003-Python中下划线占位符的使用]]
+
 **注意点：**
 
 如果函数参数中有一个默认参数 `listv=[]` ，这个参数在后续函数多次调用的时候并不会重复创建，只在首次调用的时候创建一次。
@@ -655,3 +667,4 @@ sms_svc.place_order("ORD-002")
 - 官方文档：[More on Defining Functions](https://docs.python.org/3/tutorial/controlflow.html#more-on-defining-functions)
 - PEP 8 风格指南：[Function and Method Arguments](https://peps.python.org/pep-0008/#function-and-method-arguments)
 - PEP 257：[Docstring Conventions](https://peps.python.org/pep-0257/)
+- **卡片知识**：[[PL-PY-003-Python中下划线占位符的使用]] — `_, result = func()` 丢弃不需要的返回值

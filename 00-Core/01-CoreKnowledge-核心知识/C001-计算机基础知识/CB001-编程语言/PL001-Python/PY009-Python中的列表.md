@@ -117,18 +117,19 @@ print(vehicles[-1]) # 输出: train (反向第一个，即最后一个)
 
 这是 Python 列表比较中最基础也最容易混淆的概念：
 
-- **`==`（内容相等）**：比较的是两个列表的**元素值和顺序**。只要两个列表里的元素一模一样且顺序一致，就返回 `True`。
-- ** `is`（身份相同）**：比较的是两个列表在内存中的**地址（对象身份）**。只有当两个变量指向内存中完全同一个列表对象时，才返回 `True`。详见 [[PL-PY-001-is与==的区别]]。
+- **`==`（内容相等）**：比较元素值和顺序是否一致。
+- **`is`（身份相同）**：比较两个变量是否指向内存中同一个对象。详见 [[PL-PY-001-is与==的区别]]。
 
 ```python
 list_a = [1, 2, 3]
 list_b = [1, 2, 3]
 list_c = list_a
 
-print(list_a == list_b)  # True（内容完全一样）
-print(list_a is list_b)  # False（是两个独立创建的列表，内存地址不同）
-print(list_a is list_c)  # True（list_c 只是 list_a 的别名，指向同一个内存地址）
+print(list_a == list_b)  # True（内容相同）
+print(list_a is list_b)  # False（两个独立对象）
+print(list_a is list_c)  # True（同一对象）
 ```
+
 
 **四种常见的列表比较场景：**
 
@@ -254,7 +255,7 @@ Python 并没有使用简单的快排或归并排序，而是使用了 **Timsort
 
 ### 列表的复制：引用、浅拷贝与深拷贝
 
-列表复制问题的核心在于理解**可变对象**在内存中的存储方式。
+[[PL-004-浅拷贝与深拷贝]] 是跨语言的通用概念，这里聚焦列表在 Python 中的具体行为。列表复制问题的核心在于理解**可变对象**在内存中的存储方式。
 
 - **直接赋值（引用 Alias）**：`list_b = list_a`
   - **后果**：`list_a` 和 `list_b` 指向同一块内存地址。修改 `list_b` 的任何元素，`list_a` 会同步发生变化。
@@ -348,15 +349,14 @@ print(y) # 20
   ```
 
 - **示例2：忽略特定数据**
-  结合下划线 `_`（作为占位符），可以优雅地忽略不需要的数据。
+  结合下划线 `_` 作为占位符，可以优雅地忽略不需要的数据。`_` 本质上就是一个普通变量，约定用于表示"故意丢弃这个值"；配合 `*_` 可批量丢弃剩余元素。
 
   ```python
-  record = ['Error', 'Code 500', 'Database', 'Connection', 'Timeout']
-  # 我们只关心错误类型和最后一个详细信息，忽略中间内容
-  error_type, *_, detail = record
-  print(error_type) # 'Error'
-  print(detail)     # 'Timeout'
+  first, *_ = [1, 2, 3, 4]  # first=1，2/3/4 丢弃
+  name, _, age = ["Bob", "shh", 30]  # "shh" 被丢弃
   ```
+
+  > `_` 的完整使用场景（循环、解包、异常处理、REPL 等）详见 [[PL-PY-003-Python中下划线占位符的使用]]。
 
 #### 3. 嵌套解包
 当列表中包含嵌套结构（如列表的列表）时，解包语法可以同步进行，一层层拆解数据。
@@ -470,13 +470,16 @@ shallow = original[:]
 deep = copy.deepcopy(original)
 
 original[0][0] = 999
+original.append(5)
 
+print("original:", original)
 print("shallow:", shallow)
 print("deep:", deep)
 ```
 
 **答案：**
 ```
+original: [[999, 2], [3, 4], 5]
 shallow: [[999, 2], [3, 4]]
 deep: [[1, 2], [3, 4]]
 ```
@@ -635,7 +638,7 @@ list_b: [1, 2, 3, 4, 5]
    - **事实**：`pop()` 默认弹出**最后一个**元素（index 默认为 -1），这使它天然适配栈（LIFO）操作。弹出第一个元素应使用 `pop(0)`，但注意复杂度是 O(n)。
 
 3. **误区：`list_a = list_b` 创建了一个独立副本。**
-   - **事实**：这是**引用赋值**，两个变量指向同一内存地址。修改任一个都会影响另一个。需要独立副本应使用 `list_a = list_b[:]` 或 `list_a = list_b.copy()`，嵌套对象还需深拷贝。
+   - **事实**：这是**引用赋值**，两个变量指向同一内存地址。修改任一个都会影响另一个。需要独立副本应使用 `list_a = list_b[:]` 或 `list_a = list_b.copy()`，嵌套对象还需深拷贝，详见 [[PL-004-浅拷贝与深拷贝]]。
 
 4. **误区：`list.sort()` 返回排序后的列表。**
    - **事实**：`list.sort()` 是原地排序，返回 `None`。这是 Python 的设计惯例——任何原地修改的方法都返回 `None`，提醒你不要误用。如果需要返回新列表，使用 `sorted(list)`。
@@ -649,3 +652,4 @@ list_b: [1, 2, 3, 4, 5]
 - **下一篇**：[[PY010-Python中的元组]] — 不可变序列的全面解析
 - **官方文档**：[Python 列表文档](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists)
 - **深度阅读**：[Timsort 算法详解](https://en.wikipedia.org/wiki/Timsort)
+- **卡片知识**：[[PL-PY-003-Python中下划线占位符的使用]] — 解包中 `*_` 丢弃不需要的值

@@ -125,6 +125,15 @@ print(empty_tuple)  # 输出: ()
    name, age = ("Alice", 25)
    ```
 
+   当不需要某些值时，可以用 `_` 作为占位符丢弃：
+
+   ```python
+   name, _, age = ("Alice", "secret_code", 25)  # _ = 'secret_code'，故意忽略
+   first, *_, last = (1, 2, 3, 4, 5)            # _ = [2, 3, 4]，丢弃中间所有
+   ```
+
+   > 详见 [[PL-PY-003-Python中下划线占位符的使用]]
+
 #### 2. 增：间接的"增加"
 元组不支持 `append`。所谓的"增加"，是通过**拼接**创建一个全新的元组。
 
@@ -204,6 +213,24 @@ p = Point(10, 20)
 
 print(p.x)    # 10 (可读性更强！)
 ```
+
+**命名元组不可修改**：`namedtuple` 是 `tuple` 的子类，继承了元组的不可变性，不能通过索引或属性直接赋值：
+
+```python
+p = Point(10, 20)
+p.x = 30  # ❌ AttributeError: can't set attribute
+p[0] = 30 # ❌ TypeError: 'Point' object does not support item assignment
+```
+
+**需要"修改"时，用 `_replace()` 创建新实例**：
+
+```python
+p2 = p._replace(x=30)  # 创建新对象，原对象不变
+print(p)               # Point(x=10, y=20) ← 原对象没变
+print(p2)              # Point(x=30, y=20) ← 新对象
+```
+
+`_replace()` 本质是重建整个元组，只是用字段名代替了索引，比手动 `(new_val, *rest)` 更可读（这里的 `*rest` 为要保留的元组内容）。
 
 ------
 
@@ -469,6 +496,7 @@ def calculator(op, a, b):
         '*': lambda x, y: x * y,
         '/': lambda x, y: x / y if y != 0 else "除数不能为零"
     }
+	 # 这里逻辑是先执行 get 函数，如果键值存在，则返回对应的 lambda 函数；否则，返回 lambda x, y: "不支持的操作" 函数。然后执行返回的 lambda 函数，后面 (a, b) 是执行 lambda 函数时候的传参过程。
     return ops.get(op, lambda x, y: "不支持的操作")(a, b)
 
 print(calculator('+', 10, 5))   # 15
@@ -547,3 +575,4 @@ t[0] = 5        # ❌ TypeError
 - 官方文档：[Python 官方文档 — 元组](https://docs.python.org/zh-cn/3/tutorial/datastructures.html#tuples-and-sequences)
 - 进阶阅读：[collections.namedtuple 官方文档](https://docs.python.org/zh-cn/3/library/collections.html#collections.namedtuple)
 - 延伸参考：[Real Python — Python Tuples: A Complete Overview](https://realpython.com/python-tuple/)
+- **卡片知识**：[[PL-PY-003-Python中下划线占位符的使用]] — 解包中用 `_` 和 `*_` 丢弃不需要的值

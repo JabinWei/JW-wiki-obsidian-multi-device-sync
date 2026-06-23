@@ -40,7 +40,7 @@ updated: 2026-06-16
 open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)
 ```
 
->  在定义file文件路径字符串的时候，使用原生字符串来定义`r" "`。 具体可以参照文章 <a href="./04.Python简单数据类型">Python中的简单数据类型</a> 中，介绍字符串定义技巧的相关内容。
+>  在定义 `file` 文件路径字符串的时候，建议使用原生字符串 `r""` 来避免 `\` 被误解析为转义字符（如 `r"C:\Users\data.txt"`）。关于原生字符串与普通字符串的详细区别，参见 [[PY008-Python中的简单数据类型]] 中「字符串 → 定义技巧」部分。
 
 以下是 `open()` 函数所有参数的详细使用方式总结：
 
