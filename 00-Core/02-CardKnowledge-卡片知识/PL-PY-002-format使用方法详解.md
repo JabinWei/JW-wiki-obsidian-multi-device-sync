@@ -231,7 +231,7 @@ print('{0} and {1}'.format(*args))  # Alice and Bob
 
 ## 🔗 关联卡片
 
-- [[PY008-Python中的简单数据类型]] — 字符串格式化全景对比（f-string / format / %）
+- [[PY008-简单数据类型]] — 字符串格式化全景对比（f-string / format / %）
 - [[PL-PY-001-is与==的区别]] — 对象比较运算符
 
 ---
