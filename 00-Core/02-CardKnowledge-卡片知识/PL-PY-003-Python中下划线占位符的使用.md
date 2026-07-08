@@ -209,7 +209,7 @@ print(f"root={root}, file={filename}")  # root=, file=main.py
 - [[PY010-元组]] — 元组解包中的 `_` 占位
 - [[PY013-条件与循环]] — `for _ in range()` 循环模式
 - [[PY014-函数]] — 多返回值函数中忽略部分返回值
-- [[PY021-错误类型与异常处理机制]] — `except Error as _` 用法
+- [[PY022-错误类型与异常处理机制]] — `except Error as _` 用法
 - [[PL-PY-002-format使用方法详解]] — 格式化中的 `{}` 占位符（另一类占位概念）
 
 ---

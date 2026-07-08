@@ -1,29 +1,41 @@
 {
   "schemaVersion": 1,
   "source": "termy",
-  "updatedAt": "2026-06-29T08:34:11.674Z",
+  "updatedAt": "2026-07-08T07:12:30.029Z",
   "vaultRoot": "Users/weijibin/Documents/obsidian-notes",
   "workspaceFolders": [
     "Users/weijibin/Documents/obsidian-notes"
   ],
   "activeFile": {
-    "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY016-装饰器.md",
-    "vaultPath": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY016-装饰器.md",
-    "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/C001-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/CB001-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/PL001-Python/PY016-%E8%A3%85%E9%A5%B0%E5%99%A8.md",
+    "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY021-反射.md",
+    "vaultPath": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY021-反射.md",
+    "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/C001-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/CB001-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/PL001-Python/PY021-%E5%8F%8D%E5%B0%84.md",
     "hasFocus": false
   },
   "openFiles": [
     {
-      "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY016-装饰器.md",
-      "vaultPath": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY016-装饰器.md",
-      "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/C001-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/CB001-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/PL001-Python/PY016-%E8%A3%85%E9%A5%B0%E5%99%A8.md",
-      "isActive": true
+      "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY020-类.md",
+      "vaultPath": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY020-类.md",
+      "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/C001-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/CB001-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/PL001-Python/PY020-%E7%B1%BB.md",
+      "isActive": false
     },
     {
-      "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY017-回调函数、柯里化与partial.md",
-      "vaultPath": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY017-回调函数、柯里化与partial.md",
-      "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/C001-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/CB001-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/PL001-Python/PY017-%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E3%80%81%E6%9F%AF%E9%87%8C%E5%8C%96%E4%B8%8Epartial.md",
+      "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY018-文件.md",
+      "vaultPath": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY018-文件.md",
+      "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/C001-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/CB001-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/PL001-Python/PY018-%E6%96%87%E4%BB%B6.md",
       "isActive": false
+    },
+    {
+      "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/04-Projects-项目产出/PJ001-Obsidian/OB003-仓库笔记管理默认规则.md",
+      "vaultPath": "00-Core/04-Projects-项目产出/PJ001-Obsidian/OB003-仓库笔记管理默认规则.md",
+      "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/04-Projects-%E9%A1%B9%E7%9B%AE%E4%BA%A7%E5%87%BA/PJ001-Obsidian/OB003-%E4%BB%93%E5%BA%93%E7%AC%94%E8%AE%B0%E7%AE%A1%E7%90%86%E9%BB%98%E8%AE%A4%E8%A7%84%E5%88%99.md",
+      "isActive": false
+    },
+    {
+      "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY021-反射.md",
+      "vaultPath": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY021-反射.md",
+      "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/C001-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/CB001-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/PL001-Python/PY021-%E5%8F%8D%E5%B0%84.md",
+      "isActive": true
     }
   ],
   "selection": null
