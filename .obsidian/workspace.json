@@ -18,73 +18,17 @@
             }
           },
           {
-            "id": "35fe0515983a7fbb",
+            "id": "b7645b3b92d80a5e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY020-类.md",
-                "mode": "source",
+                "file": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY019-模块.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "PY020-类"
-            }
-          },
-          {
-            "id": "15f82c4b573f71b2",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY018-文件.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "PY018-文件"
-            }
-          },
-          {
-            "id": "7208473fd19c124f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "00-Core/04-Projects-项目产出/PJ001-Obsidian/OB003-仓库笔记管理默认规则.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "OB003-仓库笔记管理默认规则"
-            }
-          },
-          {
-            "id": "4010d99c8983ef52",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY021-反射.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "PY021-反射"
-            }
-          },
-          {
-            "id": "7ffc3c5e398a6f56",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "90-Storage/97-Changelog-更新日志/CHGLOG-PY023-错误类型与异常处理机制.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "CHGLOG-PY023-错误类型与异常处理机制"
+              "title": "PY019-模块"
             }
           }
         ]
@@ -170,7 +114,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "90-Storage/97-Changelog-更新日志/CHGLOG-PY023-错误类型与异常处理机制.md",
+                "file": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY019-模块.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -180,7 +124,7 @@
                 "unlinkedCollapsed": false
               },
               "icon": "links-coming-in",
-              "title": "CHGLOG-PY023-错误类型与异常处理机制 的反向链接列表"
+              "title": "PY019-模块 的反向链接列表"
             }
           },
           {
@@ -189,12 +133,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "90-Storage/97-Changelog-更新日志/CHGLOG-PY023-错误类型与异常处理机制.md",
+                "file": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY019-模块.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "CHGLOG-PY023-错误类型与异常处理机制 的出链列表"
+              "title": "PY019-模块 的出链列表"
             }
           },
           {
@@ -232,13 +176,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "90-Storage/97-Changelog-更新日志/CHGLOG-PY023-错误类型与异常处理机制.md",
+                "file": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY019-模块.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "CHGLOG-PY023-错误类型与异常处理机制 的大纲"
+              "title": "PY019-模块 的大纲"
             }
           },
           {
@@ -279,11 +223,28 @@
   },
   "active": "36ec72fbc3c6e9a9",
   "lastOpenFiles": [
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY014-函数.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY019-模块.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY020-类.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY021-反射.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY024-正则表达式.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY008-简单数据类型.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY001-简介.md",
+    "90-Storage/98-Asset-资源/PY001-概念图1-发展历史与哲学.png",
+    "00-Core/04-Projects-项目产出/PJ001-Obsidian/OB003-仓库笔记管理默认规则.md",
+    "90-Storage/98-Asset-资源/gen_py001_cartoon.py",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY001-概念图1-发展历史与哲学.png",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY001-概念图4-常见误区与总结.png",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY001-概念图3-类型系统定位.png",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY001-概念图2-代码执行过程.png",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/generate_concept_images.py",
+    "90-Storage/98-Asset-资源/01_手动循环Turn-based概念图_compressed_v1.png",
+    "90-Storage/98-Asset-资源/PY001-Python知识总结-卡通版.png",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY018-文件.md",
+    "90-Storage/97-Changelog-更新日志/CHGLOG-PY023-错误类型与异常处理机制.md",
     "90-Storage/97-Changelog-更新日志/CHGLOG-PY022-枚举.md",
     "90-Storage/97-Changelog-更新日志/CHGLOG-PY021-反射.md",
     "90-Storage/97-Changelog-更新日志/CHGLOG-PY020-类.md",
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY021-反射.md",
-    "90-Storage/97-Changelog-更新日志/CHGLOG-PY023-错误类型与异常处理机制.md",
     "90-Storage/97-Changelog-更新日志",
     "90-Storage/97-更新日志",
     "page3.jpg",
@@ -293,12 +254,7 @@
     "3E77BCA6-BA23-4A15-B4BC-0F2BE4BB22A3.heic",
     "0154F0D9-5AF0-4C9C-B3FE-7BB2645BC6FF.heic",
     "BED50FA9-E5B8-443A-A14A-590A78842986.heic",
-    "00-Core/04-Projects-项目产出/PJ001-Obsidian/OB003-仓库笔记管理默认规则.md",
     "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY022-枚举.md",
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY020-类.md",
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY018-文件.md",
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY019-模块.md",
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY024-正则表达式.md",
     "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY023-错误类型与异常处理机制.md",
     "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY023-正则表达式.md",
     "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY022-错误类型与异常处理机制.md",
@@ -309,23 +265,11 @@
     "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY004-关键字.md",
     "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY006-注释.md",
     "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY007-运算符.md",
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY008-简单数据类型.md",
     "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY009-列表.md",
     "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY010-元组.md",
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY011-字典.md",
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY012-集合.md",
     "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY021-枚举.md.tmp.77909.30771b2d59bc",
     "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY014-Python中的函数.md.tmp.35944.a6fe829498b1",
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY012-Python中的集合.md.tmp.26259.1364ff5c6bf1",
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY013-Python中的条件与循环.md.tmp.10697.9a02638ca7db",
-    "90-Storage/98-Asset-资源/MathSvg/function-abs-1.svg",
-    "Excalidraw/Scripts/Downloaded/Mindmap Builder.svg",
     "Home.canvas",
-    "90-Storage/98-Asset-资源/MathSvg/function-def-3.svg",
-    "90-Storage/98-Asset-资源/MathSvg/function-def-4.svg",
-    "90-Storage/98-Asset-资源/MathSvg/function-g-int-1.svg",
-    "90-Storage/98-Asset-资源/MathSvg/function-l-int-1.svg",
-    "90-Storage/98-Asset-资源/MathSvg/function-def-2.svg",
     "未命名.canvas"
   ]
 }
