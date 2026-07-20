@@ -7,8 +7,6 @@ created: 2026-06-24
 updated: 2026-06-24
 ---
 
-# Python 中哈希表的原理与可哈希协议
-
 ## 💡 核心概念
 
 Python 的 `dict` 和 `set` 底层都是**哈希表（Hash Table）**。哈希表将「查找」变成「计算」——通过 `hash(key) % table_size` 算出存储位置，实现 O(1) 查找。

@@ -6,7 +6,6 @@ tags: [Python, 编程语言]
 created: 2026-06-29
 updated: 2026-06-29
 ---
-# PY017-回调函数、柯里化与 partial
 
 ## 🎯 学习目标
 

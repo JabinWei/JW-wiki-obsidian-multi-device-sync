@@ -7,8 +7,6 @@ created: 2026-07-15
 updated: 2026-07-20
 ---
 
-# PL-007-Timsort混合排序算法
-
 ## 💡 核心概念
 
 Timsort 是 Python 内置排序方法（`list.sort()` 和 `sorted()`）的底层实现，由 Tim Peters 于 2002 年设计。它是一种**混合稳定排序算法**，将归并排序（Merge Sort）和插入排序（Insertion Sort）的优点结合，专门针对现实世界中"部分有序"的数据进行了极致优化。
