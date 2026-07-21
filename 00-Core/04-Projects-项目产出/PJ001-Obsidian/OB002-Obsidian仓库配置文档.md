@@ -1,4 +1,6 @@
 ---
+type: project
+status: 已完成
 tags:
   - obsidian
   - 配置文档
