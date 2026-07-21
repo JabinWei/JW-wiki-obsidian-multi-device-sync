@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "source": "termy",
-  "updatedAt": "2026-07-21T03:12:21.656Z",
+  "updatedAt": "2026-07-21T03:31:29.121Z",
   "vaultRoot": "Users/weijibin/Documents/obsidian-notes",
   "workspaceFolders": [
     "Users/weijibin/Documents/obsidian-notes"
@@ -13,12 +13,6 @@
     "hasFocus": false
   },
   "openFiles": [
-    {
-      "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/04-Projects-项目产出/PJ003-仓库健康报告/2026-07-20-仓库健康报告.md",
-      "vaultPath": "00-Core/04-Projects-项目产出/PJ003-仓库健康报告/2026-07-20-仓库健康报告.md",
-      "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/04-Projects-%E9%A1%B9%E7%9B%AE%E4%BA%A7%E5%87%BA/PJ003-%E4%BB%93%E5%BA%93%E5%81%A5%E5%BA%B7%E6%8A%A5%E5%91%8A/2026-07-20-%E4%BB%93%E5%BA%93%E5%81%A5%E5%BA%B7%E6%8A%A5%E5%91%8A.md",
-      "isActive": false
-    },
     {
       "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/04-Projects-项目产出/PJ002-知识卡片提取计划.md",
       "vaultPath": "00-Core/04-Projects-项目产出/PJ002-知识卡片提取计划.md",
