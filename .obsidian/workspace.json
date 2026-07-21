@@ -18,7 +18,7 @@
             }
           },
           {
-            "id": "d0be2e8c583a677c",
+            "id": "28b75fa597bbf41d",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -223,8 +223,10 @@
   },
   "active": "36ec72fbc3c6e9a9",
   "lastOpenFiles": [
-    "90-Storage/97-Changelog-更新日志/CHGLOG-PL-PY-007-yield生成器深度解析.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY005-变量.md",
+    "00-Core/02-CardKnowledge-卡片知识/PL-005-正则表达式基础.md",
     "00-Core/04-Projects-项目产出/PJ003-仓库健康检查.md",
+    "90-Storage/97-Changelog-更新日志/CHGLOG-PL-PY-007-yield生成器深度解析.md",
     "00-Core/04-Projects-项目产出/PJ001-Obsidian/OB003-仓库笔记管理默认规则.md",
     "00-Core/02-CardKnowledge-卡片知识/PL-PY-005-元组不可变性的真正边界.md",
     "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY020-类.md",
@@ -247,8 +249,6 @@
     "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY007-运算符.md",
     "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY006-注释.md",
     "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY004-关键字.md",
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY005-变量.md",
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY003-内置函数.md",
     "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY008-简单数据类型.md.tmp.54757.98767d9f1c17",
     "00-Core/02-CardKnowledge-卡片知识/PL-006-浮点数精度误差的二进制根源.md.tmp.54757.57e66ee6c38d",
     "90-Storage/98-Asset-资源/CoverImage/PY001-简介/Python简介-coverImage-v1.png",
