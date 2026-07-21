@@ -1,3 +1,12 @@
+---
+type: learning
+status: 学习中
+domain: 英语
+tags: [英语]
+created: 2026-06-12
+updated: 2026-06-12
+---
+
 ### How many vowel sounds are there?
 
 - 20 vowel sounds (12 monophthongs and 8 diphthongs).

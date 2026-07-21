@@ -1,40 +1,22 @@
 {
   "schemaVersion": 1,
   "source": "termy",
-  "updatedAt": "2026-07-20T07:26:55.295Z",
+  "updatedAt": "2026-07-21T03:01:22.690Z",
   "vaultRoot": "Users/weijibin/Documents/obsidian-notes",
   "workspaceFolders": [
     "Users/weijibin/Documents/obsidian-notes"
   ],
   "activeFile": {
-    "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY015-高阶函数.md",
-    "vaultPath": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY015-高阶函数.md",
-    "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/C001-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/CB001-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/PL001-Python/PY015-%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0.md",
+    "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/04-Projects-项目产出/PJ003-仓库健康检查.md",
+    "vaultPath": "00-Core/04-Projects-项目产出/PJ003-仓库健康检查.md",
+    "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/04-Projects-%E9%A1%B9%E7%9B%AE%E4%BA%A7%E5%87%BA/PJ003-%E4%BB%93%E5%BA%93%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5.md",
     "hasFocus": false
   },
   "openFiles": [
     {
-      "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY020-类.md",
-      "vaultPath": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY020-类.md",
-      "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/C001-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/CB001-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/PL001-Python/PY020-%E7%B1%BB.md",
-      "isActive": false
-    },
-    {
-      "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY010-元组.md",
-      "vaultPath": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY010-元组.md",
-      "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/C001-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/CB001-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/PL001-Python/PY010-%E5%85%83%E7%BB%84.md",
-      "isActive": false
-    },
-    {
-      "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/02-CardKnowledge-卡片知识/PL-PY-001-is与==的区别.md",
-      "vaultPath": "00-Core/02-CardKnowledge-卡片知识/PL-PY-001-is与==的区别.md",
-      "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/02-CardKnowledge-%E5%8D%A1%E7%89%87%E7%9F%A5%E8%AF%86/PL-PY-001-is%E4%B8%8E==%E7%9A%84%E5%8C%BA%E5%88%AB.md",
-      "isActive": false
-    },
-    {
-      "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY015-高阶函数.md",
-      "vaultPath": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY015-高阶函数.md",
-      "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/C001-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/CB001-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/PL001-Python/PY015-%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0.md",
+      "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/04-Projects-项目产出/PJ003-仓库健康检查.md",
+      "vaultPath": "00-Core/04-Projects-项目产出/PJ003-仓库健康检查.md",
+      "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/04-Projects-%E9%A1%B9%E7%9B%AE%E4%BA%A7%E5%87%BA/PJ003-%E4%BB%93%E5%BA%93%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5.md",
       "isActive": true
     }
   ],

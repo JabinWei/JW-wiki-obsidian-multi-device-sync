@@ -1,3 +1,12 @@
+---
+type: learning
+status: 学习中
+domain: 英语
+tags: [英语]
+created: 2026-06-12
+updated: 2026-06-12
+---
+
 询问天气情况：
 Q：
 How's the weather?

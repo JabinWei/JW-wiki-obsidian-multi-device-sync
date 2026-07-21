@@ -1,3 +1,11 @@
+---
+type: project
+status: 已完成
+tags: [obsidian, 项目产出]
+created: 2026-06-13
+updated: 2026-06-13
+---
+
 ### 多端同步（这里使用 github）
 
 1. 在 github 上面新建一个用于存放 obsidian 笔记的仓库。

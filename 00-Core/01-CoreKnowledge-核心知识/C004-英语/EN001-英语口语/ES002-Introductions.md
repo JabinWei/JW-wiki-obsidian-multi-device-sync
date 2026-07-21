@@ -1,3 +1,12 @@
+---
+type: learning
+status: 学习中
+domain: 英语
+tags: [英语]
+created: 2026-06-12
+updated: 2026-06-12
+---
+
 ## 预热
 
 如果想表达**更好地同国外的朋友交流**：
