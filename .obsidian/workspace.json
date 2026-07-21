@@ -30,6 +30,20 @@
               "icon": "lucide-file",
               "title": "2026-07-20-仓库健康报告"
             }
+          },
+          {
+            "id": "8ef5683f1c3da35d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "00-Core/04-Projects-项目产出/PJ002-知识卡片提取计划.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "PJ002-知识卡片提取计划"
+            }
           }
         ]
       }
@@ -114,7 +128,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "00-Core/04-Projects-项目产出/PJ003-仓库健康报告/2026-07-20-仓库健康报告.md",
+                "file": "00-Core/04-Projects-项目产出/PJ002-知识卡片提取计划.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -124,7 +138,7 @@
                 "unlinkedCollapsed": false
               },
               "icon": "links-coming-in",
-              "title": "2026-07-20-仓库健康报告 的反向链接列表"
+              "title": "PJ002-知识卡片提取计划 的反向链接列表"
             }
           },
           {
@@ -133,12 +147,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "00-Core/04-Projects-项目产出/PJ003-仓库健康报告/2026-07-20-仓库健康报告.md",
+                "file": "00-Core/04-Projects-项目产出/PJ002-知识卡片提取计划.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "2026-07-20-仓库健康报告 的出链列表"
+              "title": "PJ002-知识卡片提取计划 的出链列表"
             }
           },
           {
@@ -176,13 +190,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "00-Core/04-Projects-项目产出/PJ003-仓库健康报告/2026-07-20-仓库健康报告.md",
+                "file": "00-Core/04-Projects-项目产出/PJ002-知识卡片提取计划.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "2026-07-20-仓库健康报告 的大纲"
+              "title": "PJ002-知识卡片提取计划 的大纲"
             }
           },
           {

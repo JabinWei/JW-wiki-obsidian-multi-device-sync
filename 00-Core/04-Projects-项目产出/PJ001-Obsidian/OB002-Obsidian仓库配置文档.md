@@ -45,7 +45,9 @@ obsidian-notes/
 │   ├── 02-CardKnowledge-卡片知识/   # 原子化卡片笔记
 │   ├── 03-KnowledgeMap-知识地图/    # 知识索引/MOC
 │   └── 04-Projects-项目产出/
-│       └── PJ001-Obsidian/           # Obsidian 项目相关文档
+│       ├── PJ001-Obsidian/           # Obsidian 项目相关文档
+│       ├── PJ002-知识卡片提取计划.md  # 核心知识→卡片知识提取
+│       └── PJ003-仓库健康报告/       # 定期仓库健康检查
 │
 ├── 10-Action/                   # 📁 行动层 — 待办事项与任务
 │
@@ -293,7 +295,10 @@ npm install -g --include=optional @anthropic-ai/claude-code
 ## 10. 相关文档
 
 - [[OB001-UPDATE LOG]] — 初始搭建日志与踩坑记录
+- [[OB003-仓库笔记管理默认规则]] — 笔记编写与管理规范
+- [[PJ002-知识卡片提取计划]] — 卡片知识提取跟踪
+- [[PJ003-仓库健康报告/2026-07-20-仓库健康报告]] — 仓库健康检查
 
 ---
 
-> **最后更新**：2026-06-13 | **维护者**：Jobin Wei
+> **最后更新**：2026-07-20 | **维护者**：Jabin W.
