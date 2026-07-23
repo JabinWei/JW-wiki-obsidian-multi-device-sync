@@ -18,35 +18,7 @@
             }
           },
           {
-            "id": "a1939b2efeb8101a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY019-模块.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "PY019-模块"
-            }
-          },
-          {
-            "id": "4d11562096bd0c19",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "00-Core/02-CardKnowledge-卡片知识/PL-PY-011-相对导入与绝对导入.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "PL-PY-011-相对导入与绝对导入"
-            }
-          },
-          {
-            "id": "44172bcf1952d5e7",
+            "id": "9c6d64e60edec6ed",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -251,8 +223,9 @@
   },
   "active": "36ec72fbc3c6e9a9",
   "lastOpenFiles": [
-    "00-Core/02-CardKnowledge-卡片知识/PL-PY-011-相对导入与绝对导入.md",
     "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY019-模块.md",
+    "00-Core/02-CardKnowledge-卡片知识/PL-PY-011-相对导入与绝对导入.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY023-错误类型与异常处理机制.md",
     "00-Core/04-Projects-项目产出/PJ002-知识卡片提取计划.md",
     "00-Core/01-CoreKnowledge-核心知识/C004-英语/EN002-Podcast/未命名.md",
     "00-Core/04-Projects-项目产出/PJ003-仓库健康报告/2026-07-20-仓库健康报告.md",
@@ -277,7 +250,6 @@
     "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY005-变量.md",
     "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY004-关键字.md",
     "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY003-内置函数.md",
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY002-开发环境搭建.md",
     "00-Core/04-Projects-项目产出/PJ001-Obsidian/OB003-仓库笔记管理默认规则.md.tmp.75718.7697c3754491",
     "00-Core/04-Projects-项目产出/PJ003-仓库健康报告",
     "00-Core/04-Projects-项目产出/PJ003-仓库健康检查.md.tmp.75718.52a3a0f7a08a",
