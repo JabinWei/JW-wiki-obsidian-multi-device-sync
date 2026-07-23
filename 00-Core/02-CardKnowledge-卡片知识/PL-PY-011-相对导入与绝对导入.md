@@ -99,6 +99,20 @@ A: 有。`.` 是包路径（`my_project.core.engine`），`/` 是文件路径。
 | `python -m my_project.core.engine` | `'my_project.core'` | ✅ |
 | `python my_project/core/engine.py` | `None` | ❌ |
 
+**Q: 那在包外面写个 `main.py`，用绝对导入引入 engine，然后 `python main.py` 能跑吗？**
+
+能。入口 `main.py` 本身用绝对导入，engine.py 只是被 import 的普通模块——Python 能正确推断 engine 在包里的位置，相对导入正常工作：
+
+```python
+# main.py（与 my_project/ 同级）
+from my_project.core import engine   # ✅ main 自身用绝对导入
+# engine.py 内部的 from ..utils import helper 也 ✅
+
+# 运行：python main.py  → 成功
+```
+
+**规律**：谁直接 `python xxx.py`，谁就不能用相对导入（`__package__ = None`）。但它 import 的子模块不受影响。子模块只要不是自己当入口，`__package__` 就能正确设置。
+
 ---
 
 ## 🔗 关联卡片
