@@ -1,24 +1,12 @@
 {
   "schemaVersion": 1,
   "source": "termy",
-  "updatedAt": "2026-07-21T07:25:01.155Z",
+  "updatedAt": "2026-07-23T03:13:01.373Z",
   "vaultRoot": "Users/weijibin/Documents/obsidian-notes",
   "workspaceFolders": [
     "Users/weijibin/Documents/obsidian-notes"
   ],
-  "activeFile": {
-    "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/04-Projects-项目产出/PJ002-知识卡片提取计划.md",
-    "vaultPath": "00-Core/04-Projects-项目产出/PJ002-知识卡片提取计划.md",
-    "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/04-Projects-%E9%A1%B9%E7%9B%AE%E4%BA%A7%E5%87%BA/PJ002-%E7%9F%A5%E8%AF%86%E5%8D%A1%E7%89%87%E6%8F%90%E5%8F%96%E8%AE%A1%E5%88%92.md",
-    "hasFocus": false
-  },
-  "openFiles": [
-    {
-      "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/04-Projects-项目产出/PJ002-知识卡片提取计划.md",
-      "vaultPath": "00-Core/04-Projects-项目产出/PJ002-知识卡片提取计划.md",
-      "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/04-Projects-%E9%A1%B9%E7%9B%AE%E4%BA%A7%E5%87%BA/PJ002-%E7%9F%A5%E8%AF%86%E5%8D%A1%E7%89%87%E6%8F%90%E5%8F%96%E8%AE%A1%E5%88%92.md",
-      "isActive": true
-    }
-  ],
+  "activeFile": null,
+  "openFiles": [],
   "selection": null
 }
