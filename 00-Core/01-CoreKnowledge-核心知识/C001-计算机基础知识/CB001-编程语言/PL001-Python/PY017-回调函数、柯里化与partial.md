@@ -418,19 +418,18 @@ query_backup("SELECT * FROM users")
 
 使用 `functools.partial` 将内置的 `sorted` 函数创建一个按字符串长度排序的新函数 `sort_by_length`，然后对列表 `["apple", "kiwi", "banana", "pear"]` 排序。
 
-**答案：**
-
-```python
-from functools import partial
-
-sort_by_length = partial(sorted, key=len)
-words = ["apple", "kiwi", "banana", "pear"]
-print(sort_by_length(words))
-# 输出: ['kiwi', 'pear', 'apple', 'banana']
-```
-
-## 🔗 相关资源
-
-- [[PY015-高阶函数]] — 前置知识：高阶函数与闭包
-- [[PY016-装饰器]] — 并列笔记：基于闭包的函数增强技术
-- 官方文档：[functools — Higher-order functions and operations on callable objects](https://docs.python.org/3/library/functools.html)
+> [!info]- 答案
+> ```python
+> from functools import partial
+>
+> sort_by_length = partial(sorted, key=len)
+> words = ["apple", "kiwi", "banana", "pear"]
+> print(sort_by_length(words))
+> # 输出: ['kiwi', 'pear', 'apple', 'banana']
+> ```
+>
+> ## 🔗 相关资源
+>
+> - [[PY015-高阶函数]] — 前置知识：高阶函数与闭包
+> - [[PY016-装饰器]] — 并列笔记：基于闭包的函数增强技术
+> - 官方文档：[functools — Higher-order functions and operations on callable objects](https://docs.python.org/3/library/functools.html)

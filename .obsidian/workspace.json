@@ -18,21 +18,7 @@
             }
           },
           {
-            "id": "143d1ade6e4e87a6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY009-列表.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "PY009-列表"
-            }
-          },
-          {
-            "id": "508d996a7b265e8d",
+            "id": "9a9736afe6f2df29",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -43,6 +29,20 @@
               },
               "icon": "lucide-file",
               "title": "PY010-元组"
+            }
+          },
+          {
+            "id": "ff7480333805cd7d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY011-字典.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "PY011-字典"
             }
           }
         ]
@@ -128,7 +128,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY010-元组.md",
+                "file": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY011-字典.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -138,7 +138,7 @@
                 "unlinkedCollapsed": false
               },
               "icon": "links-coming-in",
-              "title": "PY010-元组 的反向链接列表"
+              "title": "PY011-字典 的反向链接列表"
             }
           },
           {
@@ -147,12 +147,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY010-元组.md",
+                "file": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY011-字典.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "PY010-元组 的出链列表"
+              "title": "PY011-字典 的出链列表"
             }
           },
           {
@@ -190,13 +190,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY010-元组.md",
+                "file": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY011-字典.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "PY010-元组 的大纲"
+              "title": "PY011-字典 的大纲"
             }
           },
           {
@@ -237,9 +237,27 @@
   },
   "active": "36ec72fbc3c6e9a9",
   "lastOpenFiles": [
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY009-列表.md",
     "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY010-元组.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY015-高阶函数.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY016-装饰器.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY014-函数.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY013-条件与循环.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY012-集合.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY011-字典.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY009-列表.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY008-简单数据类型.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY007-运算符.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY006-注释.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY005-变量.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY004-关键字.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY003-内置函数.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY002-开发环境搭建.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY001-简介.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY023-错误类型与异常处理机制.md",
+    "00-Core/01-CoreKnowledge-核心知识/C007-工具",
     "90-Storage/98-Asset-资源/InfoGraphic/PY010-元组/Python元组全景-信息图-v1.png",
+    "90-Storage/98-Asset-资源/InfoGraphic/PY010-元组/Python元组全景-信息图-v2.png",
+    "90-Storage/98-Asset-资源/InfoGraphic/PY010-元组/prompts/Python元组全景-信息图-v2.md",
     "90-Storage/98-Asset-资源/InfoGraphic/PY010-元组/prompts/Python元组全景-信息图-v1.md",
     "90-Storage/98-Asset-资源/InfoGraphic/PY010-元组/prompts",
     "90-Storage/98-Asset-资源/InfoGraphic/PY010-元组",
@@ -252,12 +270,10 @@
     "90-Storage/98-Asset-资源/InfoGraphic/PY009-列表/prompts",
     "90-Storage/98-Asset-资源/InfoGraphic/PY009-列表",
     "90-Storage/98-Asset-资源/CoverImage/PY009-列表/Python列表-coverImage-v1.png",
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY008-简单数据类型.md",
     "90-Storage/98-Asset-资源/CoverImage/PY009-列表/prompts/Python列表-coverImage-v1.md",
     "90-Storage/98-Asset-资源/CoverImage/PY009-列表/prompts",
     "90-Storage/98-Asset-资源/CoverImage/PY009-列表",
     "00-Core/01-CoreKnowledge-核心知识/C006-音乐",
-    "00-Core/01-CoreKnowledge-核心知识/C006-网络安全",
     "90-Storage/98-Asset-资源/ArticleIllustrator/PY004-关键字/01-framework-keyword-categories.png",
     "90-Storage/98-Asset-资源/InfoGraphic/PY008-简单数据类型/prompts/Python数据百宝箱-信息图-v1.md",
     "90-Storage/98-Asset-资源/InfoGraphic/PY008-简单数据类型/Python数据百宝箱-信息图-v1.png",
@@ -267,22 +283,6 @@
     "90-Storage/98-Asset-资源/CoverImage/PY008-简单数据类型/Python简单数据类型-coverImage-v1.png",
     "90-Storage/98-Asset-资源/ArticleIllustrator/PY008-简单数据类型/infographic/prompts/infographic.md",
     "90-Storage/98-Asset-资源/ArticleIllustrator/PY008-简单数据类型/infographic/structured-content.md",
-    "90-Storage/98-Asset-资源/CoverImage/PY008-简单数据类型/prompts/Python简单数据类型-coverImage-v1.md",
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY007-运算符.md",
-    "90-Storage/98-Asset-资源/ArticleIllustrator/PY007-运算符/01-infographic-operator-overview.png",
-    "90-Storage/98-Asset-资源/ArticleIllustrator/PY007-运算符/prompts/01-infographic-operator-overview.md",
-    "90-Storage/98-Asset-资源/CoverImage/PY007-运算符/prompts/Python运算符-coverImage-v1.md",
-    "00-Core/04-Projects-项目产出/PJ004-Python项目练习/PJ004-Python基础项目练习计划.md",
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY006-注释.md",
-    "90-Storage/98-Asset-资源/CoverImage/PY006-注释/prompts/Python注释-coverImage-v1.md",
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY005-变量.md",
-    "90-Storage/98-Asset-资源/CoverImage/PY005-变量/prompts/Python变量-coverImage-v1.md",
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY004-关键字.md",
-    "90-Storage/98-Asset-资源/ArticleIllustrator/PY004-关键字/prompts/01-framework-keyword-categories.md",
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY003-内置函数.md",
-    "90-Storage/98-Asset-资源/CoverImage/PY004-关键字/prompts/Python关键字-coverImage-v1.md",
-    "90-Storage/98-Asset-资源/ArticleIllustrator/PY003-内置函数/prompts/01-framework-builtin-functions.md",
-    "90-Storage/98-Asset-资源/ArticleIllustrator/PY003-内置函数/outline.md",
     "Home.canvas",
     "未命名.canvas"
   ]
