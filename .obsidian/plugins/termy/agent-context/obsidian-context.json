@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "source": "termy",
-  "updatedAt": "2026-08-05T03:13:20.020Z",
+  "updatedAt": "2026-08-10T06:34:00.960Z",
   "vaultRoot": "Users/weijibin/Documents/obsidian-notes",
   "workspaceFolders": [
     "Users/weijibin/Documents/obsidian-notes"
@@ -10,21 +10,34 @@
     "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY026-进程.md",
     "vaultPath": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY026-进程.md",
     "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/C001-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/CB001-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/PL001-Python/PY026-%E8%BF%9B%E7%A8%8B.md",
-    "hasFocus": false
+    "hasFocus": true
   },
   "openFiles": [
-    {
-      "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-核心知识/C004-英语/EN002-Podcast/EP001-如何像专业人士一样集中注意力.md",
-      "vaultPath": "00-Core/01-CoreKnowledge-核心知识/C004-英语/EN002-Podcast/EP001-如何像专业人士一样集中注意力.md",
-      "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/C004-%E8%8B%B1%E8%AF%AD/EN002-Podcast/EP001-%E5%A6%82%E4%BD%95%E5%83%8F%E4%B8%93%E4%B8%9A%E4%BA%BA%E5%A3%AB%E4%B8%80%E6%A0%B7%E9%9B%86%E4%B8%AD%E6%B3%A8%E6%84%8F%E5%8A%9B.md",
-      "isActive": false
-    },
     {
       "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY026-进程.md",
       "vaultPath": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY026-进程.md",
       "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/C001-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/CB001-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/PL001-Python/PY026-%E8%BF%9B%E7%A8%8B.md",
       "isActive": true
+    },
+    {
+      "filePath": "/Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY019-模块.md",
+      "vaultPath": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY019-模块.md",
+      "fileUrl": "file:///Users/weijibin/Documents/obsidian-notes/00-Core/01-CoreKnowledge-%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/C001-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/CB001-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/PL001-Python/PY019-%E6%A8%A1%E5%9D%97.md",
+      "isActive": false
     }
   ],
-  "selection": null
+  "selection": {
+    "text": "",
+    "isEmpty": true,
+    "from": {
+      "line": 72,
+      "ch": 0,
+      "offset": 1623
+    },
+    "to": {
+      "line": 72,
+      "ch": 0,
+      "offset": 1623
+    }
+  }
 }

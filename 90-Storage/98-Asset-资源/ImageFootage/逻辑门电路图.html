@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #fff; padding: 30px; }
+  h1 { text-align: center; font-size: 26px; color: #1a1a2e; margin-bottom: 5px; }
+  .sub { text-align: center; font-size: 13px; color: #999; margin-bottom: 30px; }
+  .gates { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px 20px; max-width: 1100px; margin: 0 auto; }
+  .gate-card { background: #fafbfc; border: 1px solid #e8eaed; border-radius: 12px; padding: 18px; text-align: center; }
+  .gate-name { font-size: 17px; font-weight: 700; color: #2c3e50; margin-bottom: 6px; }
+  .gate-expr { font-size: 13px; color: #888; font-style: italic; margin-bottom: 14px; }
+  .gate-svg { margin: 0 auto 12px; }
+  .tt { display: inline-block; border-collapse: collapse; font-size: 12px; font-family: 'SF Mono', Menlo, monospace; }
+  .tt th { background: #eef0f4; padding: 4px 14px; border: 1px solid #dde; font-weight: 600; color: #666; }
+  .tt td { padding: 3px 14px; text-align: center; border: 1px solid #eef; }
+  .tt .out0 { color: #d73a49; font-weight: 700; }
+  .tt .out1 { color: #28a745; font-weight: 700; }
+  hr { border: none; border-top: 1px dashed #ddd; margin: 30px 0; }
+</style>
+</head>
+<body>
+
+<h1>常用逻辑门电路 Logic Gates</h1>
+<p class="sub">ANSI/IEEE 标准符号 · 真值表 · 布尔表达式</p>
+
+<div class="gates">
+
+  <!-- AND -->
+  <div class="gate-card">
+    <div class="gate-name">AND 与门</div>
+    <div class="gate-expr">Y = A · B</div>
+    <svg class="gate-svg" width="200" height="100" viewBox="0 0 200 100">
+      <line x1="5" y1="30" x2="55" y2="30" stroke="#333" stroke-width="2.5"/>
+      <line x1="5" y1="70" x2="55" y2="70" stroke="#333" stroke-width="2.5"/>
+      <text x="0" y="34" font-size="13" font-weight="600" fill="#333">A</text>
+      <text x="0" y="74" font-size="13" font-weight="600" fill="#333">B</text>
+      <path d="M55,15 L55,85 L115,85 Q170,85 170,50 Q170,15 115,15 Z" fill="#f0f4ff" stroke="#333" stroke-width="2.5"/>
+      <line x1="170" y1="50" x2="195" y2="50" stroke="#333" stroke-width="2.5"/>
+      <text x="192" y="54" font-size="13" font-weight="600" fill="#333">Y</text>
+    </svg>
+    <table class="tt">
+      <tr><th>A</th><th>B</th><th>Y</th></tr>
+      <tr><td>0</td><td>0</td><td class="out0">0</td></tr>
+      <tr><td>0</td><td>1</td><td class="out0">0</td></tr>
+      <tr><td>1</td><td>0</td><td class="out0">0</td></tr>
+      <tr><td>1</td><td>1</td><td class="out1">1</td></tr>
+    </table>
+  </div>
+
+  <!-- OR -->
+  <div class="gate-card">
+    <div class="gate-name">OR 或门</div>
+    <div class="gate-expr">Y = A + B</div>
+    <svg class="gate-svg" width="200" height="100" viewBox="0 0 200 100">
+      <line x1="5" y1="30" x2="40" y2="30" stroke="#333" stroke-width="2.5"/>
+      <line x1="5" y1="70" x2="40" y2="70" stroke="#333" stroke-width="2.5"/>
+      <text x="0" y="34" font-size="13" font-weight="600" fill="#333">A</text>
+      <text x="0" y="74" font-size="13" font-weight="600" fill="#333">B</text>
+      <path d="M40,15 Q55,15 75,25 Q130,30 155,50 Q130,70 75,75 Q55,85 40,85 Q70,50 40,15 Z" fill="#fff5f5" stroke="#333" stroke-width="2.5"/>
+      <line x1="155" y1="50" x2="195" y2="50" stroke="#333" stroke-width="2.5"/>
+      <text x="192" y="54" font-size="13" font-weight="600" fill="#333">Y</text>
+    </svg>
+    <table class="tt">
+      <tr><th>A</th><th>B</th><th>Y</th></tr>
+      <tr><td>0</td><td>0</td><td class="out0">0</td></tr>
+      <tr><td>0</td><td>1</td><td class="out1">1</td></tr>
+      <tr><td>1</td><td>0</td><td class="out1">1</td></tr>
+      <tr><td>1</td><td>1</td><td class="out1">1</td></tr>
+    </table>
+  </div>
+
+  <!-- NOT -->
+  <div class="gate-card">
+    <div class="gate-name">NOT 非门</div>
+    <div class="gate-expr">Y = Ā</div>
+    <svg class="gate-svg" width="200" height="100" viewBox="0 0 200 100">
+      <line x1="5" y1="50" x2="45" y2="50" stroke="#333" stroke-width="2.5"/>
+      <text x="0" y="54" font-size="13" font-weight="600" fill="#333">A</text>
+      <polygon points="45,18 45,82 120,50" fill="#f5fff5" stroke="#333" stroke-width="2.5"/>
+      <circle cx="130" cy="50" r="9" fill="#fff" stroke="#333" stroke-width="2.5"/>
+      <line x1="139" y1="50" x2="195" y2="50" stroke="#333" stroke-width="2.5"/>
+      <text x="192" y="54" font-size="13" font-weight="600" fill="#333">Y</text>
+    </svg>
+    <table class="tt">
+      <tr><th>A</th><th>Y</th></tr>
+      <tr><td>0</td><td class="out1">1</td></tr>
+      <tr><td>1</td><td class="out0">0</td></tr>
+    </table>
+  </div>
+
+  <!-- NAND -->
+  <div class="gate-card">
+    <div class="gate-name">NAND 与非门</div>
+    <div class="gate-expr">Y = A · B</div>
+    <svg class="gate-svg" width="210" height="100" viewBox="0 0 210 100">
+      <line x1="5" y1="30" x2="45" y2="30" stroke="#333" stroke-width="2.5"/>
+      <line x1="5" y1="70" x2="45" y2="70" stroke="#333" stroke-width="2.5"/>
+      <text x="0" y="34" font-size="13" font-weight="600" fill="#333">A</text>
+      <text x="0" y="74" font-size="13" font-weight="600" fill="#333">B</text>
+      <path d="M45,15 L45,85 L105,85 Q160,85 160,50 Q160,15 105,15 Z" fill="#f0f4ff" stroke="#333" stroke-width="2.5"/>
+      <circle cx="170" cy="50" r="9" fill="#fff" stroke="#333" stroke-width="2.5"/>
+      <line x1="179" y1="50" x2="205" y2="50" stroke="#333" stroke-width="2.5"/>
+      <text x="202" y="54" font-size="13" font-weight="600" fill="#333">Y</text>
+    </svg>
+    <table class="tt">
+      <tr><th>A</th><th>B</th><th>Y</th></tr>
+      <tr><td>0</td><td>0</td><td class="out1">1</td></tr>
+      <tr><td>0</td><td>1</td><td class="out1">1</td></tr>
+      <tr><td>1</td><td>0</td><td class="out1">1</td></tr>
+      <tr><td>1</td><td>1</td><td class="out0">0</td></tr>
+    </table>
+  </div>
+
+  <!-- NOR -->
+  <div class="gate-card">
+    <div class="gate-name">NOR 或非门</div>
+    <div class="gate-expr">Y = A + B</div>
+    <svg class="gate-svg" width="210" height="100" viewBox="0 0 210 100">
+      <line x1="5" y1="30" x2="40" y2="30" stroke="#333" stroke-width="2.5"/>
+      <line x1="5" y1="70" x2="40" y2="70" stroke="#333" stroke-width="2.5"/>
+      <text x="0" y="34" font-size="13" font-weight="600" fill="#333">A</text>
+      <text x="0" y="74" font-size="13" font-weight="600" fill="#333">B</text>
+      <path d="M40,15 Q55,15 75,25 Q130,30 155,50 Q130,70 75,75 Q55,85 40,85 Q70,50 40,15 Z" fill="#fff5f5" stroke="#333" stroke-width="2.5"/>
+      <circle cx="165" cy="50" r="9" fill="#fff" stroke="#333" stroke-width="2.5"/>
+      <line x1="174" y1="50" x2="205" y2="50" stroke="#333" stroke-width="2.5"/>
+      <text x="202" y="54" font-size="13" font-weight="600" fill="#333">Y</text>
+    </svg>
+    <table class="tt">
+      <tr><th>A</th><th>B</th><th>Y</th></tr>
+      <tr><td>0</td><td>0</td><td class="out1">1</td></tr>
+      <tr><td>0</td><td>1</td><td class="out0">0</td></tr>
+      <tr><td>1</td><td>0</td><td class="out0">0</td></tr>
+      <tr><td>1</td><td>1</td><td class="out0">0</td></tr>
+    </table>
+  </div>
+
+  <!-- XOR -->
+  <div class="gate-card">
+    <div class="gate-name">XOR 异或门</div>
+    <div class="gate-expr">Y = A ⊕ B</div>
+    <svg class="gate-svg" width="210" height="100" viewBox="0 0 210 100">
+      <line x1="5" y1="30" x2="40" y2="30" stroke="#333" stroke-width="2.5"/>
+      <line x1="5" y1="70" x2="40" y2="70" stroke="#333" stroke-width="2.5"/>
+      <text x="0" y="34" font-size="13" font-weight="600" fill="#333">A</text>
+      <text x="0" y="74" font-size="13" font-weight="600" fill="#333">B</text>
+      <path d="M25,20 Q35,30 35,50 Q35,70 25,80" fill="none" stroke="#333" stroke-width="2.5"/>
+      <path d="M40,15 Q55,15 75,25 Q130,30 155,50 Q130,70 75,75 Q55,85 40,85 Q70,50 40,15 Z" fill="#f5fff5" stroke="#333" stroke-width="2.5"/>
+      <line x1="155" y1="50" x2="205" y2="50" stroke="#333" stroke-width="2.5"/>
+      <text x="202" y="54" font-size="13" font-weight="600" fill="#333">Y</text>
+    </svg>
+    <table class="tt">
+      <tr><th>A</th><th>B</th><th>Y</th></tr>
+      <tr><td>0</td><td>0</td><td class="out0">0</td></tr>
+      <tr><td>0</td><td>1</td><td class="out1">1</td></tr>
+      <tr><td>1</td><td>0</td><td class="out1">1</td></tr>
+      <tr><td>1</td><td>1</td><td class="out0">0</td></tr>
+    </table>
+  </div>
+
+</div>
+
+</body>
+</html>

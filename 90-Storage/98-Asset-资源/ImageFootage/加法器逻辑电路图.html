@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'PingFang SC',sans-serif;background:#fff;padding:30px;color:#222}
+  h1{text-align:center;font-size:26px;margin-bottom:4px}
+  .sub{text-align:center;font-size:13px;color:#999;margin-bottom:32px}
+  .section{margin-bottom:40px}
+  .section h2{font-size:19px;border-left:4px solid #4a90d9;padding-left:10px;margin-bottom:18px}
+  .diagram{display:flex;justify-content:center;align-items:center;gap:40px;flex-wrap:wrap}
+  .diagram svg{max-width:100%}
+  .truth-box{background:#f8f9fb;border:1px solid #e0e3e8;border-radius:8px;padding:16px 22px}
+  .truth-box h3{font-size:14px;margin-bottom:8px;color:#555}
+  .truth-box table{border-collapse:collapse;font-size:13px;font-family:'SF Mono',Menlo,monospace}
+  .truth-box th{background:#eef0f4;padding:5px 16px;border:1px solid #dde;font-weight:600;color:#666}
+  .truth-box td{padding:5px 16px;text-align:center;border:1px solid #eef}
+  .truth-box .o0{color:#d73a49;font-weight:700}
+  .truth-box .o1{color:#28a745;font-weight:700}
+  hr.divider{border:none;border-top:1px dashed #ddd;margin:36px 0}
+</style>
+</head>
+<body>
+
+<h1>加法器逻辑电路 Adder Circuits</h1>
+<p class="sub">半加器 Half Adder &nbsp;|&nbsp; 全加器 Full Adder &nbsp;|&nbsp; 4 位行波进位加法器</p>
+
+<!-- ==================== HALF ADDER ==================== -->
+<div class="section">
+  <h2>1. 半加器 Half Adder</h2>
+  <p style="color:#666;font-size:14px;margin-bottom:16px">
+    两个 1-bit 输入 A、B，输出 Sum（和）和 Carry（进位）。不能处理来自低位的进位。
+  </p>
+  <div class="diagram">
+    <!-- Circuit diagram -->
+    <svg width="420" height="240" viewBox="0 0 420 240" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="dot" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6">
+          <circle cx="5" cy="5" r="4" fill="#333"/>
+        </marker>
+      </defs>
+      <!-- Input A -->
+      <text x="10" y="68" font-size="14" font-weight="700" fill="#333">A</text>
+      <line x1="30" y1="65" x2="90" y2="65" stroke="#333" stroke-width="2"/>
+      <!-- Split A: up to XOR, down to AND -->
+      <line x1="70" y1="65" x2="70" y2="150" stroke="#333" stroke-width="1.5"/>
+      <line x1="70" y1="65" x2="90" y2="65" stroke="#333" stroke-width="2"/>
+      <circle cx="70" cy="65" r="3" fill="#333"/>
+
+      <!-- Input B -->
+      <text x="10" y="158" font-size="14" font-weight="700" fill="#333">B</text>
+      <line x1="30" y1="155" x2="70" y2="155" stroke="#333" stroke-width="2"/>
+      <circle cx="70" cy="155" r="3" fill="#333"/>
+      <!-- B to XOR -->
+      <line x1="70" y1="155" x2="70" y2="110" stroke="#333" stroke-width="1.5"/>
+      <line x1="70" y1="110" x2="90" y2="110" stroke="#333" stroke-width="2"/>
+      <!-- B to AND -->
+      <line x1="70" y1="155" x2="90" y2="155" stroke="#333" stroke-width="2"/>
+
+      <!-- XOR gate -->
+      <path d="M90,80 L90,130 Q90,130 140,130 Q185,130 185,105 Q185,80 140,80 Q90,80 90,80 Z" fill="#f0fff0" stroke="#2c3e50" stroke-width="2.5"/>
+      <path d="M75,85 Q85,95 85,105 Q85,115 75,125" fill="none" stroke="#2c3e50" stroke-width="2"/>
+      <text x="135" y="98" font-size="11" fill="#666" text-anchor="middle">XOR</text>
+      <!-- XOR output → Sum -->
+      <line x1="185" y1="105" x2="280" y2="105" stroke="#333" stroke-width="2"/>
+      <text x="290" y="110" font-size="14" font-weight="700" fill="#28a745">Sum</text>
+
+      <!-- AND gate -->
+      <path d="M90,130 L90,180 Q90,180 140,180 Q185,180 185,155 Q185,130 140,130 Q90,130 90,130 Z" fill="#f4f4ff" stroke="#2c3e50" stroke-width="2.5"/>
+      <text x="135" y="160" font-size="11" fill="#666" text-anchor="middle">AND</text>
+      <!-- AND output → Carry -->
+      <line x1="185" y1="155" x2="280" y2="155" stroke="#333" stroke-width="2"/>
+      <text x="290" y="160" font-size="14" font-weight="700" fill="#28a745">Carry</text>
+    </svg>
+
+    <!-- Truth table -->
+    <div class="truth-box">
+      <h3>真值表</h3>
+      <table>
+        <tr><th>A</th><th>B</th><th>Sum</th><th>Carry</th></tr>
+        <tr><td>0</td><td>0</td><td class="o0">0</td><td class="o0">0</td></tr>
+        <tr><td>0</td><td>1</td><td class="o1">1</td><td class="o0">0</td></tr>
+        <tr><td>1</td><td>0</td><td class="o1">1</td><td class="o0">0</td></tr>
+        <tr><td>1</td><td>1</td><td class="o0">0</td><td class="o1">1</td></tr>
+      </table>
+      <p style="font-size:12px;color:#888;margin-top:8px">
+        Sum = A ⊕ B &nbsp;&nbsp; Carry = A · B
+      </p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ==================== FULL ADDER ==================== -->
+<div class="section">
+  <h2>2. 全加器 Full Adder</h2>
+  <p style="color:#666;font-size:14px;margin-bottom:16px">
+    三个 1-bit 输入 A、B、Cin（低位进位），输出 Sum 和 Cout（向高位的进位）。由两个半加器 + 一个 OR 门组成。
+  </p>
+  <div class="diagram">
+    <svg width="580" height="380" viewBox="0 0 580 380" xmlns="http://www.w3.org/2000/svg">
+      <!-- Input A -->
+      <text x="5" y="78" font-size="14" font-weight="700" fill="#333">A</text>
+      <line x1="25" y1="75" x2="60" y2="75" stroke="#333" stroke-width="2"/>
+      <!-- Input B -->
+      <text x="5" y="128" font-size="14" font-weight="700" fill="#333">B</text>
+      <line x1="25" y1="125" x2="60" y2="125" stroke="#333" stroke-width="2"/>
+      <!-- Input Cin -->
+      <text x="5" y="250" font-size="14" font-weight="700" fill="#333">Cin</text>
+      <line x1="25" y1="247" x2="120" y2="247" stroke="#333" stroke-width="2"/>
+
+      <!-- Half Adder 1 region -->
+      <text x="75" y="55" font-size="11" fill="#999">半加器 1</text>
+      <rect x="55" y="60" width="195" height="80" rx="6" fill="none" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="4,3"/>
+
+      <!-- A and B → first XOR -->
+      <line x1="60" y1="75" x2="60" y2="95" stroke="#333" stroke-width="1.5"/>
+      <circle cx="60" cy="95" r="3" fill="#333"/>
+      <line x1="60" y1="125" x2="100" y2="125" stroke="#333" stroke-width="2"/>
+      <!-- B → first AND -->
+      <line x1="100" y1="125" x2="100" y2="135" stroke="#333" stroke-width="1.5"/>
+      <line x1="60" y1="95" x2="100" y2="95" stroke="#333" stroke-width="2"/>
+
+      <!-- HA1 XOR gate -->
+      <path d="M100,80 L100,110 Q100,110 125,110 Q150,110 150,95 Q150,80 125,80 Q100,80 100,80 Z" fill="#f0fff0" stroke="#2c3e50" stroke-width="2"/>
+      <path d="M92,87 Q98,93 98,95 Q98,97 92,103" fill="none" stroke="#2c3e50" stroke-width="1.5"/>
+      <text x="123" y="92" font-size="9" fill="#666">XOR</text>
+
+      <!-- HA1 AND gate -->
+      <path d="M100,120 L100,150 Q100,150 125,150 Q150,150 150,135 Q150,120 125,120 Q100,120 100,120 Z" fill="#f4f4ff" stroke="#2c3e50" stroke-width="2"/>
+      <text x="123" y="138" font-size="9" fill="#666">AND</text>
+
+      <!-- HA1 XOR out → S1 -->
+      <line x1="150" y1="95" x2="190" y2="95" stroke="#333" stroke-width="2"/>
+      <text x="165" y="88" font-size="10" fill="#888">S1</text>
+      <circle cx="190" cy="95" r="3" fill="#333"/>
+
+      <!-- HA1 AND out → C1 -->
+      <line x1="150" y1="135" x2="190" y2="135" stroke="#333" stroke-width="2"/>
+      <text x="165" y="128" font-size="10" fill="#888">C1</text>
+
+      <!-- Half Adder 2 region -->
+      <text x="195" y="55" font-size="11" fill="#999">半加器 2</text>
+      <rect x="185" y="60" width="195" height="160" rx="6" fill="none" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="4,3"/>
+
+      <!-- S1 and Cin → second XOR and AND -->
+      <line x1="190" y1="95" x2="220" y2="95" stroke="#333" stroke-width="2"/>
+      <line x1="190" y1="135" x2="190" y2="200" stroke="#333" stroke-width="1.5"/>
+
+      <!-- Cin route -->
+      <line x1="120" y1="247" x2="120" y2="220" stroke="#333" stroke-width="1.5"/>
+      <line x1="120" y1="220" x2="220" y2="220" stroke="#333" stroke-width="2"/>
+
+      <!-- HA2 XOR gate -->
+      <path d="M220,80 L220,110 Q220,110 245,110 Q270,110 270,95 Q270,80 245,80 Q220,80 220,80 Z" fill="#f0fff0" stroke="#2c3e50" stroke-width="2"/>
+      <path d="M212,87 Q218,93 218,95 Q218,97 212,103" fill="none" stroke="#2c3e50" stroke-width="1.5"/>
+      <text x="243" y="92" font-size="9" fill="#666">XOR</text>
+
+      <!-- HA2 AND gate -->
+      <path d="M220,205 L220,235 Q220,235 245,235 Q270,235 270,220 Q270,205 245,205 Q220,205 220,205 Z" fill="#f4f4ff" stroke="#2c3e50" stroke-width="2"/>
+      <text x="243" y="223" font-size="9" fill="#666">AND</text>
+
+      <!-- HA2 XOR out → Sum -->
+      <line x1="270" y1="95" x2="440" y2="95" stroke="#333" stroke-width="2"/>
+      <text x="450" y="100" font-size="15" font-weight="700" fill="#28a745">Sum</text>
+
+      <!-- HA2 AND out → C2 -->
+      <line x1="270" y1="220" x2="300" y2="220" stroke="#333" stroke-width="2"/>
+      <text x="285" y="213" font-size="10" fill="#888">C2</text>
+
+      <!-- OR gate for Cout = C1 OR C2 -->
+      <line x1="190" y1="200" x2="190" y2="285" stroke="#333" stroke-width="1.5"/>
+      <line x1="190" y1="285" x2="320" y2="285" stroke="#333" stroke-width="2"/>
+      <line x1="300" y1="220" x2="300" y2="255" stroke="#333" stroke-width="1.5"/>
+      <line x1="300" y1="255" x2="320" y2="255" stroke="#333" stroke-width="2"/>
+
+      <path d="M320,240 L320,300 Q320,300 350,300 Q385,300 385,270 Q385,240 350,240 Q320,240 320,240 Z" fill="#fff8f0" stroke="#2c3e50" stroke-width="2"/>
+      <text x="350" y="265" font-size="10" fill="#666">OR</text>
+
+      <line x1="385" y1="270" x2="440" y2="270" stroke="#333" stroke-width="2"/>
+      <text x="450" y="275" font-size="15" font-weight="700" fill="#28a745">Cout</text>
+    </svg>
+
+    <div class="truth-box">
+      <h3>真值表</h3>
+      <table>
+        <tr><th>A</th><th>B</th><th>Cin</th><th>Sum</th><th>Cout</th></tr>
+        <tr><td>0</td><td>0</td><td>0</td><td class="o0">0</td><td class="o0">0</td></tr>
+        <tr><td>0</td><td>0</td><td>1</td><td class="o1">1</td><td class="o0">0</td></tr>
+        <tr><td>0</td><td>1</td><td>0</td><td class="o1">1</td><td class="o0">0</td></tr>
+        <tr><td>0</td><td>1</td><td>1</td><td class="o0">0</td><td class="o1">1</td></tr>
+        <tr><td>1</td><td>0</td><td>0</td><td class="o1">1</td><td class="o0">0</td></tr>
+        <tr><td>1</td><td>0</td><td>1</td><td class="o0">0</td><td class="o1">1</td></tr>
+        <tr><td>1</td><td>1</td><td>0</td><td class="o0">0</td><td class="o1">1</td></tr>
+        <tr><td>1</td><td>1</td><td>1</td><td class="o1">1</td><td class="o1">1</td></tr>
+      </table>
+      <p style="font-size:12px;color:#888;margin-top:8px">
+        Sum = A ⊕ B ⊕ Cin &nbsp;&nbsp; Cout = (A·B) + (Cin·(A⊕B))
+      </p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ==================== 4-bit Ripple Carry Adder ==================== -->
+<div class="section">
+  <h2>3. 四位行波进位加法器 4-bit Ripple Carry Adder</h2>
+  <p style="color:#666;font-size:14px;margin-bottom:16px">
+    将 4 个全加器级联，每个 Cout → 下一级 Cin，实现 4-bit 二进制加法。最低位 Cin = 0。
+  </p>
+  <div class="diagram">
+    <svg width="800" height="220" viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg">
+      <!-- FA boxes -->
+      <g transform="translate(120, 30)">
+        <rect x="0" y="0" width="110" height="140" rx="8" fill="#fafbfc" stroke="#c0c5cc" stroke-width="1.5"/>
+        <text x="55" y="22" font-size="12" font-weight="700" fill="#333" text-anchor="middle">FA₀</text>
+        <text x="55" y="38" font-size="10" fill="#888" text-anchor="middle">全加器</text>
+        <!-- Inputs -->
+        <text x="5" y="60" font-size="11" fill="#333">A₀</text><line x1="25" y1="56" x2="40" y2="56" stroke="#2c3e50" stroke-width="1.5"/>
+        <text x="5" y="80" font-size="11" fill="#333">B₀</text><line x1="25" y1="76" x2="40" y2="76" stroke="#2c3e50" stroke-width="1.5"/>
+        <text x="-15" y="125" font-size="10" fill="#888">Cin=0</text><line x1="10" y1="120" x2="40" y2="120" stroke="#2c3e50" stroke-width="1.5"/>
+        <!-- Outputs -->
+        <line x1="110" y1="56" x2="130" y2="56" stroke="#28a745" stroke-width="1.5"/>
+        <text x="135" y="60" font-size="11" fill="#28a745" font-weight="600">S₀</text>
+        <line x1="70" y1="140" x2="70" y2="170" stroke="#e67e22" stroke-width="1.5"/>
+        <text x="60" y="170" font-size="9" fill="#e67e22">C₁</text>
+      </g>
+
+      <g transform="translate(290, 30)">
+        <rect x="0" y="0" width="110" height="140" rx="8" fill="#fafbfc" stroke="#c0c5cc" stroke-width="1.5"/>
+        <text x="55" y="22" font-size="12" font-weight="700" fill="#333" text-anchor="middle">FA₁</text>
+        <text x="55" y="38" font-size="10" fill="#888" text-anchor="middle">全加器</text>
+        <text x="5" y="60" font-size="11" fill="#333">A₁</text><line x1="25" y1="56" x2="40" y2="56" stroke="#2c3e50" stroke-width="1.5"/>
+        <text x="5" y="80" font-size="11" fill="#333">B₁</text><line x1="25" y1="76" x2="40" y2="76" stroke="#2c3e50" stroke-width="1.5"/>
+        <text x="-22" y="125" font-size="10" fill="#e67e22">Cin=C₁</text><line x1="0" y1="120" x2="40" y2="120" stroke="#e67e22" stroke-width="1.5"/>
+        <line x1="110" y1="56" x2="130" y2="56" stroke="#28a745" stroke-width="1.5"/>
+        <text x="135" y="60" font-size="11" fill="#28a745" font-weight="600">S₁</text>
+        <line x1="70" y1="140" x2="70" y2="170" stroke="#e67e22" stroke-width="1.5"/>
+        <text x="60" y="170" font-size="9" fill="#e67e22">C₂</text>
+      </g>
+
+      <g transform="translate(460, 30)">
+        <rect x="0" y="0" width="110" height="140" rx="8" fill="#fafbfc" stroke="#c0c5cc" stroke-width="1.5"/>
+        <text x="55" y="22" font-size="12" font-weight="700" fill="#333" text-anchor="middle">FA₂</text>
+        <text x="55" y="38" font-size="10" fill="#888" text-anchor="middle">全加器</text>
+        <text x="5" y="60" font-size="11" fill="#333">A₂</text><line x1="25" y1="56" x2="40" y2="56" stroke="#2c3e50" stroke-width="1.5"/>
+        <text x="5" y="80" font-size="11" fill="#333">B₂</text><line x1="25" y1="76" x2="40" y2="76" stroke="#2c3e50" stroke-width="1.5"/>
+        <line x1="0" y1="120" x2="40" y2="120" stroke="#e67e22" stroke-width="1.5"/>
+        <line x1="110" y1="56" x2="130" y2="56" stroke="#28a745" stroke-width="1.5"/>
+        <text x="135" y="60" font-size="11" fill="#28a745" font-weight="600">S₂</text>
+        <line x1="70" y1="140" x2="70" y2="170" stroke="#e67e22" stroke-width="1.5"/>
+        <text x="60" y="170" font-size="9" fill="#e67e22">C₃</text>
+      </g>
+
+      <g transform="translate(630, 30)">
+        <rect x="0" y="0" width="110" height="140" rx="8" fill="#fafbfc" stroke="#c0c5cc" stroke-width="1.5"/>
+        <text x="55" y="22" font-size="12" font-weight="700" fill="#333" text-anchor="middle">FA₃</text>
+        <text x="55" y="38" font-size="10" fill="#888" text-anchor="middle">全加器</text>
+        <text x="5" y="60" font-size="11" fill="#333">A₃</text><line x1="25" y1="56" x2="40" y2="56" stroke="#2c3e50" stroke-width="1.5"/>
+        <text x="5" y="80" font-size="11" fill="#333">B₃</text><line x1="25" y1="76" x2="40" y2="76" stroke="#2c3e50" stroke-width="1.5"/>
+        <line x1="0" y1="120" x2="40" y2="120" stroke="#e67e22" stroke-width="1.5"/>
+        <line x1="110" y1="56" x2="130" y2="56" stroke="#28a745" stroke-width="1.5"/>
+        <text x="135" y="60" font-size="11" fill="#28a745" font-weight="600">S₃</text>
+        <line x1="70" y1="140" x2="70" y2="170" stroke="#e67e22" stroke-width="1.5"/>
+        <text x="60" y="170" font-size="9" fill="#e67e22">C₄ (溢出)</text>
+      </g>
+
+      <!-- Ripple carry wires connecting FA boxes -->
+      <line x1="300" y1="170" x2="360" y2="150" stroke="#e67e22" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <line x1="470" y1="170" x2="530" y2="150" stroke="#e67e22" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <line x1="640" y1="170" x2="700" y2="150" stroke="#e67e22" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+      <!-- Sum output bus -->
+      <text x="750" y="90" font-size="11" fill="#28a745" font-weight="600">S₃S₂S₁S₀</text>
+      <line x1="745" y1="96" x2="745" y2="120" stroke="#28a745" stroke-width="1"/>
+      <line x1="130" y1="96" x2="745" y2="96" stroke="#28a745" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="130" y1="86" x2="130" y2="96" stroke="#28a745" stroke-width="1"/>
+      <line x1="300" y1="86" x2="300" y2="96" stroke="#28a745" stroke-width="1"/>
+      <line x1="470" y1="86" x2="470" y2="96" stroke="#28a745" stroke-width="1"/>
+      <line x1="640" y1="86" x2="640" y2="96" stroke="#28a745" stroke-width="1"/>
+    </svg>
+  </div>
+</div>
+
+</body>
+</html>
