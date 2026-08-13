@@ -188,13 +188,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY026-线程.md",
+                "file": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY027-进程.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "PY026-线程 的大纲"
+              "title": "PY027-进程 的大纲"
             }
           },
           {
@@ -235,8 +235,9 @@
   },
   "active": "81f705fd340d4ca9",
   "lastOpenFiles": [
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY027-进程.md",
+    "00-Core/04-Projects-项目产出/PJ001-Obsidian/OB004-AI协作记忆.md",
     "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY026-线程.md",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY027-进程.md",
     "90-Storage/98-Asset-资源/InfoGraphic/PY027-进程/GIL解释器级别互斥锁-信息图-v1.png",
     "90-Storage/98-Asset-资源/InfoGraphic/PY027-进程/prompts/GIL解释器级别互斥锁-信息图-v1.md",
     "90-Storage/98-Asset-资源/Diagram/PY027-进程/GIL解释器级别互斥锁-技术图表-v1.svg",
