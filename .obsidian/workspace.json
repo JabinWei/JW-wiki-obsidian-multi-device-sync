@@ -44,6 +44,20 @@
               "icon": "lucide-file",
               "title": "PY026-线程"
             }
+          },
+          {
+            "id": "249cc989e86b76d1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY028-异步编程.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "PY028-异步编程"
+            }
           }
         ]
       }
@@ -188,13 +202,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY027-进程.md",
+                "file": "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY026-线程.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "PY027-进程 的大纲"
+              "title": "PY026-线程 的大纲"
             }
           },
           {
@@ -235,9 +249,19 @@
   },
   "active": "81f705fd340d4ca9",
   "lastOpenFiles": [
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY028-异步编程.md",
+    "00-Core/02-CardKnowledge-卡片知识/PL-PY-012-可迭代对象与迭代器协议.md",
+    "90-Storage/98-Asset-资源/InfoGraphic/PY028-异步编程/Python事件循环调度-信息图-v1.png",
+    "90-Storage/98-Asset-资源/CoverImage/PY028-异步编程/Python异步编程-coverImage-v1.png",
+    "90-Storage/98-Asset-资源/InfoGraphic/PY028-异步编程/prompts/Python事件循环调度-信息图-v1.md",
+    "90-Storage/98-Asset-资源/InfoGraphic/PY028-异步编程/prompts",
+    "90-Storage/98-Asset-资源/InfoGraphic/PY028-异步编程",
+    "90-Storage/98-Asset-资源/CoverImage/PY028-异步编程/prompts/Python异步编程-coverImage-v1.md",
+    "90-Storage/98-Asset-资源/CoverImage/PY028-异步编程/prompts",
+    "90-Storage/98-Asset-资源/CoverImage/PY028-异步编程",
+    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY027-进程.md",
     "00-Core/04-Projects-项目产出/PJ001-Obsidian/OB004-AI协作记忆.md",
     "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY026-线程.md",
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY027-进程.md",
     "90-Storage/98-Asset-资源/InfoGraphic/PY027-进程/GIL解释器级别互斥锁-信息图-v1.png",
     "90-Storage/98-Asset-资源/InfoGraphic/PY027-进程/prompts/GIL解释器级别互斥锁-信息图-v1.md",
     "90-Storage/98-Asset-资源/Diagram/PY027-进程/GIL解释器级别互斥锁-技术图表-v1.svg",
@@ -266,21 +290,10 @@
     "90-Storage/98-Asset-资源/InfoGraphic/PY027-进程/共享内存mmap原理-信息图-v1.png",
     "90-Storage/98-Asset-资源/InfoGraphic/PY027-进程/Queue内部结构-信息图-v1.png",
     "90-Storage/98-Asset-资源/InfoGraphic/PY027-进程/prompts",
-    "90-Storage/98-Asset-资源/InfoGraphic/PY027-进程/Python进程-信息图-v1.png",
-    "90-Storage/98-Asset-资源/InfoGraphic/PY027-进程/IPC概览-信息图-v1.png",
     "90-Storage/98-Asset-资源/InfoGraphic/PY027-进程",
     "90-Storage/98-Asset-资源/CoverImage/PY026-线程/prompts/Python线程-coverImage-v1.md",
-    "90-Storage/98-Asset-资源/CoverImage/PY026-线程/prompts",
-    "90-Storage/98-Asset-资源/CoverImage/PY026-线程",
     "90-Storage/98-Asset-资源/CoverImage/PY027-进程/prompts/Python进程-coverImage-v1.md",
-    "90-Storage/98-Asset-资源/CoverImage/PY027-进程/prompts",
-    "90-Storage/98-Asset-资源/CoverImage/PY027-进程",
     "90-Storage/98-Asset-资源/InfoGraphic/PY027-线程/prompts/Python多线程对比Java-信息图-v1.md",
-    "90-Storage/98-Asset-资源/InfoGraphic/PY027-线程/structured-content.md",
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY027-线程.md",
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY019-模块.md",
-    "00-Core/01-CoreKnowledge-核心知识/C001-计算机基础知识/CB001-编程语言/PL001-Python/PY024-正则表达式.md",
-    "90-Storage/98-Asset-资源/InfoGraphic/PY026-进程/prompts/共享内存mmap原理-信息图-v1.md",
     "Home.canvas",
     "未命名.canvas"
   ]
