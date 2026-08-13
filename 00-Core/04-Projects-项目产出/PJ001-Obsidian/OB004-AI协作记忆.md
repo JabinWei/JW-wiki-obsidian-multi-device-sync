@@ -27,6 +27,6 @@ updated: 2026-08-13
 
 **是什么**：Python 学习进入收尾阶段，本轮已完成：① 卡片 [[PL-PY-012-可迭代对象与迭代器协议]]（含 3 处反向链接）；② 核心笔记 [[PY028-异步编程]]（asyncio，含封面图「Python 的统筹大师」+ 事件循环信息图）；③ PY026/PY027 → PY028 反向链接。
 
-**待办**：① 工程缺口三选一或全做（类型注解 / pytest / logging，用户尚未决定）；② 笔记内已登记待补充项（PY025: ORM/aiomysql/Alembic；PY026: GIL深入/Semaphore/死锁；PY027: Manager/Event/信号/日志）；③ 收尾动作（变更日志 + git 提交推送）。
+**待办**：① 工程缺口三选一或全做（类型注解 / pytest / logging，用户尚未决定）；② 笔记内已登记待补充项（PY025: ORM/aiomysql/Alembic；PY026: GIL深入/Semaphore/死锁；PY027: Manager/Event/信号/日志）；③ 收尾动作（变更日志；git 已提交，push 可选）。
 
-**如何应用**：明天继续时，先确认用户走「工程缺口」还是「直接收尾提交」两条路。**关键：本轮所有改动尚未 git 提交**（新增 PY028、PL-PY-012、CoverImage/InfoGraphic 两个目录；修改 PY013/PY015/PY026/PY027/PL-PY-006）。
+**如何应用**：明天继续时，先确认用户走「工程缺口」还是「变更日志收尾」两条路。本轮改动已 git 提交（commit 1576b40，工作区干净）。
