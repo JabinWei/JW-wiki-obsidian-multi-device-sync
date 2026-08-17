@@ -84,5 +84,6 @@
     ]
   },
   "settingsTab": "license",
-  "simpleTexToken": ""
+  "simpleTexToken": "",
+  "simpleTexSecretName": ""
 }

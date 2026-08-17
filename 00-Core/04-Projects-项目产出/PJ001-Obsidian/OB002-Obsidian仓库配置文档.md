@@ -79,6 +79,7 @@ obsidian-notes/
     ├── 97-Changelog-更新日志/       # 笔记变更日志
     ├── 98-Asset-资源/
     │   ├── ArticleIllustrator/      # 文章插图
+    │   ├── Circuit/                 # 电路图
     │   ├── CoverImage/              # 封面图
     │   ├── Diagram/                 # 技术图表（SVG）
     │   ├── Excalidraw/              # Excalidraw 绘图文件
@@ -86,6 +87,7 @@ obsidian-notes/
     │   ├── InfoGraphic/             # 信息图
     │   ├── Mathcraft/               # Mathcraft 函数图像缓存
     │   ├── MathSvg/                 # 数学 SVG 图形
+    │   ├── PdfFootage/              # PDF 素材
     │   └── VideoFootage/            # 视频素材
     └── 99-Templates-模版/           # 各类笔记模板
 ```
@@ -97,6 +99,7 @@ obsidian-notes/
 - **AI** = Artificial Intelligence（人工智能分支）
 - **PL** = Programming Language（编程语言）
 - **MA** = Math（数学）
+- **CA** = Calculus（微积分）
 - **EN** = English（英语）
 - **ES** = English Speaking（英语口语）
 - **EP** = English Podcast（英语播客）
