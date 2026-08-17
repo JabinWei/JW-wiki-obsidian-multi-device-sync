@@ -1,0 +1,18 @@
+# ===== macOS 系统垃圾 =====
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ===== Obsidian 运行时/界面状态（多设备会冲突，不应同步）=====
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache/
+
+# ===== Obsidian 回收站 =====
+.trash/
+
+# ===== 插件运行时上下文（Termy 等 agent context 属于瞬态数据）=====
+.obsidian/plugins/termy/agent-context/
+
+# ===== Node 依赖 =====
+node_modules/
