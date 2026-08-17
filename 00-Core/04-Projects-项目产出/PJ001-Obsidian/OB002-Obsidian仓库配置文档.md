@@ -6,7 +6,7 @@ tags:
   - 配置文档
   - 项目产出
 created: 2026-06-13
-updated: 2026-06-13
+updated: 2026-08-17
 ---
 
 > 本文档记录本 Obsidian 仓库的完整配置信息，包括目录结构、插件清单、主题设置、同步方案及 AI 集成等。供后续迁移、重建或多设备同步时参考。
@@ -31,23 +31,38 @@ updated: 2026-06-13
 obsidian-notes/
 ├── Home.md                      # 知识库首页（Excalidraw 可视化入口）
 ├── README.md                    # 仓库说明
+├── .gitignore                   # 忽略 macOS/Obsidian 瞬态文件
 │
 ├── 00-Core/                     # 📁 核心层 — 长期沉淀的知识
 │   ├── 01-CoreKnowledge-核心知识/
 │   │   ├── C001-计算机基础知识/
-│   │   │   └── CB001-编程语言/
-│   │   │       └── PL001-Python/       # Python 学习笔记
+│   │   │   ├── CB001-编程语言/
+│   │   │   │   └── PL001-Python/          # Python 学习笔记
+│   │   │   └── CB002-数据结构与算法/
+│   │   │       ├── 概念/                   # 语言无关的数据结构与算法概念
+│   │   │       ├── Python/                 # 各语言实现
+│   │   │       ├── C/
+│   │   │       ├── C++/
+│   │   │       ├── Java/
+│   │   │       └── JavaScript/
 │   │   ├── C002-人工智能/
+│   │   │   └── AI001-数据分析/             # Numpy + Pandas
 │   │   ├── C003-数学/
 │   │   │   └── MA001-微积分/
-│   │   └── C004-英语/
-│   │       └── EN001-英语口语/
+│   │   ├── C004-英语/
+│   │   │   ├── EN001-英语口语/
+│   │   │   └── EN002-Podcast/
+│   │   ├── C005-全栈开发/
+│   │   ├── C006-网络安全/
+│   │   ├── C007-音乐/
+│   │   └── C008-工具/
 │   ├── 02-CardKnowledge-卡片知识/   # 原子化卡片笔记
 │   ├── 03-KnowledgeMap-知识地图/    # 知识索引/MOC
 │   └── 04-Projects-项目产出/
 │       ├── PJ001-Obsidian/           # Obsidian 项目相关文档
 │       ├── PJ002-知识卡片提取计划.md  # 核心知识→卡片知识提取
-│       └── PJ003-仓库健康报告/       # 定期仓库健康检查
+│       ├── PJ003-仓库健康报告/       # 定期仓库健康检查
+│       └── PJ004-Python项目练习/     # Python 项目实战
 │
 ├── 10-Action/                   # 📁 行动层 — 待办事项与任务
 │
@@ -57,12 +72,21 @@ obsidian-notes/
 │   ├── 31-Vision-愿景/
 │   └── 32-Weekly-周计划/
 │
+├── 40-Library/                  # 📁 书架层 — 已读书籍卡片
+│
 └── 90-Storage/                  # 📁 存储层 — 资源与模板
     ├── 91-Archive-归档/
+    ├── 97-Changelog-更新日志/       # 笔记变更日志
     ├── 98-Asset-资源/
+    │   ├── ArticleIllustrator/      # 文章插图
+    │   ├── CoverImage/              # 封面图
+    │   ├── Diagram/                 # 技术图表（SVG）
     │   ├── Excalidraw/              # Excalidraw 绘图文件
+    │   ├── ImageFootage/            # 图片素材
+    │   ├── InfoGraphic/             # 信息图
     │   ├── Mathcraft/               # Mathcraft 函数图像缓存
-    │   └── MathSvg/                 # 数学 SVG 图形
+    │   ├── MathSvg/                 # 数学 SVG 图形
+    │   └── VideoFootage/            # 视频素材
     └── 99-Templates-模版/           # 各类笔记模板
 ```
 
@@ -70,11 +94,18 @@ obsidian-notes/
 
 - **C** = Category（知识大类）
 - **CB** = Category Branch（知识分支）
+- **AI** = Artificial Intelligence（人工智能分支）
 - **PL** = Programming Language（编程语言）
 - **MA** = Math（数学）
 - **EN** = English（英语）
 - **ES** = English Speaking（英语口语）
+- **EP** = English Podcast（英语播客）
 - **PY** = Python
+- **DS** = Data Structure（数据结构）
+- **AL** = Algorithm（算法）
+- **NP** = NumPy（数据分析）
+- **PD** = Pandas（数据分析）
+- **CL** = C Language（C 语言）
 - **TP** = Template（模板）
 - **PJ** = Project（项目）
 - **OB** = Obsidian
@@ -96,6 +127,8 @@ git push origin master
 ```
 
 > **注意**：`.obsidian/` 配置目录已纳入版本控制，克隆后可保留一致的插件和主题配置。
+
+> **`.gitignore` 规则**：已排除 macOS 系统垃圾（`.DS_Store` 等）、Obsidian 界面瞬态状态（`workspace.json`、`cache/`、`.trash/`）、插件运行时上下文（`termy/agent-context/`）及 `node_modules/`，避免多设备同步时产生冲突。
 
 ---
 
@@ -302,4 +335,4 @@ npm install -g --include=optional @anthropic-ai/claude-code
 
 ---
 
-> **最后更新**：2026-07-20 | **维护者**：Jabin W.
+> **最后更新**：2026-08-17 | **维护者**：Jabin W.
