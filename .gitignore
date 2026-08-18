@@ -16,3 +16,6 @@
 
 # ===== Node 依赖 =====
 node_modules/
+
+# ===== 大型参考书 PDF（单文件超 100MB，无法入 GitHub，仅存本地）=====
+40-Library/ToolBook/*.pdf

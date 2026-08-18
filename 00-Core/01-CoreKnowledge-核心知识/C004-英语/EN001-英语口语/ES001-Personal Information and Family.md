@@ -50,7 +50,7 @@ updated: 2026-07-30
 | brother | 兄弟 | — |
 | doctor | 医生 | — |
 
-> **文化点 (Cultural Note):** Papa 和 Daddy 都是非常口语化、亲昵的称呼。Papa 在某些地区（尤其是南方）更常用。口语中，用 "my little girl" 或 "my girl" 来指代女儿是很自然的表达。
+> **文化点 (Cultural Note):** Papa 和 Daddy 都是非常口语化、亲昵的称呼。Papa 在某些地区更常用。口语中，用 "my little girl" 或 "my girl" 来指代女儿是很自然的表达。
 
 #### 关系句型
 
@@ -190,4 +190,3 @@ I think Musa is younger than Joe.    → 我觉得 Musa 比 Joe 年轻。
 - [[ES002-Introductions]] — 同一课程内容的精简笔记，包含办公室介绍部分
 - 课程老师：Peina Z.
 - 课程类型：1 对 1 英语口语辅导
-- 原始录音转录文件：[[ES004-个人信息与家庭介绍-transcript]]
