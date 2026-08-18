@@ -111,6 +111,7 @@ obsidian-notes/
 - **CL** = C Language（C 语言）
 - **TP** = Template（模板）
 - **PJ** = Project（项目）
+- **PYPJ** = Python Project（Python 项目练习）
 - **OB** = Obsidian
 
 ---
