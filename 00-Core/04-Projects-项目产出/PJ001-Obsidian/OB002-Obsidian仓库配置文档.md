@@ -56,6 +56,7 @@ obsidian-notes/
 │   │   ├── C006-网络安全/
 │   │   ├── C007-音乐/
 │   │   └── C008-工具/
+│   │       └── CC-ClaudeCode/         # Claude Code 使用笔记
 │   ├── 02-CardKnowledge-卡片知识/   # 原子化卡片笔记
 │   ├── 03-KnowledgeMap-知识地图/    # 知识索引/MOC
 │   └── 04-Projects-项目产出/
@@ -112,6 +113,7 @@ obsidian-notes/
 - **TP** = Template（模板）
 - **PJ** = Project（项目）
 - **PYPJ** = Python Project（Python 项目练习）
+- **CC** = Claude Code（Claude Code 工具）
 - **OB** = Obsidian
 
 ---
