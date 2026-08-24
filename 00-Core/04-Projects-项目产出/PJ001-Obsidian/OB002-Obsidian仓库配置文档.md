@@ -49,7 +49,8 @@ obsidian-notes/
 │   │   ├── C002-人工智能/
 │   │   │   └── AI001-数据分析/             # Numpy + Pandas
 │   │   ├── C003-数学/
-│   │   │   └── MA001-微积分/
+│   │   │   ├── MA001-微积分/
+│   │   │   └── LA001-线性代数/
 │   │   ├── C004-英语/
 │   │   │   ├── EN001-英语口语/
 │   │   │   └── EN002-Podcast/
@@ -102,6 +103,7 @@ obsidian-notes/
 - **PL** = Programming Language（编程语言）
 - **MA** = Math（数学）
 - **CA** = Calculus（微积分）
+- **LA** = Linear Algebra（线性代数）
 - **EN** = English（英语）
 - **ES** = English Speaking（英语口语）
 - **EP** = English Podcast（英语播客）
