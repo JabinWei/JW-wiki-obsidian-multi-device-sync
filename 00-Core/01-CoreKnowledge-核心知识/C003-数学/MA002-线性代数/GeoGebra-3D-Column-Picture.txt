@@ -1,0 +1,105 @@
+# GeoGebra 3D 列图像代码
+# 复制以下命令到 GeoGebra 3D 计算器中执行
+
+# ===== 定义点 =====
+O = Point({0, 0, 0})
+A1 = Point({2, -1, 0})
+A2 = Point({1, 2, -1})
+A3 = Point({0, 1, 2})
+B = Point({1, 0, 1})
+
+# 缩放后的向量终点
+XA1 = Point({1, -0.5, 0})    # 0.5 * a1
+ZA3 = Point({0, 0.5, 1})     # 0.5 * a3
+
+# ===== 原始列向量（虚线）=====
+v_a1 = Vector(O, A1)
+v_a2 = Vector(O, A2)
+v_a3 = Vector(O, A3)
+
+# 设置虚线样式
+SetLineStyle(v_a1, 1)
+SetLineStyle(v_a2, 1)
+SetLineStyle(v_a3, 1)
+
+# 设置颜色
+SetColor(v_a1, 1, 0, 0)      # 红色
+SetColor(v_a2, 0, 0.6, 0)    # 绿色
+SetColor(v_a3, 0, 0, 1)      # 蓝色
+
+# 设置线宽
+SetLineThickness(v_a1, 2)
+SetLineThickness(v_a2, 2)
+SetLineThickness(v_a3, 2)
+
+# ===== 缩放后的向量（实线，粗）=====
+v_xa1 = Vector(O, XA1)
+v_za3 = Vector(O, ZA3)
+
+SetColor(v_xa1, 1, 0, 0)     # 红色
+SetColor(v_za3, 0, 0, 1)     # 蓝色
+
+SetLineThickness(v_xa1, 6)
+SetLineThickness(v_za3, 6)
+
+# ===== 结果向量 b（黑色，最粗）=====
+v_b = Vector(O, B)
+SetColor(v_b, 0, 0, 0)       # 黑色
+SetLineThickness(v_b, 8)
+
+# ===== 添加标签 =====
+# 原点
+Text_O = Text("O (0,0,0)", O)
+SetColor(Text_O, 1, 0, 0)
+SetFontSize(Text_O, 14)
+
+# 原始向量标签
+Text_A1 = Text("a1=(2,-1,0)", A1)
+SetColor(Text_A1, 1, 0, 0)
+SetFontSize(Text_A1, 12)
+
+Text_A2 = Text("a2=(1,2,-1)", A2)
+SetColor(Text_A2, 0, 0.6, 0)
+SetFontSize(Text_A2, 12)
+
+Text_A3 = Text("a3=(0,1,2)", A3)
+SetColor(Text_A3, 0, 0, 1)
+SetFontSize(Text_A3, 12)
+
+# 缩放向量标签
+Text_XA1 = Text("0.5·a1=(1,-0.5,0)", XA1)
+SetColor(Text_XA1, 1, 0, 0)
+SetFontSize(Text_XA1, 12)
+
+Text_ZA3 = Text("0.5·a3=(0,0.5,1)", ZA3)
+SetColor(Text_ZA3, 0, 0, 1)
+SetFontSize(Text_ZA3, 12)
+
+# 结果向量标签
+Text_B = Text("b=(1,0,1)", B)
+SetColor(Text_B, 0, 0, 0)
+SetFontSize(Text_B, 14)
+
+# 标注点
+SetColor(A1, 1, 0, 0)
+SetColor(A2, 0, 0.6, 0)
+SetColor(A3, 0, 0, 1)
+SetColor(XA1, 1, 0, 0)
+SetColor(ZA3, 0, 0, 1)
+SetColor(B, 0, 0, 0)
+SetColor(O, 1, 0, 0)
+
+# 设置点大小
+SetPointSize(O, 5)
+SetPointSize(B, 6)
+SetPointSize(XA1, 4)
+SetPointSize(ZA3, 4)
+
+# ===== 添加说明文本 =====
+Info = Text("三维列图像：所有向量从原点 O 出发\n虚线 = 原始列向量 | 实线 = 缩放后的向量", {3, 3, 3})
+SetFontSize(Info, 12)
+SetColor(Info, 0, 0, 0)
+
+# ===== 设置视图 =====
+# 可以在 GeoGebra 中手动调整视角，或取消下面的注释
+# SetViewDirections({1.5, 1.5, 1.5}, {0, 0, 0})

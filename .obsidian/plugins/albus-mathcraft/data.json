@@ -1,6 +1,7 @@
 {
   "license": {
-    "key": "MC-eyJpZCI6Ik1DMTQzIiwicGxhbiI6ImxpZmV0aW1lIiwiaWF0IjoiMjAyNi0wNC0yNSJ9.xkShYOqk8Os_HCvzdnGbe7yc8eNPIkhEGe9sz9_ieXq-Z72Q9_cnIzBp-uYfMUSLM5dj3AzHzfWxp2Yg3TqcCQ"
+    "key": "MC-eyJpZCI6Ik1DMTQzIiwicGxhbiI6ImxpZmV0aW1lIiwiaWF0IjoiMjAyNi0wNC0yNSJ9.xkShYOqk8Os_HCvzdnGbe7yc8eNPIkhEGe9sz9_ieXq-Z72Q9_cnIzBp-uYfMUSLM5dj3AzHzfWxp2Yg3TqcCQ",
+    "secretName": ""
   },
   "theoremTypes": [
     "theorem",
@@ -15,8 +16,22 @@
     "note"
   ],
   "theoremNumberingMode": "by-heading",
-  "theoremHeadingLevel": 1,
+  "theoremHeadingMode": "h2",
   "theoremStyle": "card",
+  "theoremStyleEnabled": {
+    "theorem": true,
+    "lemma": true,
+    "corollary": true,
+    "proposition": true,
+    "definition": true,
+    "axiom": true,
+    "example": true,
+    "exercise": true,
+    "remark": true,
+    "note": true
+  },
+  "remarkNoteSpecial": false,
+  "questionStyleEnabled": true,
   "theoremColors": {
     "theorem": "#3b82f6",
     "lemma": "#8b5cf6",
@@ -33,7 +48,7 @@
   "pdfPreventBreakInside": true,
   "equationMarkerMode": "all",
   "equationNumberingMode": "by-heading",
-  "equationHeadingLevel": 1,
+  "equationHeadingMode": "h2",
   "mathLinks": {
     "templates": [],
     "excludedPaths": [],
@@ -56,19 +71,36 @@
       "note": "number-only"
     },
     "equationExternalMode": "brackets",
-    "equationRenderMode": "number-only"
+    "equationRenderMode": "number-only",
+    "enableDynamicRendering": true
   },
   "headingNumbering": {
+    "level": "h2",
     "skipKeywords": []
   },
   "tikz": {
-    "exportPath": "98-Asset/MathSvg",
-    "mcgFolderPath": "98-Asset/Mathcraft",
-    "mcgExportPath": "98-Asset/MathSvg",
+    "exportPath": "90-Storage/98-Asset/MathSvg",
+    "mcgFolderPath": "90-Storage/98-Asset/Mathcraft",
+    "mcgExportPath": "90-Storage/98-Asset/MathSvg",
     "mcdFolderPath": "",
     "mcdExportPath": "",
     "enableCache": true
   },
+  "settingsTab": "tikz",
+  "simpleTexToken": "",
+  "simpleTexSecretName": "",
+  "noteManager": {
+    "subjectFolders": [],
+    "clusterOrders": {},
+    "lastSubjectPath": "",
+    "lastNotebookPath": "",
+    "openInNewTab": false,
+    "showFolderBasename": true,
+    "autoOpenNewNote": true,
+    "batchFreezeEnabled": false
+  },
+  "theoremHeadingLevel": 1,
+  "equationHeadingLevel": 1,
   "geogebraTools": {
     "tools": []
   },
@@ -82,8 +114,5 @@
       "精通",
       "融会贯通"
     ]
-  },
-  "settingsTab": "license",
-  "simpleTexToken": "",
-  "simpleTexSecretName": ""
+  }
 }
