@@ -19,3 +19,7 @@
 - MIT 18.06 视频课（B站有字幕）
 - 3Blue1Brown《线性代数的本质》（可视化神作）
 - NumPy `np.linalg` 模块实践
+
+$$
+  \boxed{(c\mathbf{v}) \cdot \mathbf{w} = c (\mathbf{v} \cdot \mathbf{w})}
+  $$
