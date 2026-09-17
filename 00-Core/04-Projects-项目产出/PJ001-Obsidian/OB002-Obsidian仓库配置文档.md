@@ -6,7 +6,7 @@ tags:
   - 配置文档
   - 项目产出
 created: 2026-06-13
-updated: 2026-09-02
+updated: 2026-09-17
 ---
 
 > 本文档记录本 Obsidian 仓库的完整配置信息，包括目录结构、插件清单、主题设置、同步方案及 AI 集成等。供后续迁移、重建或多设备同步时参考。
@@ -19,7 +19,7 @@ updated: 2026-09-02
 |------|------|
 | **仓库名称** | JW-wiki-obsidian-multi-device-sync |
 | **GitHub 远程** | `git@github.com:JabinWei/JW-wiki-obsidian-multi-device-sync.git` |
-| **用途** | 数学笔记、代码笔记、AI 知识库管理 |
+| **用途** | 数学笔记、代码笔记、AI 知识库管理、音乐收藏 |
 | **核心特性** | 双链笔记、本地存储、开源插件、AI 集成 |
 | **操作系统** | macOS |
 
@@ -45,7 +45,7 @@ obsidian-notes/
 │   │   │   │   ├── C++/
 │   │   │   │   ├── Java/
 │   │   │   │   └── JavaScript/
-│   │   │   └── CB003-计算机知识导论/        # 大话计算机读书总结
+│   │   │   └── CB003-计算机知识导论/        # 计算机知识导论（底层原理，参考《大话计算机》）
 │   │   ├── C002-人工智能/
 │   │   │   └── AI001-数据分析/             # Numpy + Pandas
 │   │   ├── C003-数学/
@@ -58,6 +58,7 @@ obsidian-notes/
 │   │   ├── C005-全栈开发/
 │   │   ├── C006-网络安全/
 │   │   ├── C007-音乐/
+│   │   │   └── MU001-钢琴/            # 按所学主题建子目录（声乐/吉他/琴谱收藏…）
 │   │   └── C008-工具/
 │   │       └── CC-ClaudeCode/         # Claude Code 使用笔记
 │   ├── 02-CardKnowledge-卡片知识/   # 原子化卡片笔记
@@ -110,6 +111,7 @@ obsidian-notes/
 - **AI** = Artificial Intelligence（人工智能分支）
 - **PL** = Programming Language（编程语言）
 - **MA** = Math（数学）
+- **MU** = Music（音乐）
 - **CA** = Calculus（微积分）
 - **LA** = Linear Algebra（线性代数）
 - **EN** = English（英语）
@@ -125,7 +127,7 @@ obsidian-notes/
 - **PJ** = Project（项目）
 - **PYPJ** = Python Project（Python 项目练习）
 - **CC** = Claude Code（Claude Code 工具）
-- **DC** = DaHua Computer（大话计算机读书总结）
+- **CI** = Computer Introduction（计算机知识导论）
 - **OB** = Obsidian
 
 ---
@@ -353,4 +355,4 @@ npm install -g --include=optional @anthropic-ai/claude-code
 
 ---
 
-> **最后更新**：2026-08-17 | **维护者**：Jabin W.
+> **最后更新**：2026-09-17 | **维护者**：Jabin W.
