@@ -19,7 +19,8 @@ updated: 2026-09-03
 - [x] 支持输入 `-1` 中途退出本局
 
 ## 🔗 完整代码
-[GitHub](https://github.com/JabinWei/python-playground/blob/master/PYPJ001-猜数字游戏/guess_number_game.py)
+完整代码放在 GitHub：  
+[https://github.com/JabinWei/python-playground/blob/master/PYPJ001-猜数字游戏/guess_number_game.py](https://github.com/JabinWei/python-playground/blob/master/PYPJ001-猜数字游戏/guess_number_game.py)
 
 ## 💡 最终实现思路
 
@@ -33,58 +34,6 @@ updated: 2026-09-03
 - **计数规则**：只有输入**合法数字**才算一次猜测，非法输入不计数 → 用户体验更好
 - **异常处理**：在 `get_user_guess()` 用 `while True + try-except` 循环，非法输入一直要求重输
 - **范围支持**：开局随机生成 0-100，用户输入 `-1` 可随时退出
-
-## 📋 完成代码要点回顾
-
-### 完整代码
-```python
-import random 
-
-def generate_number(start, end):
-    return random.randint(start, end)
-
-def get_user_guess():
-    while True:
-        try:
-            return int(input("请输入您猜测的数字(0-100之间，-1退出)："))
-        except ValueError:
-            print("输入不合法，请输入0～100的数字（包含0，100）。")
-
-def play_one_round():
-    randomNumber = generate_number(0, 100)
-    # print(randomNumber)
-    thisGuessCnt = 0
-    while True:
-        guessNum = get_user_guess()
-        thisGuessCnt += 1
-        if guessNum == -1:
-            return 0
-        if guessNum < randomNumber:
-            print("猜测的数字太小了！！！")
-        elif guessNum > randomNumber:
-            print("猜测的数字太大了！！！")
-        else:
-            print("恭喜您猜对了！！！")
-            break
-    return thisGuessCnt
-
-if __name__ == "__main__":
-    print("欢迎来到Jabin的猜数游戏")
-    totalGuessCnt = 0
-    guessCntList = []
-    while True:
-        thisRoundGuessCnt = play_one_round()
-        guessCntList.append(thisRoundGuessCnt)
-        totalGuessCnt += thisRoundGuessCnt
-        continueGameFlg = input("是否需要再来一局(Y/N)：")
-        if continueGameFlg.strip().lower().startswith('n'):
-            print(f"一共猜测了{totalGuessCnt}次")
-            counter = 0
-            for roundGuessCnt in guessCntList:
-                counter += 1
-                print(f"第{counter}轮游戏一共猜测了{roundGuessCnt}次")
-            break
-```
 
 ### 学到的知识点
 - 函数定义与调用、参数传递、返回值
