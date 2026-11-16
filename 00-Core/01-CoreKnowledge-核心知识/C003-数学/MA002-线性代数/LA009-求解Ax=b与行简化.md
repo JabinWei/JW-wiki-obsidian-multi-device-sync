@@ -249,6 +249,6 @@ $$
 ## 🔗 相关资源
 
 - 上一节：[[LA008-求解Ax=0与零空间]]
-- 下一节：[[LA010-线性无关、基与维数]]（待创建）
+- 下一节：[[LA010-线性无关、基与维数]]
 - MIT 18.06SC 线性代数 Lecture 7（求解 $A\mathbf{x}=\mathbf{b}$）：https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/
 - 参考教材：Gilbert Strang《Introduction to Linear Algebra》第 6 版 §3.3（The Complete Solution to $A\mathbf{x}=\mathbf{b}$）

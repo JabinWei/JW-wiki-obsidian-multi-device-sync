@@ -4,8 +4,10 @@ status: 已完成
 aliases: [int进制转换, base参数, invalid literal base 8, int八进制报错]
 tags: [编程语言, Python]
 created: 2026-11-06
-updated: 2026-11-06
+updated: 2026-11-09
 ---
+
+![[int-base进制转换-coverImage.png|banner]]
 
 ## 💡 核心概念
 

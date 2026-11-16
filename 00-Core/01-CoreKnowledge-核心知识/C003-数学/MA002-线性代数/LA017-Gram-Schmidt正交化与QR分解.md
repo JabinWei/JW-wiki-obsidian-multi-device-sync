@@ -25,8 +25,8 @@ updated: 2026-09-21
 
 - [[LA003-点积与正交性|LA003：点积与正交]]
 - [[LA010-线性无关、基与维数|LA010：基和维数]]
-- [[LA013-投影与投影矩阵|LA013：投影]]
-- [[LA014-最小二乘|LA014：最小二乘解]]
+- [[LA015-投影与投影矩阵|LA014：投影]]
+- [[LA016-最小二乘|LA015：最小二乘解]]
 
 ---
 
@@ -216,7 +216,7 @@ $$
 
 ## 🔗 相关资源
 
-- 上一节：[[LA014-最小二乘]]
-- 下一节：[[LA016-行列式的性质与公式]]（待创建）
+- 上一节：[[LA016-最小二乘]]
+- 下一节：[[LA018-行列式的性质与计算]]
 - MIT 18.06SC 线性代数 Lecture 13（正交基和 Gram-Schmidt）、Lecture 14（QR 分解）：https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/
 - 参考教材：Gilbert Strang《Introduction to Linear Algebra》第 6 版 §4.4（Orthogonal Bases and Gram-Schmidt）

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440" font-family="ui-sans-serif, system-ui, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+  <rect width="760" height="440" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="380" y="30" text-anchor="middle" font-size="18" font-weight="600" fill="#222">四个基本子空间地图（Strang 大图）</text>
+
+  <!-- Space headers -->
+  <text x="180" y="62" text-anchor="middle" font-size="16" font-weight="600" fill="#333">输入空间 ℝⁿ</text>
+  <text x="580" y="62" text-anchor="middle" font-size="16" font-weight="600" fill="#333">输出空间 ℝᵐ</text>
+
+  <!-- Left box: ℝⁿ split into row space (top) and nullspace (bottom) -->
+  <rect x="60" y="80" width="240" height="140" rx="6" fill="#1f77b4" fill-opacity="0.15" stroke="#1f77b4" stroke-width="1.6"/>
+  <text x="180" y="130" text-anchor="middle" font-size="15" font-weight="600" fill="#1f77b4">行空间 C(Aᵀ)</text>
+  <text x="180" y="156" text-anchor="middle" font-size="13" fill="#1f77b4">维数 dim = r</text>
+  <text x="180" y="186" text-anchor="middle" font-size="12" fill="#555">A 的行向量张成</text>
+
+  <rect x="60" y="220" width="240" height="140" rx="6" fill="#ff7f0e" fill-opacity="0.15" stroke="#ff7f0e" stroke-width="1.6"/>
+  <text x="180" y="270" text-anchor="middle" font-size="15" font-weight="600" fill="#ff7f0e">零空间 N(A)</text>
+  <text x="180" y="296" text-anchor="middle" font-size="13" fill="#ff7f0e">维数 dim = n − r</text>
+  <text x="180" y="326" text-anchor="middle" font-size="12" fill="#555">Ax = 0 的解</text>
+
+  <!-- Right box: ℝᵐ split into column space (top) and left nullspace (bottom) -->
+  <rect x="460" y="80" width="240" height="140" rx="6" fill="#1f77b4" fill-opacity="0.15" stroke="#1f77b4" stroke-width="1.6"/>
+  <text x="580" y="130" text-anchor="middle" font-size="15" font-weight="600" fill="#1f77b4">列空间 C(A)</text>
+  <text x="580" y="156" text-anchor="middle" font-size="13" fill="#1f77b4">维数 dim = r</text>
+  <text x="580" y="186" text-anchor="middle" font-size="12" fill="#555">A 的列向量张成</text>
+
+  <rect x="460" y="220" width="240" height="140" rx="6" fill="#ff7f0e" fill-opacity="0.15" stroke="#ff7f0e" stroke-width="1.6"/>
+  <text x="580" y="270" text-anchor="middle" font-size="15" font-weight="600" fill="#ff7f0e">左零空间 N(Aᵀ)</text>
+  <text x="580" y="296" text-anchor="middle" font-size="13" fill="#ff7f0e">维数 dim = m − r</text>
+  <text x="580" y="326" text-anchor="middle" font-size="12" fill="#555">Aᵀy = 0 的解</text>
+
+  <!-- Arrow top: row space -> column space (one-to-one, onto) -->
+  <defs>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 z" fill="#1f77b4"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 z" fill="#ff7f0e"/>
+    </marker>
+  </defs>
+  <line x1="300" y1="150" x2="452" y2="150" stroke="#1f77b4" stroke-width="2.2" marker-end="url(#arrowBlue)"/>
+  <text x="376" y="128" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1f77b4">A</text>
+  <text x="376" y="172" text-anchor="middle" font-size="11.5" fill="#1f77b4">行空间 → 列空间</text>
+  <text x="376" y="188" text-anchor="middle" font-size="11.5" fill="#1f77b4">一一到上（可逆）</text>
+
+  <!-- Arrow bottom: nullspace -> 0 -->
+  <line x1="300" y1="290" x2="452" y2="290" stroke="#ff7f0e" stroke-width="2.2" marker-end="url(#arrowOrange)"/>
+  <text x="376" y="268" text-anchor="middle" font-size="12.5" font-weight="600" fill="#ff7f0e">A</text>
+  <text x="376" y="312" text-anchor="middle" font-size="11.5" fill="#ff7f0e">零空间 → 零向量 0</text>
+
+  <!-- Orthogonality footnotes -->
+  <text x="180" y="392" text-anchor="middle" font-size="12.5" fill="#444">两半正交：C(Aᵀ) ⊥ N(A)</text>
+  <text x="580" y="392" text-anchor="middle" font-size="12.5" fill="#444">两半正交：C(A) ⊥ N(Aᵀ)</text>
+  <text x="380" y="420" text-anchor="middle" font-size="12" fill="#666">直和分解：ℝⁿ = C(Aᵀ) ⊕ N(A)，ℝᵐ = C(A) ⊕ N(Aᵀ)；dim C(Aᵀ) = dim C(A) = r</text>
+</svg>

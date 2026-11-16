@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="380" viewBox="0 0 720 380" font-family="ui-sans-serif, system-ui, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+  <rect width="720" height="380" fill="#ffffff"/>
+  <text x="360" y="30" text-anchor="middle" font-size="17" font-weight="600" fill="#222">把 z = xᵀAx 画成高度曲面</text>
+
+  <!-- ===== Left panel: positive definite = upward bowl ===== -->
+  <text x="190" y="62" text-anchor="middle" font-size="15" font-weight="600" fill="#1f77b4">正定：开口向上的碗</text>
+  <text x="190" y="82" text-anchor="middle" font-size="12" fill="#555">λ₁, λ₂ &gt; 0 ⇒ z = λ₁x₁² + λ₂x₂²</text>
+
+  <!-- bowl wireframe: stacked ellipses suggesting depth -->
+  <ellipse cx="190" cy="150" rx="120" ry="34" fill="none" stroke="#1f77b4" stroke-width="1.6"/>
+  <ellipse cx="190" cy="172" rx="92" ry="26" fill="none" stroke="#1f77b4" stroke-width="1.3" opacity="0.85"/>
+  <ellipse cx="190" cy="192" rx="64" ry="18" fill="none" stroke="#1f77b4" stroke-width="1.1" opacity="0.7"/>
+  <ellipse cx="190" cy="208" rx="36" ry="10" fill="none" stroke="#1f77b4" stroke-width="1" opacity="0.55"/>
+  <!-- bottom point (minimum) -->
+  <circle cx="190" cy="218" r="4.5" fill="#d62728"/>
+  <text x="190" y="244" text-anchor="middle" font-size="12.5" fill="#d62728" font-weight="600">唯一极小值（原点）</text>
+  <!-- z axis up -->
+  <line x1="190" y1="218" x2="190" y2="110" stroke="#888" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="200" y="116" font-size="12" fill="#888">z ↑</text>
+  <text x="190" y="290" text-anchor="middle" font-size="12" fill="#444">任意方向都向上翘 ⇒ 原点是全局最小</text>
+
+  <!-- divider -->
+  <line x1="360" y1="60" x2="360" y2="310" stroke="#ddd" stroke-width="1.5"/>
+
+  <!-- ===== Right panel: indefinite = saddle ===== -->
+  <text x="530" y="62" text-anchor="middle" font-size="15" font-weight="600" fill="#ff7f0e">不定：马鞍面</text>
+  <text x="530" y="82" text-anchor="middle" font-size="12" fill="#555">λ₁ &gt; 0, λ₂ &lt; 0 ⇒ z = λ₁x₁² − λ₂x₂²</text>
+
+  <!-- saddle wireframe: curves up along left-right, down along front-back -->
+  <!-- front/back curves (down toward viewer) -->
+  <path d="M 410 150 Q 530 250 650 150" fill="none" stroke="#ff7f0e" stroke-width="1.6"/>
+  <path d="M 410 150 Q 530 60 650 150" fill="none" stroke="#ff7f0e" stroke-width="1.6"/>
+  <!-- left/right curves (up) -->
+  <path d="M 430 200 Q 530 150 630 200" fill="none" stroke="#ff7f0e" stroke-width="1.3" opacity="0.8"/>
+  <path d="M 430 100 Q 530 150 630 100" fill="none" stroke="#ff7f0e" stroke-width="1.3" opacity="0.8"/>
+  <!-- saddle point -->
+  <circle cx="530" cy="150" r="4.5" fill="#d62728"/>
+  <text x="530" y="138" text-anchor="middle" font-size="12.5" fill="#d62728" font-weight="600">鞍点</text>
+  <text x="530" y="290" text-anchor="middle" font-size="12" fill="#444">一个方向下凹、另一个方向上凸 ⇒ 不是极值</text>
+
+  <!-- bottom takeaway -->
+  <text x="360" y="340" text-anchor="middle" font-size="12.5" fill="#333">正定 ⟺ 曲面开口向上 ⟺ 原点是唯一极小值；这和"黑塞矩阵正定 ⇒ 临界点为极小"是同一件事</text>
+</svg>

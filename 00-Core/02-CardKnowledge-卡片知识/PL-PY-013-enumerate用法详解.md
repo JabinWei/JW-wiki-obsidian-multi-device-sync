@@ -4,8 +4,10 @@ status: 已完成
 aliases: [enumerate, 带索引遍历, 计数遍历]
 tags: [编程语言, Python]
 created: 2026-09-17
-updated: 2026-09-17
+updated: 2026-11-16
 ---
+
+![[enumerate-coverImage-v1.png|banner]]
 
 ## 💡 核心概念
 
@@ -71,12 +73,12 @@ for i, color in enumerate(colors):
 
 ### 4. 常用场景
 
-| 场景 | 写法 |
-|------|------|
-| 边遍历边拿索引 | `for i, v in enumerate(seq)` |
-| 从 1 开始编号 | `enumerate(seq, start=1)` |
-| 只要值、忽略索引 | `for _, v in enumerate(seq)` |
-| 逐字符带位置 | `for i, ch in enumerate('abc')` |
+| 场景       | 写法                              |
+| -------- | ------------------------------- |
+| 边遍历边拿索引  | `for i, v in enumerate(seq)`    |
+| 从 1 开始编号 | `enumerate(seq, start=1)`       |
+| 只要值、忽略索引 | `for _, v in enumerate(seq)`    |
+| 逐字符带位置   | `for i, ch in enumerate('abc')` |
 
 ### 5. enumerate 与 zip 的分工
 

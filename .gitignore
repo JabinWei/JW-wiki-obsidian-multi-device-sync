@@ -19,3 +19,7 @@ node_modules/
 
 # ===== 大型参考书 PDF（单文件超 100MB，无法入 GitHub，仅存本地）=====
 40-Library/ToolBook/*.pdf
+
+# ===== AI 生成图片（私密内容，仅本地保存，不上传）=====
+generated-images/
+**/generated-images/
